@@ -1,1 +1,0 @@
-data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3crect%20width='32'%20height='32'%20rx='6'%20fill='%232B2B2B'/%3e%3cpath%20d='M16.8895%208H20.5039L17.8073%2016L15.1108%2024H11.4965L16.8895%208Z'%20fill='%23FAFAFA'/%3e%3c/svg%3e
