@@ -1,0 +1,7 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import About from '@/components/home/About.astro';
+import CTA from '@/components/home/CTA.astro';
+---
+<MainLayout title="About VIYUGAM 2K26"><section class="page-hero"><div class="container"><span class="section-label">The Symposium</span><h1>ENGINEERING<br />THE FUTURE.</h1><p>A full-day celebration of engineering, innovation, and creativity at PPG Institute of Technology, Coimbatore.</p></div></section><About /><CTA /></MainLayout>
+<style lang="scss">@use '../styles/variables' as *;.page-hero { padding: 190px 0 90px; color: white; background: $black; }.page-hero h1 { margin: 18px 0; font: clamp(4rem, 10vw, 8rem)/.86 $display; }.page-hero p { max-width: 560px; color: rgba(255,255,255,.6); line-height: 1.7; }</style>

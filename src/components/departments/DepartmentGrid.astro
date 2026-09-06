@@ -1,0 +1,6 @@
+---
+import { departments } from '@/data/departments';
+import DepartmentCard from './DepartmentCard.astro';
+---
+<div class="department-grid">{departments.map((department) => <DepartmentCard department={department} />)}</div>
+<style lang="scss">@use '../../styles/variables' as *;.department-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }</style>

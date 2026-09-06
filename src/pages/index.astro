@@ -1,0 +1,11 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Hero from '@/components/home/Hero.astro';
+import Stats from '@/components/home/Stats.astro';
+import About from '@/components/home/About.astro';
+import DepartmentGrid from '@/components/departments/DepartmentGrid.astro';
+import CTA from '@/components/home/CTA.astro';
+import ThreeBackdrop from '@/components/animations/ThreeBackdrop.astro';
+---
+<MainLayout><Hero /><Stats /><About /><section class="departments-preview reveal"><ThreeBackdrop /><div class="container"><span class="section-label">Compete & Win</span><h2 class="section-title">EVENTS BY DEPT.</h2><DepartmentGrid /><a class="button" href="/departments">View all departments</a></div></section><CTA /></MainLayout>
+<style lang="scss">@use '../styles/variables' as *;.departments-preview { position: relative; overflow: hidden; padding: 100px 0; background: white; }.departments-preview .container { position: relative; z-index: 1; }.departments-preview .department-grid { margin: 48px 0 30px; }.departments-preview > .container > .button { display: flex; width: fit-content; margin: 0 auto; }</style>
