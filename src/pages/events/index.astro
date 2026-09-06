@@ -1,0 +1,12 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import EventGrid from '@/components/events/EventGrid.astro';
+import { departments } from '@/data/departments';
+---
+<MainLayout title="Events | VIYUGAM 2K26"><section class="page-heading"><div class="container"><span class="section-label">Compete & Win</span><h1>ALL EVENTS.</h1><p>Technical and non-technical events across 7 disciplines. Choose your challenge.</p></div></section><section class="events-content"><div class="container"><div class="filters" aria-label="Event filters"><button class="filter active" data-filter="all">All events</button>{departments.map((department) => <button class="filter" data-filter={department.name}>{department.abbr}</button>)}</div><EventGrid /></div></section></MainLayout>
+<style lang="scss">@use '../../styles/variables' as *;.page-heading { padding: 190px 0 70px; color: white; background: $black; }.page-heading h1 { margin: 18px 0 10px; font: clamp(4rem, 10vw, 8rem)/.86 $display; }.page-heading p { color: rgba(255,255,255,.55); }.events-content { padding: 70px 0 110px; background: $surface; }.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }.filter { padding: 8px 14px; border: 1px solid $line; border-radius: 999px; background: white; cursor: pointer; }.filter.active, .filter:hover { color: white; border-color: $orange; background: $orange; }</style>
+<script>
+const filters = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+const cards = document.querySelectorAll<HTMLElement>('[data-department]');
+filters.forEach((filter) => filter.addEventListener('click', () => { const selected = filter.dataset.filter; filters.forEach((item) => item.classList.toggle('active', item === filter)); cards.forEach((card) => { card.hidden = selected !== 'all' && card.dataset.department !== selected; }); }));
+</script>

@@ -1,0 +1,8 @@
+---
+import { events } from '@/data/events';
+import EventCard from './EventCard.astro';
+const { limit } = Astro.props as { limit?: number };
+const visibleEvents = limit ? events.slice(0, limit) : events;
+---
+<div class="event-grid">{visibleEvents.map((event) => <EventCard event={event} />)}</div>
+<style lang="scss">@use '../../styles/variables' as *;.event-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }</style>
