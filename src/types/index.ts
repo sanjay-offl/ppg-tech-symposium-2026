@@ -2,6 +2,7 @@ export interface Department {
   name: string;
   slug: string;
   abbr: string;
+  image: string;
   email: string;
   coordinators: string[];
   technicalEvents: string[];
