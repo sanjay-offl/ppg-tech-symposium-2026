@@ -5,11 +5,10 @@ gsap.registerPlugin(ScrollTrigger);
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const animationContext = gsap.context(() => {
     const hasHero = Boolean(document.querySelector('.hero'));
-    gsap.set('.navbar', hasHero ? { y: -90, opacity: 0 } : { y: 0, opacity: 1 });
-
+    const hasHeroCar = Boolean(document.querySelector('.hero-car'));
     if (hasHero) {
-      gsap.set('.hero-car', { x: '-140vw', y: 48, scale: 0.82, rotation: -7, transformOrigin: '50% 80%' });
       gsap.set('.hero-content > *', { opacity: 0, y: 24 });
+      gsap.set('.hero-car', { opacity: 0, y: 140, scale: 0.72, rotation: -6, transformOrigin: '50% 100%' });
       gsap.set('.hero-line', { scaleX: 0, transformOrigin: 'left center' });
       gsap.set('.hero-lines i', { scaleX: 0, transformOrigin: 'left center' });
     }
@@ -18,19 +17,13 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const loadTimeline = gsap.timeline({ delay: 0.15 });
       loadTimeline
         .to('.hero-lines i', { scaleX: 1, duration: 0.45, stagger: 0.06, ease: 'power4.out' })
-        .to('.hero-car', { x: 0, duration: 1.05, ease: 'power3.out' }, '-=0.3')
-        .to('.hero-car', { y: -8, scale: 1.04, rotation: 1.5, duration: 0.28, ease: 'power2.out' }, '-=0.18')
-        .to('.hero-car', { y: 0, scale: 1, rotation: 0, duration: 0.55, ease: 'elastic.out(1, 0.55)' }, '-=0.04')
         .to('.hero-lines i', { opacity: 0, duration: 0.35 }, '-=0.5')
+        .to('.hero-car', { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.9, ease: 'back.out(1.4)' }, '-=0.15')
         .to('.hero-content > *', { opacity: 1, y: 0, duration: 0.55, stagger: 0.08, ease: 'power3.out' }, '-=0.2')
         .to('.hero-line', { scaleX: 1, duration: 0.65, ease: 'power2.out' }, '-=0.25');
     }
 
-    if (hasHero) {
-      gsap.to('.navbar', { y: 0, opacity: 1, duration: 0.55, delay: 1.8, ease: 'power3.out' });
-    }
-
-    if (hasHero) {
+    if (hasHero && hasHeroCar) {
       gsap.to('.hero-car img', {
         scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.2 },
         y: 80,
