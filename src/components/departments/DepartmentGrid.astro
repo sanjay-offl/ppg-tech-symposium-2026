@@ -1,6 +1,13 @@
 ---
 import { departments } from '@/data/departments';
 import DepartmentCard from './DepartmentCard.astro';
+const { limit } = Astro.props as { limit?: number };
+const visibleDepartments = limit ? departments.slice(0, limit) : departments;
 ---
-<div class="department-grid">{departments.map((department) => <DepartmentCard department={department} />)}</div>
-<style lang="scss">@use '../../styles/variables' as *;.department-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }</style>
+<div class="department-grid">{visibleDepartments.map((department) => <DepartmentCard department={department} />)}</div>
+<style lang="scss">
+@use '../../styles/variables' as *;
+.department-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: stretch; width: 100%; min-width: 0; overflow: visible; column-gap: clamp(14px, 2vw, 24px); row-gap: 18px; padding-inline: 2px; }
+@media (max-width: 1050px) { .department-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .department-grid { grid-template-columns: minmax(0, 1fr); column-gap: 0; } }
+</style>
