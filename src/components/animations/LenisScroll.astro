@@ -3,9 +3,15 @@ import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
+history.scrollRestoration = 'manual';
+const resetScroll = () => window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+resetScroll();
+window.addEventListener('load', resetScroll, { once: true });
+window.setTimeout(resetScroll, 100);
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (!reducedMotion) {
   const lenis = new Lenis({ autoRaf: false, duration: 1.1, smoothWheel: true });
+  lenis.scrollTo(0, { immediate: true });
   const onScroll = () => ScrollTrigger.update();
   const raf = (time: number) => { lenis.raf(time * 1000); };
   lenis.on('scroll', onScroll);
@@ -13,4 +19,7 @@ if (!reducedMotion) {
   gsap.ticker.lagSmoothing(0);
   document.addEventListener('astro:before-preparation', () => { lenis.off('scroll', onScroll); lenis.destroy(); gsap.ticker.remove(raf); }, { once: true });
 }
+document.addEventListener('astro:page-load', () => {
+  resetScroll();
+}, { once: true });
 </script>
