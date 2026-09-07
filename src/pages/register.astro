@@ -1,0 +1,6 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import RegistrationForm from '@/components/registration/RegistrationForm.astro';
+---
+<MainLayout title="Register | VIYUGAM 2K26"><section class="register-page"><div class="container"><div class="intro"><span class="section-label">Join the Race</span><h1>REGISTER<br />NOW.</h1><p>Secure your place at VIYUGAM 2K26. The registration fee is ₹250 per head.</p></div><RegistrationForm /></div></section></MainLayout>
+<style lang="scss">@use '../styles/variables' as *;.register-page { padding: 180px 0 110px; background: $surface; }.intro { margin-bottom: 36px; }.intro h1 { margin: 18px 0 12px; font: clamp(4rem, 10vw, 8rem)/.86 $display; }.intro p { color: $muted; }</style>

@@ -1,0 +1,6 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import DepartmentGrid from '@/components/departments/DepartmentGrid.astro';
+---
+<MainLayout title="Departments | VIYUGAM 2K26"><section class="page-heading"><div class="container"><span class="section-label">Seven disciplines</span><h1>MEET THE<br />DEPARTMENTS.</h1></div></section><section class="content"><div class="container"><DepartmentGrid /></div></section></MainLayout>
+<style lang="scss">@use '../../styles/variables' as *;.page-heading { padding: 190px 0 80px; color: white; background: $black; }.page-heading h1 { margin: 18px 0 0; font: clamp(4rem, 10vw, 8rem)/.86 $display; }.content { padding: 80px 0 110px; background: $surface; }</style>

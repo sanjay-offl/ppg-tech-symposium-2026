@@ -1,0 +1,9 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { events, getEvent } from '@/data/events';
+export function getStaticPaths() { return events.map((event) => ({ params: { slug: event.slug }, props: { event } })); }
+const { event } = Astro.props;
+const detail = event ?? getEvent(Astro.params.slug ?? '');
+---
+<MainLayout title={`${detail?.name ?? 'Event'} | VIYUGAM 2K26`}><section class="detail"><div class="container">{detail && <><span class="section-label">{detail.category} · {detail.department}</span><h1>{detail.name}</h1><p class="lead">{detail.description}</p><div class="facts"><div><small>Venue</small><strong>{detail.venue}</strong></div><div><small>Time</small><strong>{detail.time}</strong></div><div><small>Team size</small><strong>{detail.teamSize}</strong></div></div><a class="button" href={`/register?event=${detail.slug}`}>Register for this event</a></>}</div></section></MainLayout>
+<style lang="scss">@use '../../styles/variables' as *;.detail { min-height: 75vh; padding: 190px 0 110px; background: $surface; }.detail h1 { max-width: 850px; margin: 22px 0 16px; font: clamp(4rem, 10vw, 8rem)/.86 $display; }.lead { max-width: 620px; color: $muted; line-height: 1.7; }.facts { display: flex; flex-wrap: wrap; gap: 42px; margin: 44px 0; }.facts div { display: grid; gap: 5px; }.facts small { color: $muted; font-size: .68rem; text-transform: uppercase; }.facts strong { font: 1.15rem $technical; }</style>

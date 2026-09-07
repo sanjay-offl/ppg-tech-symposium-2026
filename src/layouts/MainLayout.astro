@@ -1,0 +1,25 @@
+---
+import '../styles/global.scss';
+import Navbar from '@/components/layout/Navbar.astro';
+import Footer from '@/components/layout/Footer.astro';
+import LenisScroll from '@/components/animations/LenisScroll.astro';
+import GSAPAnimations from '@/components/animations/GSAPAnimations.astro';
+const { title = 'VIYUGAM 2K26 | PPG Institute of Technology', description = 'National Level Technical Symposium at PPG Institute of Technology, Coimbatore.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/images/hero-car.png" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Navbar />
+    <main><slot /></main>
+    <Footer />
+    <LenisScroll />
+    <GSAPAnimations />
+  </body>
+</html>
