@@ -6,6 +6,7 @@ import About from '@/components/home/About.astro';
 import DepartmentGrid from '@/components/departments/DepartmentGrid.astro';
 import CTA from '@/components/home/CTA.astro';
 import ThreeBackdrop from '@/components/animations/ThreeBackdrop.astro';
+import DeptScrollLineCanvas from '@/components/animations/DeptScrollLineCanvas.astro';
 import PrizeGiveaway from '@/components/home/PrizeGiveaway.astro';
 import FAQAccordion from '@/components/faq/FAQAccordion.astro';
 ---
@@ -14,11 +15,14 @@ import FAQAccordion from '@/components/faq/FAQAccordion.astro';
   <PrizeGiveaway />
   <Stats />
   <About />
-  <section class="departments-preview reveal">
+  <section class="departments-preview reveal" id="departments">
     <ThreeBackdrop />
+    <DeptScrollLineCanvas />
     <div class="container">
-      <span class="section-label">Compete & Win</span>
-      <h2 class="section-title">EVENTS BY DEPT.</h2>
+      <div class="dept-header-box">
+        <span class="section-label">Compete & Win</span>
+        <h2 class="section-title">EVENTS BY DEPT.</h2>
+      </div>
       <DepartmentGrid />
     </div>
   </section>
@@ -39,9 +43,79 @@ import FAQAccordion from '@/components/faq/FAQAccordion.astro';
 </MainLayout>
 <style lang="scss">
 @use '../styles/variables' as *;
-.departments-preview { position: relative; overflow: hidden; padding: 100px 0; background: white; }
-.departments-preview .container { position: relative; z-index: 1; }
-.departments-preview .department-grid { margin: 48px 0 0; }
+.departments-preview {
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0;
+  background: white;
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .dept-header-box {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 44px;
+    padding: 22px 52px;
+    border-radius: 20px;
+    background: #ffffff;
+    border: 1px solid rgba(255, 101, 0, 0.14);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    width: fit-content;
+    max-width: calc(100% - 32px);
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      margin: 10px 0 0;
+      font: clamp(2.6rem, 6vw, 4.5rem)/.95 $display;
+      letter-spacing: .01em;
+      color: $black;
+    }
+  }
+
+  @media (max-width: 640px) {
+    padding: 44px 0 70px;
+
+    .dept-header-box {
+      padding: 10px 20px;
+      margin: -10px auto 22px;
+      border-radius: 12px;
+
+      .section-label {
+        font-size: .64rem;
+        gap: 6px;
+        letter-spacing: .12em;
+
+        &::before {
+          width: 16px;
+        }
+      }
+
+      .section-title {
+        margin: 4px 0 0;
+        font: clamp(1.7rem, 5.2vw, 2.2rem)/.95 $display;
+      }
+    }
+  }
+
+  .department-grid {
+    margin: 0;
+  }
+}
 
 .home-faq {
   padding: 100px 0;

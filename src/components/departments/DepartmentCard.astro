@@ -8,12 +8,12 @@ const { department } = Astro.props as { department: Department };
       <img src={department.image} alt={`${department.name} track`} loading="lazy" />
       <div class="track-shade"></div>
     </div>
-    <h3 class="department-name">{department.abbr}</h3>
+    <h3 class="department-name">{department.name}</h3>
     <div class="events-content">
       <div class="event-group"><small>Technical</small><ul>{department.technicalEvents.map((event) => <li>{event}</li>)}</ul></div>
       <div class="event-group"><small>Non-Technical</small><ul>{department.nonTechnicalEvents.map((event) => <li>{event}</li>)}</ul></div>
     </div>
-    <div class="card-action">View Department Track & Events ➔</div>
+    <div class="card-action">View Events Details ➔</div>
   </article>
 </a>
 
@@ -88,10 +88,14 @@ const { department } = Astro.props as { department: Department };
   margin: 0;
   padding: 0 4px;
   color: white;
-  font: 700 1rem/1.1 $technical;
-  letter-spacing: .08em;
+  font: 700 0.98rem/1.2 $technical;
+  letter-spacing: .03em;
   text-align: center;
   text-transform: uppercase;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: color 350ms ease, text-shadow 350ms ease;
 }
 
@@ -164,26 +168,31 @@ const { department } = Astro.props as { department: Department };
   transition: transform 350ms ease, color 350ms ease, border-color 350ms ease;
 }
 
-/* === INDEPENDENT HOVER INTERACTION: ONLY HOVERED CARD TRANSITIONS TO ORANGE === */
+/* === INDEPENDENT HOVER INTERACTION: MILD SUBTLE ORANGE SHADE ON HOVER === */
 .department-card:hover,
 .department-card:focus-within,
 .department-card:active {
   transform: translateY(-6px) scale(1.02);
-  background: linear-gradient(160deg, #2a1f18 0%, #221813 50%, #1a1412 100%);
+  background: linear-gradient(160deg, rgba(255, 101, 0, 0.16) 0%, rgba(255, 101, 0, 0.05) 60%, rgba(0, 0, 0, 0) 100%), #242426;
   border-top-color: #ff6500;
-  box-shadow: 0 16px 45px rgba(255, 101, 0, 0.38), 0 0 0 1px rgba(255, 101, 0, 0.35);
+  box-shadow: 0 14px 38px rgba(255, 101, 0, 0.25), 0 0 0 1px rgba(255, 101, 0, 0.3);
 
   .department-name {
-    color: #ff6500;
-    text-shadow: 0 0 14px rgba(255, 101, 0, 0.45);
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(255, 101, 0, 0.4);
   }
 
   .event-group small {
-    color: #ff8533;
+    color: #ff9e66;
+    font-weight: 700;
   }
 
   .event-group small::after {
-    background: rgba(255, 101, 0, 0.4);
+    background: rgba(255, 101, 0, 0.3);
+  }
+
+  .event-group li {
+    color: #ffffff;
   }
 
   .event-group li::before {
@@ -192,19 +201,19 @@ const { department } = Astro.props as { department: Department };
   }
 
   .card-action {
-    color: #ff6500;
-    border-top-color: rgba(255, 101, 0, 0.35);
+    color: #ff8533;
+    border-top-color: rgba(255, 101, 0, 0.25);
     transform: translateX(4px);
   }
 
   .track-visual img {
-    transform: scale(1.1) rotate(-2deg);
+    transform: scale(1.08) rotate(-1.5deg);
     opacity: 1;
-    filter: drop-shadow(0 0 14px rgba(255, 101, 0, 0.55));
+    filter: drop-shadow(0 0 10px rgba(255, 101, 0, 0.45));
   }
 
   .track-visual {
-    background: radial-gradient(circle at center, rgba(255, 101, 0, 0.35), transparent 70%), #1a1412;
+    background: radial-gradient(circle at center, rgba(255, 101, 0, 0.22), transparent 70%), #1a1716;
   }
 }
 
