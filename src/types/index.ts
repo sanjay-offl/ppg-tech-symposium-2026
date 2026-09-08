@@ -40,3 +40,11 @@ export interface PaymentPayload {
   amount: number;
   transactionReference: string;
 }
+
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+  category: 'Registration & Fee' | 'Events & Rules' | 'Venue & Logistics' | 'Prizes & Certificates';
+}
+
