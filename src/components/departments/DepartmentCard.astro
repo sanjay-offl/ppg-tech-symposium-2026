@@ -27,6 +27,14 @@ const { department } = Astro.props as { department: Department };
   height: 100%;
 }
 
+@media (max-width: 768px) {
+  .department-card-link {
+    width: 100%;
+    max-width: 325px;
+    margin-inline: auto;
+  }
+}
+
 .department-card {
   position: relative;
   display: flex;
@@ -121,16 +129,17 @@ const { department } = Astro.props as { department: Department };
 
 .event-group ul {
   display: grid;
-  gap: 4px;
-  margin: 6px 0 0;
+  gap: 8px;
+  margin: 8px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .event-group li {
-  color: rgba(255, 255, 255, .8);
+  color: rgba(255, 255, 255, .85);
   font-size: .78rem;
-  line-height: 1.35;
+  line-height: 1.45;
+  padding: 1px 0;
 }
 
 .event-group li::before {
@@ -199,46 +208,48 @@ const { department } = Astro.props as { department: Department };
   }
 }
 
-/* MOBILE STYLES (Single column stacked cards on mobile/tablet) */
+/* MOBILE STYLES (Single column portrait stacked cards on mobile/tablet) */
 @media (max-width: 768px) {
   .department-card {
-    padding: 0 20px 18px;
-    border-radius: 14px;
+    padding: 0 20px 20px;
+    border-radius: 16px;
     border-top-width: 3px;
   }
   .track-visual {
-    height: 120px;
+    height: 100px;
     margin: 0 -20px 14px;
   }
   .track-visual img {
-    width: 82%;
-    height: 82%;
+    width: 76%;
+    height: 76%;
   }
   .department-name {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     letter-spacing: 0.06em;
   }
   .event-group {
-    margin-top: 10px;
+    margin-top: 12px;
   }
   .event-group small {
-    font-size: 0.62rem;
+    font-size: 0.65rem;
     gap: 6px;
   }
   .event-group ul {
-    gap: 4px;
-    margin-top: 6px;
+    gap: 9px;
+    margin-top: 8px;
   }
   .event-group li {
-    font-size: 0.8rem;
-    line-height: 1.35;
+    font-size: 0.84rem;
+    line-height: 1.4;
+    padding: 2px 0;
   }
   .event-group li::before {
-    margin-right: 5px;
+    margin-right: 6px;
   }
   .card-action {
+    margin-top: 16px;
     padding-top: 12px;
-    font-size: 0.72rem;
+    font-size: 0.74rem;
   }
 }
 </style>
