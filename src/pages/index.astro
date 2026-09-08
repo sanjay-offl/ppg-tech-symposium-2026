@@ -7,6 +7,88 @@ import DepartmentGrid from '@/components/departments/DepartmentGrid.astro';
 import CTA from '@/components/home/CTA.astro';
 import ThreeBackdrop from '@/components/animations/ThreeBackdrop.astro';
 import PrizeGiveaway from '@/components/home/PrizeGiveaway.astro';
+import FAQAccordion from '@/components/faq/FAQAccordion.astro';
 ---
+<<<<<<< HEAD
 <MainLayout><Hero /><PrizeGiveaway /><Stats /><About /><section class="departments-preview reveal"><ThreeBackdrop /><div class="container"><span class="section-label">Compete & Win</span><h2 class="section-title">EVENTS BY DEPT.</h2><DepartmentGrid /></div></section><CTA /></MainLayout>
 <style lang="scss">@use '../styles/variables' as *;.departments-preview { position: relative; overflow: hidden; padding: 100px 0; background: white; }.departments-preview .container { position: relative; z-index: 1; }.departments-preview .department-grid { margin: 48px 0 0; }</style>
+=======
+<MainLayout>
+  <Hero />
+  <PrizeGiveaway />
+  <Stats />
+  <About />
+  <section class="departments-preview reveal">
+    <ThreeBackdrop />
+    <div class="container">
+      <span class="section-label">Compete & Win</span>
+      <h2 class="section-title">EVENTS BY DEPT.</h2>
+      <DepartmentGrid limit={4} />
+      <a class="button" href="/departments">View all departments</a>
+    </div>
+  </section>
+  <section class="home-faq reveal" id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <span class="section-label">Got questions?</span>
+        <h2 class="section-title">FREQUENTLY ASKED.</h2>
+        <p>Quick answers on registration fees, multi-event rules, prizes, and venue logistics.</p>
+      </div>
+      <FAQAccordion limit={5} showFilters={false} />
+      <div class="faq-more">
+        <a class="button button--ghost" href="/faq">View all questions & answers <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+  <CTA />
+</MainLayout>
+<style lang="scss">
+@use '../styles/variables' as *;
+.departments-preview { position: relative; overflow: hidden; padding: 100px 0; background: white; }
+.departments-preview .container { position: relative; z-index: 1; }
+.departments-preview .department-grid { margin: 48px 0 0; }
+.departments-preview > .container > .button { display: flex; width: max-content; margin: 48px auto 0; justify-content: center; }
+
+.home-faq {
+  padding: 100px 0;
+  background: $surface;
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 48px;
+
+    .section-label {
+      justify-content: center;
+    }
+
+    p {
+      max-width: 540px;
+      margin: 12px auto 0;
+      color: $muted;
+      line-height: 1.6;
+    }
+  }
+
+  .faq-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
+
+    a {
+      font-weight: 700;
+      color: $orange;
+
+      span {
+        display: inline-block;
+        transition: transform 0.2s;
+      }
+
+      &:hover span {
+        transform: translateX(4px);
+      }
+    }
+  }
+}
+</style>
+
+>>>>>>> 51acb221d2be1f26df16be173a5e3f3fef58d4f7
