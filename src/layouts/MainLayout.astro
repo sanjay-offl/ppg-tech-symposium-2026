@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar.astro';
 import Footer from '@/components/layout/Footer.astro';
 import LenisScroll from '@/components/animations/LenisScroll.astro';
 import GSAPAnimations from '@/components/animations/GSAPAnimations.astro';
+import IntroOverlay from '@/components/common/IntroOverlay.astro';
 const { title = 'VIYUGAM 2K26 | PPG Institute of Technology', description = 'National Level Technical Symposium at PPG Institute of Technology, Coimbatore.' } = Astro.props;
 ---
 <!doctype html>
@@ -13,9 +14,13 @@ const { title = 'VIYUGAM 2K26 | PPG Institute of Technology', description = 'Nat
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <link rel="icon" href="/images/hero-car.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     <title>{title}</title>
   </head>
   <body>
+    <IntroOverlay />
     <Navbar />
     <main><slot /></main>
     <Footer />
