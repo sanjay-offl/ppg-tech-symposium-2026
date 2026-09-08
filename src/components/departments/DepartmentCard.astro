@@ -2,36 +2,243 @@
 import type { Department } from '@/types';
 const { department } = Astro.props as { department: Department };
 ---
-<article class="department-card">
-  <div class="track-visual">
-    <img src={department.image} alt={`${department.name} track`} loading="lazy" />
-    <div class="track-shade"></div>
-  </div>
-  <h3 class="department-name">{department.abbr}</h3>
-  <div class="events-content">
-    <div class="event-group"><small>Technical</small><ul>{department.technicalEvents.map((event) => <li>{event}</li>)}</ul></div>
-    <div class="event-group"><small>Non-Technical</small><ul>{department.nonTechnicalEvents.map((event) => <li>{event}</li>)}</ul></div>
-  </div>
-  <div class="contact">{department.coordinators.map((coordinator) => <span>{coordinator}</span>)}<a href={`mailto:${department.email}`}>{department.email}</a></div>
-</article>
+<a href={`/departments/${department.slug}`} class="department-card-link">
+  <article class="department-card">
+    <div class="track-visual">
+      <img src={department.image} alt={`${department.name} track`} loading="lazy" />
+      <div class="track-shade"></div>
+    </div>
+    <h3 class="department-name">{department.abbr}</h3>
+    <div class="events-content">
+      <div class="event-group"><small>Technical</small><ul>{department.technicalEvents.map((event) => <li>{event}</li>)}</ul></div>
+      <div class="event-group"><small>Non-Technical</small><ul>{department.nonTechnicalEvents.map((event) => <li>{event}</li>)}</ul></div>
+    </div>
+    <div class="card-action">View Department Track & Events ➔</div>
+  </article>
+</a>
 
 <style lang="scss">
 @use '../../styles/variables' as *;
-.department-card { position: relative; display: flex; flex-direction: column; min-width: 0; height: 100%; overflow: hidden; padding: 0 28px 28px; border-top: 3px solid $orange; border-radius: 15px; color: white; background: $card; transition: transform .25s, box-shadow .25s; }
-.department-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.18); }
-.track-visual { position: relative; display: grid; place-items: center; height: 154px; margin: 0 -28px 24px; overflow: hidden; isolation: isolate; background: radial-gradient(circle at center, rgba(255,101,0,.18), transparent 68%), #171719; }
-.track-visual img { position: absolute; z-index: -2; width: 86%; height: 86%; object-fit: contain; opacity: .78; filter: drop-shadow(0 0 7px rgba(255,255,255,.2)); transition: transform .35s ease, opacity .35s ease; }
-.department-card:hover .track-visual img { transform: scale(1.08) rotate(-2deg); opacity: 1; }
-.track-shade { position: absolute; z-index: -1; inset: 0; background: rgba(0,0,0,.4); }
-.department-name { margin: 0; padding: 0 4px; color: white; font: 700 1rem/1.1 $technical; letter-spacing: .1em; text-align: center; text-transform: uppercase; }
-.events-content { display: flex; flex: 1 1 auto; flex-direction: column; min-height: 0; }
-.event-group { position: relative; margin-top: 16px; }
-.event-group small { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,.4); font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.event-group small::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.1); }
-.event-group ul { display: grid; gap: 5px; margin: 8px 0 0; padding: 0; list-style: none; }
-.event-group li { color: rgba(255,255,255,.75); font-size: .8rem; }
-.event-group li::before { content: '>'; margin-right: 7px; color: $orange; }
-.contact { display: grid; gap: 3px; margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.09); color: rgba(255,255,255,.4); font-size: .68rem; }
-.contact a { color: inherit; text-decoration: none; }
-.contact a:hover { color: white; }
+
+.department-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.department-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  padding: 0 24px 22px;
+  border-top: 3px solid rgba(255, 101, 0, 0.5);
+  border-radius: 14px;
+  color: white;
+  background: $card;
+  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+              background 350ms ease,
+              border-color 350ms ease,
+              box-shadow 350ms ease;
+  cursor: pointer;
+}
+
+.track-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 140px;
+  margin: 0 -24px 18px;
+  overflow: hidden;
+  isolation: isolate;
+  background: radial-gradient(circle at center, rgba(255, 101, 0, 0.15), transparent 68%), #171719;
+  transition: background 350ms ease;
+}
+
+.track-visual img {
+  position: absolute;
+  z-index: -2;
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+  opacity: .78;
+  filter: drop-shadow(0 0 7px rgba(255, 255, 255, .2));
+  transition: transform 350ms ease, opacity 350ms ease, filter 350ms ease;
+}
+
+.track-shade {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: rgba(0, 0, 0, .35);
+}
+
+.department-name {
+  margin: 0;
+  padding: 0 4px;
+  color: white;
+  font: 700 1rem/1.1 $technical;
+  letter-spacing: .08em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: color 350ms ease, text-shadow 350ms ease;
+}
+
+.events-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.event-group {
+  position: relative;
+  margin-top: 14px;
+}
+
+.event-group small {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(255, 255, 255, .45);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: color 350ms ease;
+}
+
+.event-group small::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, .1);
+  transition: background 350ms ease;
+}
+
+.event-group ul {
+  display: grid;
+  gap: 4px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.event-group li {
+  color: rgba(255, 255, 255, .8);
+  font-size: .78rem;
+  line-height: 1.35;
+}
+
+.event-group li::before {
+  content: '>';
+  margin-right: 6px;
+  color: rgba(255, 101, 0, 0.7);
+  font-weight: 700;
+  transition: color 350ms ease, text-shadow 350ms ease;
+}
+
+.card-action {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, .09);
+  color: rgba(255, 255, 255, 0.5);
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: transform 350ms ease, color 350ms ease, border-color 350ms ease;
+}
+
+/* === INDEPENDENT HOVER INTERACTION: ONLY HOVERED CARD TRANSITIONS TO ORANGE === */
+.department-card:hover,
+.department-card:focus-within,
+.department-card:active {
+  transform: translateY(-6px) scale(1.02);
+  background: linear-gradient(160deg, #2a1f18 0%, #221813 50%, #1a1412 100%);
+  border-top-color: #ff6500;
+  box-shadow: 0 16px 45px rgba(255, 101, 0, 0.38), 0 0 0 1px rgba(255, 101, 0, 0.35);
+
+  .department-name {
+    color: #ff6500;
+    text-shadow: 0 0 14px rgba(255, 101, 0, 0.45);
+  }
+
+  .event-group small {
+    color: #ff8533;
+  }
+
+  .event-group small::after {
+    background: rgba(255, 101, 0, 0.4);
+  }
+
+  .event-group li::before {
+    color: #ff7a00;
+    text-shadow: 0 0 8px rgba(255, 101, 0, 0.6);
+  }
+
+  .card-action {
+    color: #ff6500;
+    border-top-color: rgba(255, 101, 0, 0.35);
+    transform: translateX(4px);
+  }
+
+  .track-visual img {
+    transform: scale(1.1) rotate(-2deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 14px rgba(255, 101, 0, 0.55));
+  }
+
+  .track-visual {
+    background: radial-gradient(circle at center, rgba(255, 101, 0, 0.35), transparent 70%), #1a1412;
+  }
+}
+
+/* MOBILE COMPACT STYLES (Smaller section sizing on mobile screens) */
+@media (max-width: 640px) {
+  .department-card {
+    padding: 0 12px 14px;
+    border-radius: 10px;
+    border-top-width: 2.5px;
+  }
+  .track-visual {
+    height: 90px;
+    margin: 0 -12px 10px;
+  }
+  .track-visual img {
+    width: 78%;
+    height: 78%;
+  }
+  .department-name {
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+  }
+  .event-group {
+    margin-top: 8px;
+  }
+  .event-group small {
+    font-size: 0.55rem;
+    gap: 4px;
+  }
+  .event-group ul {
+    gap: 3px;
+    margin-top: 4px;
+  }
+  .event-group li {
+    font-size: 0.7rem;
+    line-height: 1.25;
+  }
+  .event-group li::before {
+    margin-right: 4px;
+  }
+  .card-action {
+    padding-top: 8px;
+    font-size: 0.6rem;
+  }
+}
 </style>
