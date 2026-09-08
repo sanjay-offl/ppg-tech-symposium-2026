@@ -199,46 +199,46 @@ const { department } = Astro.props as { department: Department };
   }
 }
 
-/* MOBILE COMPACT STYLES (Smaller section sizing on mobile screens) */
-@media (max-width: 640px) {
+/* MOBILE STYLES (Single column stacked cards on mobile/tablet) */
+@media (max-width: 768px) {
   .department-card {
-    padding: 0 12px 14px;
-    border-radius: 10px;
-    border-top-width: 2.5px;
+    padding: 0 20px 18px;
+    border-radius: 14px;
+    border-top-width: 3px;
   }
   .track-visual {
-    height: 90px;
-    margin: 0 -12px 10px;
+    height: 120px;
+    margin: 0 -20px 14px;
   }
   .track-visual img {
-    width: 78%;
-    height: 78%;
+    width: 82%;
+    height: 82%;
   }
   .department-name {
-    font-size: 0.82rem;
-    letter-spacing: 0.05em;
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
   }
   .event-group {
-    margin-top: 8px;
+    margin-top: 10px;
   }
   .event-group small {
-    font-size: 0.55rem;
-    gap: 4px;
+    font-size: 0.62rem;
+    gap: 6px;
   }
   .event-group ul {
-    gap: 3px;
-    margin-top: 4px;
+    gap: 4px;
+    margin-top: 6px;
   }
   .event-group li {
-    font-size: 0.7rem;
-    line-height: 1.25;
+    font-size: 0.8rem;
+    line-height: 1.35;
   }
   .event-group li::before {
-    margin-right: 4px;
+    margin-right: 5px;
   }
   .card-action {
-    padding-top: 8px;
-    font-size: 0.6rem;
+    padding-top: 12px;
+    font-size: 0.72rem;
   }
 }
 </style>
