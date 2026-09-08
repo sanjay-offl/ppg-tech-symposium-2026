@@ -1,32 +1,48 @@
 ---
 /* IntroOverlay.astro - PPG Institute of Technology Brand Intro Animation Overlay */
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/' || pathname === '/index.html' || pathname === '';
 ---
 
-<div id="brand-intro-overlay" class="brand-intro-overlay">
-  <canvas id="intro-motion-canvas"></canvas>
-  <button class="intro-skip-btn" id="introSkipBtn" type="button">Skip ➔</button>
-</div>
+{isHome && (
+  <>
+    <!-- Inline synchronous check BEFORE first paint to eliminate any white flash or flicker -->
+    <script is:inline>
+      (function() {
+        var isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+        if (!isHomePage) {
+          document.documentElement.classList.add('no-intro-overlay');
+        }
+      })();
+    </script>
 
-<div class="intro-lockup-wrap" id="introLockupWrap">
-  <div class="intro-logo-box" id="introLogoBox">
-    <!-- Full single PNG logo -->
-    <img src="/images/intro/ppg_logo_clean.png" alt="PPG Institute of Technology Logo" class="intro-logo-full" id="introLogoFull" />
-
-    <!-- 5 Sliced Emblem Parts for mechanical assembly -->
-    <div class="intro-emblem-parts" id="introEmblemParts">
-      <img src="/images/intro/quad_tl.png" class="emblem-part part-tl" id="partTL" alt="Emblem Top Left" />
-      <img src="/images/intro/quad_tr.png" class="emblem-part part-tr" id="partTR" alt="Emblem Top Right" />
-      <img src="/images/intro/quad_bl.png" class="emblem-part part-bl" id="partBL" alt="Emblem Bottom Left" />
-      <img src="/images/intro/quad_br.png" class="emblem-part part-br" id="partBR" alt="Emblem Bottom Right" />
-      <img src="/images/intro/ribbon.png" class="emblem-part part-ribbon" id="partRibbon" alt="Emblem Brown Ribbon" />
+    <div id="brand-intro-overlay" class="brand-intro-overlay">
+      <canvas id="intro-motion-canvas"></canvas>
+      <button class="intro-skip-btn" id="introSkipBtn" type="button">Skip ➔</button>
     </div>
-  </div>
 
-  <div class="intro-text-box" id="introTextBox">
-    <h1 class="intro-main-title" id="introMainTitle">PPG INSTITUTE OF TECHNOLOGY</h1>
-    <div class="intro-subtitle" id="introSubtitle">AN AUTONOMOUS INSTITUTION</div>
-  </div>
-</div>
+    <div class="intro-lockup-wrap" id="introLockupWrap">
+      <div class="intro-logo-box" id="introLogoBox">
+        <!-- Full single PNG logo -->
+        <img src="/images/intro/ppg_logo_clean.png" alt="PPG Institute of Technology Logo" class="intro-logo-full" id="introLogoFull" />
+
+        <!-- 5 Sliced Emblem Parts for mechanical assembly -->
+        <div class="intro-emblem-parts" id="introEmblemParts">
+          <img src="/images/intro/quad_tl.png" class="emblem-part part-tl" id="partTL" alt="Emblem Top Left" />
+          <img src="/images/intro/quad_tr.png" class="emblem-part part-tr" id="partTR" alt="Emblem Top Right" />
+          <img src="/images/intro/quad_bl.png" class="emblem-part part-bl" id="partBL" alt="Emblem Bottom Left" />
+          <img src="/images/intro/quad_br.png" class="emblem-part part-br" id="partBR" alt="Emblem Bottom Right" />
+          <img src="/images/intro/ribbon.png" class="emblem-part part-ribbon" id="partRibbon" alt="Emblem Brown Ribbon" />
+        </div>
+      </div>
+
+      <div class="intro-text-box" id="introTextBox">
+        <h1 class="intro-main-title" id="introMainTitle">PPG INSTITUTE OF TECHNOLOGY</h1>
+        <div class="intro-subtitle" id="introSubtitle">AN AUTONOMOUS INSTITUTION</div>
+      </div>
+    </div>
+  </>
+)}
 
 <style lang="scss">
 :root {
@@ -34,6 +50,16 @@
   --orange-glow: rgba(255, 101, 0, 0.35);
   --black: #0A0A0A;
   --dark: #1C1C1E;
+}
+
+:global(html.no-intro-overlay) #brand-intro-overlay,
+:global(html.no-intro-overlay) #introLockupWrap,
+:global(html.no-intro-overlay) .brand-intro-overlay,
+:global(html.no-intro-overlay) .intro-lockup-wrap {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 body.intro-active {
@@ -497,9 +523,26 @@ function playBrandIntroAnimation() {
     }, 3.65);
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', playBrandIntroAnimation);
-} else {
+function initIntro() {
+    const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+
+    const overlay = document.getElementById('brand-intro-overlay');
+    const lockupWrap = document.getElementById('introLockupWrap');
+
+    if (!isHomePage || document.documentElement.classList.contains('no-intro-overlay')) {
+        // Immediately remove overlay for subpages
+        overlay?.remove();
+        lockupWrap?.remove();
+        document.body.classList.remove('intro-active');
+        return;
+    }
+
     playBrandIntroAnimation();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initIntro);
+} else {
+    initIntro();
 }
 </script>
