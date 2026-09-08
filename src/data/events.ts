@@ -12,7 +12,12 @@ const descriptions: Record<string, string> = {
   'Code Breakers': 'Solve intricate coding logic, debugging, and data structure puzzles under time pressure.',
   'Idea Presentation': 'Pitch innovative AI & Data Science solutions and research concepts to expert judges.',
   'Memory Lens': 'Test your visual recall, focus, and observational precision in a fast-paced memory challenge.',
-  'E-Football': 'Compete in an intense virtual football tournament to prove your esports strategy and gaming skills.'
+  'E-Football': 'Compete in an intense virtual football tournament to prove your esports strategy and gaming skills.',
+  'IDEA2PROTOTYPE': 'Transform innovative AI concepts into working functional prototypes.',
+  'PROMPT2PIXEL': 'Generate creative visual art and designs using advanced AI prompt engineering.',
+  'Web Redesign': 'Revamp and reimagine web interface designs with modern AI-driven UI/UX aesthetics.',
+  'AI Short Film': 'Create compelling short stories and video narratives using AI generative tools.',
+  'Human VS AI': 'Compete head-to-head in challenges comparing human logic against AI capabilities.'
 };
 
 const allEvents: EventItem[] = departments.flatMap((department) => [
