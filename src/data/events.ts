@@ -7,7 +7,12 @@ const descriptions: Record<string, string> = {
   'HydroQuiz': 'Test your knowledge with a fast-paced technical quiz.',
   'Web-athon': 'Build, solve, and present a web experience under pressure.',
   'Code Sprint': 'Race against the clock through a focused programming challenge.',
-  'Paper Presentation': 'Share a considered technical idea with a curious audience.'
+  'Paper Presentation': 'Share a considered technical idea with a curious audience.',
+  'Technology Casino': 'High-stakes technical problem-solving and algorithmic challenges in AI & Data Science.',
+  'Code Breakers': 'Solve intricate coding logic, debugging, and data structure puzzles under time pressure.',
+  'Idea Presentation': 'Pitch innovative AI & Data Science solutions and research concepts to expert judges.',
+  'Memory Lens': 'Test your visual recall, focus, and observational precision in a fast-paced memory challenge.',
+  'E-Football': 'Compete in an intense virtual football tournament to prove your esports strategy and gaming skills.'
 };
 
 const allEvents: EventItem[] = departments.flatMap((department) => [

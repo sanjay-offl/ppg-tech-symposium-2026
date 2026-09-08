@@ -19,8 +19,7 @@ import FAQAccordion from '@/components/faq/FAQAccordion.astro';
     <div class="container">
       <span class="section-label">Compete & Win</span>
       <h2 class="section-title">EVENTS BY DEPT.</h2>
-      <DepartmentGrid limit={4} />
-      <a class="button" href="/departments">View all departments</a>
+      <DepartmentGrid />
     </div>
   </section>
   <section class="home-faq reveal" id="faq">
@@ -43,7 +42,6 @@ import FAQAccordion from '@/components/faq/FAQAccordion.astro';
 .departments-preview { position: relative; overflow: hidden; padding: 100px 0; background: white; }
 .departments-preview .container { position: relative; z-index: 1; }
 .departments-preview .department-grid { margin: 48px 0 0; }
-.departments-preview > .container > .button { display: flex; width: max-content; margin: 48px auto 0; justify-content: center; }
 
 .home-faq {
   padding: 100px 0;
