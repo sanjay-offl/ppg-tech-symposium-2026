@@ -1,6 +1,110 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
 import DepartmentGrid from '@/components/departments/DepartmentGrid.astro';
+import DeptScrollLineCanvas from '@/components/animations/DeptScrollLineCanvas.astro';
 ---
-<MainLayout title="Departments | VIYUGAM 2K26"><section class="page-heading"><div class="container"><span class="section-label">Seven disciplines</span><h1>MEET THE<br />DEPARTMENTS.</h1></div></section><section class="content"><div class="container"><DepartmentGrid /></div></section></MainLayout>
-<style lang="scss">@use '../../styles/variables' as *;.page-heading { padding: 190px 0 80px; color: white; background: $black; }.page-heading h1 { margin: 18px 0 0; font: clamp(4rem, 10vw, 8rem)/.86 $display; }.content { padding: 80px 0 110px; background: $surface; }</style>
+
+<MainLayout title="Departments | VIYUGAM 2K26">
+  <section class="page-heading">
+    <div class="container">
+      <span class="section-label">Seven disciplines</span>
+      <h1>MEET THE<br />DEPARTMENTS.</h1>
+    </div>
+  </section>
+  <section class="content">
+    <DeptScrollLineCanvas />
+    <div class="container">
+      <div class="dept-header-box">
+        <span class="section-label">Compete & Win</span>
+        <h2 class="section-title">EVENTS BY DEPT.</h2>
+      </div>
+      <DepartmentGrid />
+    </div>
+  </section>
+</MainLayout>
+
+<style lang="scss">
+@use '../../styles/variables' as *;
+
+.page-heading {
+  padding: 190px 0 80px;
+  color: white;
+  background: $black;
+
+  h1 {
+    margin: 18px 0 0;
+    font: clamp(4rem, 10vw, 8rem)/.86 $display;
+  }
+}
+
+.content {
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0 110px;
+  background: $surface;
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.dept-header-box {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 44px;
+  padding: 22px 52px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(255, 101, 0, 0.14);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  width: fit-content;
+  max-width: calc(100% - 32px);
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    margin: 10px 0 0;
+    font: clamp(2.6rem, 6vw, 4.5rem)/.95 $display;
+    letter-spacing: .01em;
+    color: $black;
+  }
+}
+@media (max-width: 640px) {
+  .content {
+    padding: 38px 0 70px;
+  }
+
+  .dept-header-box {
+    padding: 10px 20px;
+    margin: -10px auto 22px;
+    border-radius: 12px;
+
+    .section-label {
+      font-size: .64rem;
+      gap: 6px;
+      letter-spacing: .12em;
+
+      &::before {
+        width: 16px;
+      }
+    }
+
+    .section-title {
+      margin: 4px 0 0;
+      font: clamp(1.7rem, 5.2vw, 2.2rem)/.95 $display;
+    }
+  }
+}
+</style>
