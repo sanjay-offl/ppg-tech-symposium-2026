@@ -27,6 +27,14 @@ const { department } = Astro.props as { department: Department };
   height: 100%;
 }
 
+@media (max-width: 768px) {
+  .department-card-link {
+    width: 100%;
+    max-width: 325px;
+    margin-inline: auto;
+  }
+}
+
 .department-card {
   position: relative;
   display: flex;
@@ -121,16 +129,17 @@ const { department } = Astro.props as { department: Department };
 
 .event-group ul {
   display: grid;
-  gap: 4px;
-  margin: 6px 0 0;
+  gap: 8px;
+  margin: 8px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .event-group li {
-  color: rgba(255, 255, 255, .8);
+  color: rgba(255, 255, 255, .85);
   font-size: .78rem;
-  line-height: 1.35;
+  line-height: 1.45;
+  padding: 1px 0;
 }
 
 .event-group li::before {
@@ -199,46 +208,48 @@ const { department } = Astro.props as { department: Department };
   }
 }
 
-/* MOBILE COMPACT STYLES (Smaller section sizing on mobile screens) */
-@media (max-width: 640px) {
+/* MOBILE STYLES (Single column portrait stacked cards on mobile/tablet) */
+@media (max-width: 768px) {
   .department-card {
-    padding: 0 12px 14px;
-    border-radius: 10px;
-    border-top-width: 2.5px;
+    padding: 0 20px 20px;
+    border-radius: 16px;
+    border-top-width: 3px;
   }
   .track-visual {
-    height: 90px;
-    margin: 0 -12px 10px;
+    height: 100px;
+    margin: 0 -20px 14px;
   }
   .track-visual img {
-    width: 78%;
-    height: 78%;
+    width: 76%;
+    height: 76%;
   }
   .department-name {
-    font-size: 0.82rem;
-    letter-spacing: 0.05em;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
   }
   .event-group {
-    margin-top: 8px;
+    margin-top: 12px;
   }
   .event-group small {
-    font-size: 0.55rem;
-    gap: 4px;
+    font-size: 0.65rem;
+    gap: 6px;
   }
   .event-group ul {
-    gap: 3px;
-    margin-top: 4px;
+    gap: 9px;
+    margin-top: 8px;
   }
   .event-group li {
-    font-size: 0.7rem;
-    line-height: 1.25;
+    font-size: 0.84rem;
+    line-height: 1.4;
+    padding: 2px 0;
   }
   .event-group li::before {
-    margin-right: 4px;
+    margin-right: 6px;
   }
   .card-action {
-    padding-top: 8px;
-    font-size: 0.6rem;
+    margin-top: 16px;
+    padding-top: 12px;
+    font-size: 0.74rem;
   }
 }
 </style>
