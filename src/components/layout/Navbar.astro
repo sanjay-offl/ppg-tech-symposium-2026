@@ -7,11 +7,11 @@ import { departments } from '@/data/departments';
   <ul class="nav-links" id="primary-links">
     <li><a href="/about">About</a></li>
     <li class="has-dropdown">
-      <a href="/departments" class="dropdown-trigger">
+      <a href="/#departments" class="dropdown-trigger">
         Departments <span class="caret" aria-hidden="true">▾</span>
       </a>
       <div class="dropdown-menu" role="menu">
-        <a href="/departments" class="dropdown-item overview-item" role="menuitem">
+        <a href="/#departments" class="dropdown-item overview-item" role="menuitem">
           <strong>All Departments</strong>
           <small>Explore 7 Tracks & Events</small>
         </a>
@@ -107,11 +107,14 @@ import { departments } from '@/data/departments';
     text-decoration: none;
     font-size: 12px;
     min-height: auto;
-    transition: background 0.15s ease, color 0.15s ease;
-
     &:hover {
-      background: rgba(255, 101, 0, 0.09);
+      background: rgba(255, 101, 0, 0.12);
       color: $orange;
+
+      .dept-tag {
+        background: $orange;
+        color: #ffffff;
+      }
     }
 
     &.overview-item {
@@ -125,16 +128,19 @@ import { departments } from '@/data/departments';
         font-weight: 700;
         font-size: 12.5px;
         color: #111;
+        transition: color 0.15s ease;
       }
 
       small {
         font-size: 11px;
         color: #666;
+        transition: color 0.15s ease;
       }
 
       &:hover {
-        background: rgba(255, 101, 0, 0.12);
+        background: rgba(255, 101, 0, 0.14);
         strong { color: $orange; }
+        small { color: #444; }
       }
     }
 
