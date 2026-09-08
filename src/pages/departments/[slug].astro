@@ -61,13 +61,14 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
                 <span>⏰ {evt.time}</span>
                 <span>👥 {evt.teamSize}</span>
               </div>
+              <a href={`/events/${evt.slug}`} class="event-details-btn">View Event Details ➔</a>
             </article>
           ))}
         </div>
       </div>
 
       <!-- Non-Technical Events -->
-      <div class="events-group-block">
+      <div class="events-group-block non-tech-block">
         <h2 class="group-title">🎮 NON-TECHNICAL EVENTS ({nonTechEvents.length})</h2>
         <div class="event-cards-grid">
           {nonTechEvents.map((evt) => (
@@ -80,6 +81,7 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
                 <span>⏰ {evt.time}</span>
                 <span>👥 {evt.teamSize}</span>
               </div>
+              <a href={`/events/${evt.slug}`} class="event-details-btn">View Event Details ➔</a>
             </article>
           ))}
         </div>
@@ -228,6 +230,14 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
     flex: 1;
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.non-tech-block .group-title {
+  color: #00b4d8;
+  text-shadow: 0 0 16px rgba(0, 180, 216, 0.4);
+  &::after {
+    background: rgba(0, 180, 216, 0.3);
   }
 }
 
@@ -406,6 +416,48 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   background: rgba(0, 0, 0, 0.25);
   font-size: 12px;
   color: rgba(255, 255, 255, 0.7);
+}
+
+.event-details-btn {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 18px;
+  border-radius: 10px;
+  background: rgba(255, 101, 0, 0.14);
+  border: 1px solid rgba(255, 101, 0, 0.4);
+  color: #ff6500;
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #ff6500;
+    color: #ffffff;
+    border-color: #ff6500;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 101, 0, 0.45);
+  }
+}
+
+.non-tech-card .event-details-btn {
+  background: rgba(0, 180, 216, 0.14);
+  border-color: rgba(0, 180, 216, 0.4);
+  color: #00b4d8;
+
+  &:hover {
+    background: #00b4d8;
+    color: #ffffff;
+    border-color: #00b4d8;
+    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.45);
+  }
 }
 
 .dept-register-wrap {
