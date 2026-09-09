@@ -15,7 +15,7 @@ export const faqs: FAQItem[] = [
     id: 'fee-coverage',
     category: 'Registration & Fee',
     question: 'What does the ₹250 registration fee cover?',
-    answer: 'The ₹250 registration fee is an all-inclusive single pass. It grants you full access to participate in events across any of the 7 departments, provides an official participation certificate, and includes complimentary lunch and refreshments for the day.'
+    answer: 'The ₹250 registration fee is an all-inclusive single pass. It grants you full access to participate in events across any of the 8 departments, provides an official participation certificate, and includes complimentary lunch and refreshments for the day.'
   },
   {
     id: 'multiple-events',
@@ -75,7 +75,7 @@ export const faqs: FAQItem[] = [
     id: 'prizes-cash',
     category: 'Prizes & Certificates',
     question: 'What prizes can winners expect?',
-    answer: 'Winners across all 37 technical and non-technical events will receive exciting cash prizes, winner certificates, and trophies/mementos awarded during the grand Valedictory ceremony.'
+    answer: 'Winners across all 41 technical and non-technical events will receive exciting cash prizes, winner certificates, and trophies/mementos awarded during the grand Valedictory ceremony.'
   },
   {
     id: 'f1-giveaway',
