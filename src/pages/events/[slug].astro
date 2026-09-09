@@ -41,6 +41,20 @@ const isNonTech = detail?.category === 'Non-Technical';
             </div>
           )}
 
+          {detail.themes && detail.themes.length > 0 && (
+            <div class="themes-section">
+              <h2 class="section-title">THEMES FOR PRESENTATION</h2>
+              <div class="themes-grid">
+                {detail.themes.map((theme, idx) => (
+                  <div class="theme-item">
+                    <span class="theme-num">{idx + 1}.</span>
+                    <span class="theme-text">{theme}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {detail.rules && detail.rules.length > 0 && (
             <div class="rules-section">
               <h2 class="section-title">RULES AND SCORING</h2>
@@ -284,6 +298,36 @@ const isNonTech = detail?.category === 'Non-Technical';
     padding-left: 0;
     margin-top: 4px;
   }
+}
+
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.theme-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: rgba(255, 101, 0, 0.04);
+  border: 1px solid rgba(255, 101, 0, 0.15);
+}
+
+.theme-num {
+  font: 700 0.88rem $technical;
+  color: $orange;
+  min-width: 22px;
+}
+
+.theme-text {
+  font-family: $body;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333338;
 }
 
 .rules-list {

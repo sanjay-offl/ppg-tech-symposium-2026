@@ -29,6 +29,7 @@ export interface EventItem {
   concept?: string;
   stages?: EventStage[];
   rules?: string[];
+  themes?: string[];
 }
 
 export interface RegistrationPayload {
