@@ -4,22 +4,73 @@ import { events, getEvent } from '@/data/events';
 export function getStaticPaths() { return events.map((event) => ({ params: { slug: event.slug }, props: { event } })); }
 const { event } = Astro.props;
 const detail = event ?? getEvent(Astro.params.slug ?? '');
+const isNonTech = detail?.category === 'Non-Technical';
 ---
-<MainLayout title={`${detail?.name ?? 'Event'} | VIYUGAM 2K26`}>
+<MainLayout title={`${detail?.name ?? 'Event'} | VIYUGAM 2K26`} description={detail?.description}>
   <section class="detail">
     <div class="container">
-      <a href="javascript:history.back()" class="back-link">← Back to Department</a>
+      <a href="javascript:history.back()" class={`back-link ${isNonTech ? 'non-tech-back' : ''}`}>← Back to Department</a>
       {detail && (
-        <div class="event-detail-box">
+        <div class={`event-detail-box ${isNonTech ? 'is-non-tech' : ''}`}>
           <span class="event-badge">{detail.category} · {detail.department}</span>
           <h1>{detail.name}</h1>
-          <p class="lead">{detail.description}</p>
+          <p class="lead">{detail.concept ?? detail.description}</p>
+
           <div class="facts">
             <div><small>Department</small><strong>{detail.department}</strong></div>
             <div><small>Category</small><strong>{detail.category}</strong></div>
             <div><small>Venue</small><strong>📍 {detail.venue}</strong></div>
-            <div><small>Time</small><strong>⏰ {detail.time}</strong></div>
-            <div><small>Team Size</small><strong>👥 {detail.teamSize}</strong></div>
+            <div><small>Time & Duration</small><strong>⏰ {detail.time} {detail.duration ? `(${detail.duration})` : ''}</strong></div>
+            <div><small>Format / Team Size</small><strong>👥 {detail.format ?? detail.teamSize}</strong></div>
+          </div>
+
+          {detail.stages && detail.stages.length > 0 && (
+            <div class="stages-section">
+              <h2 class="section-title">CHALLENGE STAGES</h2>
+              <div class="stages-single-card">
+                {detail.stages.map((stage, idx) => (
+                  <div class="stage-item">
+                    <div class="stage-item-header">
+                      <span class="stage-num">0{idx + 1}</span>
+                      <h3 class="stage-title">{stage.title}</h3>
+                    </div>
+                    <p class="stage-desc">{stage.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {detail.themes && detail.themes.length > 0 && (
+            <div class="themes-section">
+              <h2 class="section-title">THEMES FOR PRESENTATION</h2>
+              <div class="themes-grid">
+                {detail.themes.map((theme, idx) => (
+                  <div class="theme-item">
+                    <span class="theme-num">{idx + 1}.</span>
+                    <span class="theme-text">{theme}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {detail.rules && detail.rules.length > 0 && (
+            <div class="rules-section">
+              <h2 class="section-title">RULES AND SCORING</h2>
+              <ul class="rules-list">
+                {detail.rules.map((rule) => (
+                  <li>
+                    <span class="rule-icon">✓</span>
+                    <span>{rule}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div class="register-cta-wrap">
+            <a href={`/register?event=${encodeURIComponent(detail.name)}`} class="pass-link">Register for {detail.name} ➔</a>
           </div>
         </div>
       )}
@@ -29,12 +80,14 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 
 <style lang="scss">
 @use '../../styles/variables' as *;
+
 .detail {
   min-height: 80vh;
   padding: 160px 0 110px;
   background: $surface;
   color: $black;
 }
+
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -74,6 +127,7 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
     }
   }
 }
+
 .event-detail-box {
   padding: 38px;
   border-radius: 20px;
@@ -91,16 +145,37 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
       border: 1px solid rgba(0, 180, 216, 0.25);
     }
 
+    .section-title {
+      color: #0077b6;
+      &::after { background: rgba(0, 180, 216, 0.2); }
+    }
+
+    .stages-single-card {
+      border-left-color: #00b4d8;
+      box-shadow: 0 6px 22px rgba(0, 180, 216, 0.08);
+    }
+
+    .stage-num {
+      color: #0077b6;
+      background: rgba(0, 180, 216, 0.08);
+    }
+
+    .rule-icon {
+      color: #0077b6;
+      background: rgba(0, 180, 216, 0.08);
+    }
+
     .pass-link {
       background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-      box-shadow: 0 4px 16px rgba(0, 180, 216, 0.35);
+      box-shadow: 0 6px 20px rgba(0, 180, 216, 0.35);
 
       &:hover {
-        box-shadow: 0 8px 24px rgba(0, 180, 216, 0.5);
+        box-shadow: 0 10px 28px rgba(0, 180, 216, 0.5);
       }
     }
   }
 }
+
 .event-badge {
   display: inline-block;
   padding: 4px 12px;
@@ -112,31 +187,206 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   text-transform: uppercase;
   margin-bottom: 14px;
 }
+
 .detail h1 {
   max-width: 850px;
   margin: 0 0 16px;
-  font: clamp(3rem, 7vw, 5.5rem)/.92 $display;
+  font: clamp(2.5rem, 6vw, 4.5rem)/.95 $display;
   letter-spacing: 0.02em;
   color: $black;
 }
+
 .lead {
-  max-width: 660px;
-  color: $muted;
+  max-width: 780px;
+  color: #4a4a52;
   font-family: $body;
   font-size: 1.1rem;
   line-height: 1.65;
+  margin-bottom: 28px;
 }
+
 .facts {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
-  margin: 32px 0;
-  padding: 24px;
+  gap: 28px;
+  margin: 28px 0 40px;
+  padding: 22px 26px;
   border-radius: 14px;
   background: $surface;
   border: 1px solid $line;
 }
+
 .facts div { display: grid; gap: 4px; }
 .facts small { color: $muted; font: 700 .7rem $technical; text-transform: uppercase; letter-spacing: 0.08em; }
-.facts strong { font: 1.1rem $technical; color: $black; }
+.facts strong { font: 1.05rem $technical; color: $black; }
+
+.section-title {
+  font: 700 1.5rem/1.2 $display;
+  letter-spacing: 0.04em;
+  color: $orange;
+  margin: 40px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 101, 0, 0.2);
+  }
+}
+
+.stages-single-card {
+  padding: 24px 28px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid $line;
+  border-left: 4px solid $orange;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.03);
+  display: grid;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.stage-item {
+  position: relative;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed rgba(10, 10, 10, 0.1);
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.stage-item-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.stage-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: rgba(255, 101, 0, 0.08);
+  color: $orange;
+  font: 700 12px $technical;
+}
+
+.stage-title {
+  margin: 0;
+  font: 700 1.05rem/1.3 $technical;
+  color: $black;
+}
+
+.stage-desc {
+  margin: 0;
+  padding-left: 44px;
+  color: #55555c;
+  font-family: $body;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .stage-desc {
+    padding-left: 0;
+    margin-top: 4px;
+  }
+}
+
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.theme-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: rgba(255, 101, 0, 0.04);
+  border: 1px solid rgba(255, 101, 0, 0.15);
+}
+
+.theme-num {
+  font: 700 0.88rem $technical;
+  color: $orange;
+  min-width: 22px;
+}
+
+.theme-text {
+  font-family: $body;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333338;
+}
+
+.rules-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px;
+  display: grid;
+  gap: 14px;
+}
+
+.rules-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: $body;
+  font-size: 0.96rem;
+  color: #333338;
+  line-height: 1.55;
+}
+
+.rule-icon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: rgba(255, 101, 0, 0.1);
+  color: $orange;
+  font-weight: 900;
+  font-size: 11px;
+}
+
+.register-cta-wrap {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid $line;
+}
+
+.pass-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 34px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, $orange 0%, #ff7a00 100%);
+  color: white;
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(255, 101, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(255, 101, 0, 0.5);
+  }
+}
 </style>
