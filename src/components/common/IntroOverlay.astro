@@ -1,32 +1,48 @@
 ---
 /* IntroOverlay.astro - PPG Institute of Technology Brand Intro Animation Overlay */
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/' || pathname === '/index.html' || pathname === '';
 ---
 
-<div id="brand-intro-overlay" class="brand-intro-overlay">
-  <canvas id="intro-motion-canvas"></canvas>
-  <button class="intro-skip-btn" id="introSkipBtn" type="button">Skip ➔</button>
-</div>
+{isHome && (
+  <>
+    <!-- Inline synchronous check BEFORE first paint to eliminate any white flash or flicker -->
+    <script is:inline>
+      (function() {
+        var isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+        if (!isHomePage) {
+          document.documentElement.classList.add('no-intro-overlay');
+        }
+      })();
+    </script>
 
-<div class="intro-lockup-wrap" id="introLockupWrap">
-  <div class="intro-logo-box" id="introLogoBox">
-    <!-- Full single PNG logo -->
-    <img src="/images/intro/ppg_logo_clean.png" alt="PPG Institute of Technology Logo" class="intro-logo-full" id="introLogoFull" />
-
-    <!-- 5 Sliced Emblem Parts for mechanical assembly -->
-    <div class="intro-emblem-parts" id="introEmblemParts">
-      <img src="/images/intro/quad_tl.png" class="emblem-part part-tl" id="partTL" alt="Emblem Top Left" />
-      <img src="/images/intro/quad_tr.png" class="emblem-part part-tr" id="partTR" alt="Emblem Top Right" />
-      <img src="/images/intro/quad_bl.png" class="emblem-part part-bl" id="partBL" alt="Emblem Bottom Left" />
-      <img src="/images/intro/quad_br.png" class="emblem-part part-br" id="partBR" alt="Emblem Bottom Right" />
-      <img src="/images/intro/ribbon.png" class="emblem-part part-ribbon" id="partRibbon" alt="Emblem Brown Ribbon" />
+    <div id="brand-intro-overlay" class="brand-intro-overlay">
+      <canvas id="intro-motion-canvas"></canvas>
+      <button class="intro-skip-btn" id="introSkipBtn" type="button">Skip ➔</button>
     </div>
-  </div>
 
-  <div class="intro-text-box" id="introTextBox">
-    <h1 class="intro-main-title" id="introMainTitle">PPG INSTITUTE OF TECHNOLOGY</h1>
-    <div class="intro-subtitle" id="introSubtitle">AN AUTONOMOUS INSTITUTION</div>
-  </div>
-</div>
+    <div class="intro-lockup-wrap" id="introLockupWrap">
+      <div class="intro-logo-box" id="introLogoBox">
+        <!-- Full single PNG logo -->
+        <img src="/images/intro/ppg_logo_clean.png" alt="PPG Institute of Technology Logo" class="intro-logo-full" id="introLogoFull" />
+
+        <!-- 5 Sliced Emblem Parts for mechanical assembly -->
+        <div class="intro-emblem-parts" id="introEmblemParts">
+          <img src="/images/intro/quad_tl.png" class="emblem-part part-tl" id="partTL" alt="Emblem Top Left" />
+          <img src="/images/intro/quad_tr.png" class="emblem-part part-tr" id="partTR" alt="Emblem Top Right" />
+          <img src="/images/intro/quad_bl.png" class="emblem-part part-bl" id="partBL" alt="Emblem Bottom Left" />
+          <img src="/images/intro/quad_br.png" class="emblem-part part-br" id="partBR" alt="Emblem Bottom Right" />
+          <img src="/images/intro/ribbon.png" class="emblem-part part-ribbon" id="partRibbon" alt="Emblem Brown Ribbon" />
+        </div>
+      </div>
+
+      <div class="intro-text-box" id="introTextBox">
+        <h1 class="intro-main-title" id="introMainTitle">PPG INSTITUTE OF TECHNOLOGY</h1>
+        <div class="intro-subtitle" id="introSubtitle">AN AUTONOMOUS INSTITUTION</div>
+      </div>
+    </div>
+  </>
+)}
 
 <style lang="scss">
 :root {
@@ -34,6 +50,16 @@
   --orange-glow: rgba(255, 101, 0, 0.35);
   --black: #0A0A0A;
   --dark: #1C1C1E;
+}
+
+:global(html.no-intro-overlay) #brand-intro-overlay,
+:global(html.no-intro-overlay) #introLockupWrap,
+:global(html.no-intro-overlay) .brand-intro-overlay,
+:global(html.no-intro-overlay) .intro-lockup-wrap {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 body.intro-active {
@@ -221,27 +247,41 @@ body.intro-active {
 @media (max-width: 768px) {
   .intro-lockup-wrap {
     flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 12px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 16px !important;
+    width: 90vw !important;
   }
   .intro-logo-box {
-    width: 170px !important;
-    height: 170px !important;
+    width: 155px !important;
+    height: 155px !important;
+    margin: 0 auto !important;
   }
   .intro-text-box {
     padding-left: 0 !important;
     border-left: none !important;
     border-top: 3px solid var(--orange) !important;
-    padding-top: 8px !important;
-    align-items: flex-start !important;
-    text-align: left !important;
+    padding-top: 12px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
   }
   .intro-main-title {
-    font-size: clamp(15px, 2.2vw, 24px) !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: clamp(15px, 4vw, 22px) !important;
+    white-space: normal !important;
   }
   .intro-subtitle {
-    font-size: clamp(9.5px, 1.1vw, 12px) !important;
-    margin-top: 4px !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: clamp(9.5px, 2.4vw, 11.5px) !important;
+    margin-top: 6px !important;
+    &::before {
+      display: none !important;
+    }
   }
 }
 </style>
@@ -305,14 +345,6 @@ function startIntroCanvasStreaks() {
             ctx.lineWidth = 1.2;
             ctx.beginPath();
             ctx.arc(canvas.width / 2, canvas.height / 2, Math.max(0, 280 - elapsed * 140), 0, Math.PI * 2);
-            ctx.stroke();
-
-            ctx.strokeStyle = 'rgba(92, 45, 24, 0.2)';
-            ctx.beginPath();
-            ctx.moveTo(canvas.width / 2 - 90, canvas.height / 2);
-            ctx.lineTo(canvas.width / 2 + 90, canvas.height / 2);
-            ctx.moveTo(canvas.width / 2, canvas.height / 2 - 90);
-            ctx.lineTo(canvas.width / 2, canvas.height / 2 + 90);
             ctx.stroke();
             ctx.restore();
         }
@@ -497,9 +529,26 @@ function playBrandIntroAnimation() {
     }, 3.65);
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', playBrandIntroAnimation);
-} else {
+function initIntro() {
+    const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+
+    const overlay = document.getElementById('brand-intro-overlay');
+    const lockupWrap = document.getElementById('introLockupWrap');
+
+    if (!isHomePage || document.documentElement.classList.contains('no-intro-overlay')) {
+        // Immediately remove overlay for subpages
+        overlay?.remove();
+        lockupWrap?.remove();
+        document.body.classList.remove('intro-active');
+        return;
+    }
+
     playBrandIntroAnimation();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initIntro);
+} else {
+    initIntro();
 }
 </script>

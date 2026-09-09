@@ -5,5 +5,138 @@ export function getStaticPaths() { return events.map((event) => ({ params: { slu
 const { event } = Astro.props;
 const detail = event ?? getEvent(Astro.params.slug ?? '');
 ---
-<MainLayout title={`${detail?.name ?? 'Event'} | VIYUGAM 2K26`}><section class="detail"><div class="container">{detail && <><span class="section-label">{detail.category} · {detail.department}</span><h1>{detail.name}</h1><p class="lead">{detail.description}</p><div class="facts"><div><small>Venue</small><strong>{detail.venue}</strong></div><div><small>Time</small><strong>{detail.time}</strong></div><div><small>Team size</small><strong>{detail.teamSize}</strong></div></div><a class="button" href={`/register?event=${detail.slug}`}>Register for this event</a></>}</div></section></MainLayout>
-<style lang="scss">@use '../../styles/variables' as *;.detail { min-height: 75vh; padding: 190px 0 110px; background: $surface; }.detail h1 { max-width: 850px; margin: 22px 0 16px; font: clamp(4rem, 10vw, 8rem)/.86 $display; }.lead { max-width: 620px; color: $muted; line-height: 1.7; }.facts { display: flex; flex-wrap: wrap; gap: 42px; margin: 44px 0; }.facts div { display: grid; gap: 5px; }.facts small { color: $muted; font-size: .68rem; text-transform: uppercase; }.facts strong { font: 1.15rem $technical; }</style>
+<MainLayout title={`${detail?.name ?? 'Event'} | VIYUGAM 2K26`}>
+  <section class="detail">
+    <div class="container">
+      <a href="javascript:history.back()" class="back-link">← Back to Department</a>
+      {detail && (
+        <div class="event-detail-box">
+          <span class="event-badge">{detail.category} · {detail.department}</span>
+          <h1>{detail.name}</h1>
+          <p class="lead">{detail.description}</p>
+          <div class="facts">
+            <div><small>Department</small><strong>{detail.department}</strong></div>
+            <div><small>Category</small><strong>{detail.category}</strong></div>
+            <div><small>Venue</small><strong>📍 {detail.venue}</strong></div>
+            <div><small>Time</small><strong>⏰ {detail.time}</strong></div>
+            <div><small>Team Size</small><strong>👥 {detail.teamSize}</strong></div>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+</MainLayout>
+
+<style lang="scss">
+@use '../../styles/variables' as *;
+.detail {
+  min-height: 80vh;
+  padding: 160px 0 110px;
+  background: $surface;
+  color: $black;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 101, 0, 0.08);
+  border: 1px solid rgba(255, 101, 0, 0.25);
+  color: $orange;
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: $orange;
+    color: #ffffff;
+    border-color: $orange;
+    transform: translateX(-4px);
+    box-shadow: 0 4px 14px $orange-glow;
+  }
+
+  &.non-tech-back {
+    background: rgba(0, 180, 216, 0.08);
+    border-color: rgba(0, 180, 216, 0.25);
+    color: #0077b6;
+
+    &:hover {
+      background: #00b4d8;
+      color: #ffffff;
+      border-color: #00b4d8;
+      box-shadow: 0 4px 14px rgba(0, 180, 216, 0.35);
+    }
+  }
+}
+.event-detail-box {
+  padding: 38px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(255, 101, 0, 0.2);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05), 0 0 25px rgba(255, 101, 0, 0.08);
+
+  &.is-non-tech {
+    border-color: rgba(0, 180, 216, 0.25);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05), 0 0 25px rgba(0, 180, 216, 0.12);
+
+    .event-badge {
+      background: rgba(0, 180, 216, 0.08);
+      color: #0077b6;
+      border: 1px solid rgba(0, 180, 216, 0.25);
+    }
+
+    .pass-link {
+      background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+      box-shadow: 0 4px 16px rgba(0, 180, 216, 0.35);
+
+      &:hover {
+        box-shadow: 0 8px 24px rgba(0, 180, 216, 0.5);
+      }
+    }
+  }
+}
+.event-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255, 101, 0, 0.08);
+  color: $orange;
+  font: 700 11px $technical;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.detail h1 {
+  max-width: 850px;
+  margin: 0 0 16px;
+  font: clamp(3rem, 7vw, 5.5rem)/.92 $display;
+  letter-spacing: 0.02em;
+  color: $black;
+}
+.lead {
+  max-width: 660px;
+  color: $muted;
+  font-family: $body;
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin: 32px 0;
+  padding: 24px;
+  border-radius: 14px;
+  background: $surface;
+  border: 1px solid $line;
+}
+.facts div { display: grid; gap: 4px; }
+.facts small { color: $muted; font: 700 .7rem $technical; text-transform: uppercase; letter-spacing: 0.08em; }
+.facts strong { font: 1.1rem $technical; color: $black; }
+</style>
