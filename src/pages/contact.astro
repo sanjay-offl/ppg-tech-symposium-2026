@@ -48,13 +48,14 @@ const mapQuery = encodeURIComponent(`${siteConfig.institution}, ${siteConfig.add
               <div>
                 <p>{siteConfig.institution}<br />{siteConfig.address}</p>
               </div>
-              <iframe
-                class="venue-map"
-                src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
-                title={`Map showing ${siteConfig.institution}`}
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+              <a
+                class="button venue-maps-link"
+                href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open in Maps
+              </a>
             </div>
           </div>
         </div>
@@ -108,7 +109,7 @@ const mapQuery = encodeURIComponent(`${siteConfig.institution}, ${siteConfig.add
 .venue { margin-top: 34px; }
 .venue p { margin: 12px 0 0; color: $muted; line-height: 1.7; }
 .venue-content { display: grid; grid-template-columns: minmax(220px, .8fr) 1.2fr; gap: 24px; align-items: start; }
-.venue-map { display: block; width: 100%; min-height: 280px; border: 0; border-radius: 7px; }
+.venue-maps-link { justify-self: start; margin-top: 12px; }
 @media (max-width: 700px) {
   .contact-hero-grid { grid-template-columns: 1fr; gap: 30px; }
   .contact-hero-grid p { margin: 0; }
