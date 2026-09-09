@@ -10,11 +10,11 @@ const descriptions: Record<string, string> = {
   'Agri Canvas': 'Express creative artistic talents through theme-based visual design, drawing, and artwork.',
 
   // Artificial Intelligence & Data Science
-  'Technology Casino': 'High-stakes technical problem-solving and algorithmic challenges in AI & Data Science.',
-  'Code Breakers': 'Solve intricate coding logic, debugging, and data structure puzzles under time pressure.',
-  'Idea Presentation': 'Pitch innovative AI & Data Science solutions and research concepts to expert judges.',
-  'Memory Lens': 'Test your visual recall, focus, and observational precision in a fast-paced memory challenge.',
-  'E-Football': 'Compete in an intense virtual football tournament to prove your esports strategy and gaming skills.',
+  'Technology Casino': 'A strategy-based technical game where teams make decisions using knowledge of AI, Data Science, algorithms, and real-world scenarios.',
+  'Code Breakers': 'A reverse-coding challenge where participants analyze sample inputs and outputs to decode patterns and write working code.',
+  'Idea Presentation': 'Propose innovative solutions to real-world problems using AI, Data Science, or related technologies.',
+  'Memory Lens': 'An observation and memory challenge testing visual attention, recall, and concentration across multiple picture rounds.',
+  'Stumble Guys': 'A fun mobile gaming competition based on obstacle-course challenges across qualification and final rounds.',
 
   // Artificial Intelligence & Machine Learning
   'IDEA2PROTOTYPE': 'Transform innovative AI concepts into working functional prototypes.',
@@ -199,6 +199,111 @@ const eventSpecs: Record<string, Partial<EventItem>> = {
       'Use of mobile phones or other electronic devices for designing the poster is not permitted.',
       'Evaluation will be based on Creativity, Theme Relevance, Originality, Visual Appeal, and Presentation.',
       'Judges decision will be final.'
+    ]
+  },
+
+  // Artificial Intelligence & Data Science
+  'Technology Casino': {
+    concept: 'A strategy-based technical game where participants make decisions using their knowledge of AI, Data Science, algorithms, technologies, and real-world scenarios. Teams receive virtual credits and must use them wisely to maximize their final score.',
+    venue: 'Seminar Hall / Classroom',
+    time: '10:00 AM onwards',
+    duration: '30–45 minutes',
+    teamSize: '2 to 4 members',
+    format: 'Team participation (2 to 4 members) | 30–45 minutes | Seminar Hall / Classroom',
+    stages: [
+      { title: 'Stage 1: Tech Quiz', description: 'Answer short questions on AI, Data Science, algorithms, programming, and emerging technologies to earn initial virtual credits.' },
+      { title: 'Stage 2: Technology Bidding', description: 'Teams use their credits to bid on technology cards, scenarios, or algorithm choices. Each decision carries a different reward or risk.' },
+      { title: 'Stage 3: Final Investment', description: 'Teams use their remaining credits on a final technical scenario. The best combination of knowledge, strategy, and risk management wins.' }
+    ],
+    rules: [
+      'Teams must consist of 2 to 4 members.',
+      'Each team receives the same starting amount of virtual credits.',
+      'Only the materials and information provided by the coordinators may be used.',
+      'Credits earned or lost during each stage will affect the final score.',
+      'The team with the highest final score will be declared the winner.'
+    ]
+  },
+  'Code Breakers': {
+    concept: 'A reverse-coding challenge where participants are given sample inputs and corresponding outputs. Their task is to identify the hidden pattern or logic and write a program that reproduces the expected output.',
+    venue: 'Computer Lab',
+    time: '10:00 AM onwards',
+    duration: '45 minutes',
+    teamSize: '2 to 3 members',
+    format: 'Team participation (2 to 3 members) | 45 minutes | Computer Lab',
+    stages: [
+      { title: 'Stage 1: Decode the Pattern', description: 'Study the given input–output examples and identify the rule or transformation used.' },
+      { title: 'Stage 2: Crack the Logic', description: 'Write and test a program that follows the discovered logic and produces the expected output.' },
+      { title: 'Stage 3: Hidden Test', description: 'The submitted program is tested with unseen inputs. Teams must make their solution general enough to handle them correctly.' }
+    ],
+    rules: [
+      'Teams must consist of 2 to 3 members.',
+      'The programming language(s) permitted will be announced by the coordinators.',
+      'Internet, AI assistants, and external solution lookup are not allowed during the challenge.',
+      'Solutions are evaluated based on correctness and completion time.',
+      'The team with the highest number of correct test cases, with time used as the tie-breaker, wins.'
+    ]
+  },
+  'Idea Presentation': {
+    concept: 'A presentation event where participants propose an innovative solution to a real-world problem using AI, Data Science, or related technologies. The focus is on originality, technical feasibility, clarity, and practical impact.',
+    venue: 'Seminar Hall / Smart Classroom',
+    time: '10:00 AM onwards',
+    duration: '8–10 minutes per team',
+    teamSize: '1 to 3 members',
+    format: 'Individual or team participation (1 to 3 members) | 8–10 minutes per team | Seminar Hall / Smart Classroom',
+    stages: [
+      { title: 'Stage 1: Idea Submission', description: 'Submit the problem statement, proposed solution, and presentation topic before the scheduled event.' },
+      { title: 'Stage 2: Idea Presentation', description: 'Present the proposed solution clearly, covering the problem, methodology, technology used, and expected outcome.' },
+      { title: 'Stage 3: Q&A Round', description: 'Answer questions from the judges about technical feasibility, implementation, innovation, and impact.' }
+    ],
+    rules: [
+      'Participants may present individually or in teams of up to 3 members.',
+      'Presentation must follow the time limit announced by the coordinators.',
+      'The idea should have a clear problem statement and an AI/Data Science connection.',
+      'PPTs should be submitted/brought in the format specified by the coordinators.',
+      'Scoring may consider innovation, technical feasibility, presentation quality, and Q&A performance.',
+      'The participant/team with the highest combined judge score will be declared the winner.'
+    ]
+  },
+  'Memory Lens': {
+    concept: 'An observation and memory challenge in which participants study a collection of pictures and later answer questions based on the details they observed. The event tests visual attention, recall, and concentration.',
+    venue: 'Classroom / Seminar Hall',
+    time: '10:00 AM onwards',
+    duration: '30–45 minutes',
+    teamSize: 'Individual or team',
+    format: 'Individual or team participation | 30–45 minutes | Classroom / Seminar Hall',
+    stages: [
+      { title: 'Round 1: Observe & Remember', description: 'Display 10 pictures for a fixed observation time. Participants carefully study the people, objects, colours, positions, and other visible details.' },
+      { title: 'Round 2: Spot the Difference', description: 'Show pairs of similar pictures and ask participants to identify changes or missing details.' },
+      { title: 'Round 3: Memory Under Pressure', description: 'Display a larger set of pictures for a short time and ask challenging questions that require accurate recall and comparison.' }
+    ],
+    rules: [
+      'Participants must observe the pictures only during the time provided.',
+      'No screenshots, photography, or external assistance is permitted.',
+      'Answers must be submitted within the time given for each round.',
+      'Points are awarded for correct observations and accurate recall.',
+      'In case of a tie, a sudden-death observation question may be conducted.',
+      'The participant/team with the highest total score will be declared the winner.'
+    ]
+  },
+  'Stumble Guys': {
+    concept: 'A fun mobile gaming competition based on obstacle-course challenges. Participants compete through multiple rounds of Stumble Guys, with points awarded according to qualification and final performance.',
+    venue: 'Smart Classroom / Gaming Area',
+    time: '10:00 AM onwards',
+    duration: '45–60 minutes',
+    teamSize: 'Individual or team',
+    format: 'Team / group participation | 45–60 minutes | Smart Classroom / Gaming Area',
+    stages: [
+      { title: 'Stage 1: Qualifying Round', description: 'Participants compete in selected matches. The highest-performing players or teams qualify for the next stage.' },
+      { title: 'Stage 2: Challenge Round', description: 'Qualified participants compete through additional obstacle-course matches to earn ranking points.' },
+      { title: 'Stage 3: Final Round', description: 'The top participants compete in the final match. The highest final ranking determines the champion.' }
+    ],
+    rules: [
+      'Participants must use their own registered game account/device as permitted by the coordinators.',
+      'The game version, room code, match format, and number of participants will be announced before the event.',
+      'Any form of cheating, unfair external assistance, or intentional disruption will result in disqualification.',
+      'Participants must follow the coordinator\'s instructions regarding match start, joining, and reporting results.',
+      'Points/rankings will be calculated according to the announced match format.',
+      'The participant/team with the highest final score or ranking will be declared the winner.'
     ]
   },
 
