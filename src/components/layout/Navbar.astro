@@ -31,6 +31,7 @@ import { departments } from '@/data/departments';
   </ul>
 </nav>
 <style lang="scss">
+@use "sass:color";
 @use '../../styles/variables' as *;
 .navbar { position: fixed; z-index: 100; top: 20px; left: 50%; transform: translateX(-50%); width: min(920px, calc(100% - 32px)); min-height: 54px; display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border: 1px solid rgba(255,255,255,.9); border-radius: 999px; background: rgba(255,255,255,.8); backdrop-filter: blur(24px); box-shadow: 0 4px 24px rgba(0,0,0,.08); transition: background .25s, box-shadow .25s; }
 .brand { display: inline-flex; align-items: center; gap: 8px; font: 700 14px/1 $technical; text-decoration: none; letter-spacing: .04em; white-space: nowrap; }
@@ -40,7 +41,7 @@ import { departments } from '@/data/departments';
 .nav-links a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border-radius: 999px; font-size: 12.5px; line-height: 1; text-decoration: none; color: inherit; }
 .nav-links a:hover { background: rgba(0,0,0,.06); }
 .nav-links .nav-cta { color: white; background: $orange; font-weight: 700; box-shadow: 0 3px 14px $orange-glow; }
-.nav-links .nav-cta:hover { background: darken($orange, 4%); color: white; }
+.nav-links .nav-cta:hover { background: color.adjust($orange, $lightness: -4%); color: white; }
 
 .has-dropdown {
   position: relative;
