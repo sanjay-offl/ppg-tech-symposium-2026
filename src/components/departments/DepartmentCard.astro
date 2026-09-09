@@ -4,9 +4,14 @@ const { department } = Astro.props as { department: Department };
 ---
 <a href={`/departments/${department.slug}`} class="department-card-link">
   <article class="department-card">
-    <div class="track-visual">
-      <img src={department.image} alt={`${department.name} track`} loading="lazy" />
-      <div class="track-shade"></div>
+    <div class="dept-card-header">
+      {department.image && !department.image.includes('retouch_') ? (
+        <div class="dept-logo-badge">
+          <img src={department.image} alt={`${department.name} Logo`} class="dept-logo-img" />
+        </div>
+      ) : (
+        <span class="dept-abbr-badge">{department.abbr}</span>
+      )}
     </div>
     <h3 class="department-name">{department.name}</h3>
     <div class="events-content">
@@ -41,12 +46,15 @@ const { department } = Astro.props as { department: Department };
   flex-direction: column;
   min-width: 0;
   height: 100%;
+  min-height: 510px;
   overflow: hidden;
-  padding: 0 24px 22px;
-  border-top: 3px solid rgba(255, 101, 0, 0.5);
-  border-radius: 14px;
-  color: white;
-  background: $card;
+  padding: 0 28px 28px;
+  border-radius: 18px;
+  color: $black;
+  background: #ffffff;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  border-top: 4px solid $orange;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
               background 350ms ease,
               border-color 350ms ease,
@@ -54,45 +62,61 @@ const { department } = Astro.props as { department: Department };
   cursor: pointer;
 }
 
-.track-visual {
-  position: relative;
-  display: grid;
-  place-items: center;
-  height: 140px;
-  margin: 0 -24px 18px;
-  overflow: hidden;
-  isolation: isolate;
-  background: radial-gradient(circle at center, rgba(255, 101, 0, 0.15), transparent 68%), #171719;
-  transition: background 350ms ease;
+.dept-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 26px 0 14px;
+  height: 90px;
 }
 
-.track-visual img {
-  position: absolute;
-  z-index: -2;
-  width: 84%;
-  height: 84%;
+.dept-abbr-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: rgba(255, 101, 0, 0.08);
+  border: 1px solid rgba(255, 101, 0, 0.25);
+  color: $orange;
+  font: 900 1.15rem/1 $technical;
+  letter-spacing: 0.08em;
+  transition: all 0.3s ease;
+}
+
+.dept-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 74px;
+  height: 74px;
+  padding: 6px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255, 101, 0, 0.06) 0%, rgba(255, 255, 255, 0.95) 100%);
+  border: 1px solid rgba(255, 101, 0, 0.22);
+  box-shadow: 0 6px 16px rgba(255, 101, 0, 0.1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dept-logo-img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  opacity: .78;
-  filter: drop-shadow(0 0 7px rgba(255, 255, 255, .2));
-  transition: transform 350ms ease, opacity 350ms ease, filter 350ms ease;
-}
-
-.track-shade {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: rgba(0, 0, 0, .35);
+  filter: drop-shadow(0 3px 6px rgba(255, 101, 0, 0.22));
+  transition: transform 0.35s ease, filter 0.35s ease;
 }
 
 .department-name {
-  margin: 0;
+  margin: 0 0 6px;
   padding: 0 4px;
-  color: white;
-  font: 700 0.98rem/1.2 $technical;
+  color: $black;
+  font: 700 1.1rem/1.25 $technical;
   letter-spacing: .03em;
   text-align: center;
   text-transform: uppercase;
-  min-height: 2.8rem;
+  min-height: 3.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,16 +132,17 @@ const { department } = Astro.props as { department: Department };
 
 .event-group {
   position: relative;
-  margin-top: 14px;
+  margin-top: 18px;
 }
 
 .event-group small {
   display: flex;
   align-items: center;
   gap: 7px;
-  color: rgba(255, 255, 255, .45);
-  font-size: .62rem;
+  color: $muted;
+  font-size: .68rem;
   font-weight: 700;
+  font-family: $technical;
   letter-spacing: .1em;
   text-transform: uppercase;
   transition: color 350ms ease;
@@ -127,94 +152,57 @@ const { department } = Astro.props as { department: Department };
   content: '';
   flex: 1;
   height: 1px;
-  background: rgba(255, 255, 255, .1);
+  background: $line;
   transition: background 350ms ease;
 }
 
 .event-group ul {
   display: grid;
-  gap: 8px;
-  margin: 8px 0 0;
+  gap: 10px;
+  margin: 10px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .event-group li {
-  color: rgba(255, 255, 255, .85);
-  font-size: .78rem;
-  line-height: 1.45;
-  padding: 1px 0;
+  color: #333338;
+  font-family: $body;
+  font-size: .84rem;
+  line-height: 1.5;
+  padding: 2px 0;
 }
 
 .event-group li::before {
   content: '>';
   margin-right: 6px;
-  color: rgba(255, 101, 0, 0.7);
+  color: $orange;
   font-weight: 700;
   transition: color 350ms ease, text-shadow 350ms ease;
 }
 
 .card-action {
   margin-top: auto;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, .09);
-  color: rgba(255, 255, 255, 0.5);
+  padding-top: 16px;
+  border-top: 1px solid $line;
+  color: $orange;
   font-family: $technical;
   font-weight: 700;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-align: center;
   text-transform: uppercase;
   transition: transform 350ms ease, color 350ms ease, border-color 350ms ease;
 }
 
-/* === INDEPENDENT HOVER INTERACTION: MILD SUBTLE ORANGE SHADE ON HOVER === */
+/* === HOVER INTERACTION: BORDER & CARD ELEVATION ONLY (NO INNER CONTENT CHANGES) === */
 .department-card:hover,
 .department-card:focus-within,
 .department-card:active {
-  transform: translateY(-6px) scale(1.02);
-  background: linear-gradient(160deg, rgba(255, 101, 0, 0.16) 0%, rgba(255, 101, 0, 0.05) 60%, rgba(0, 0, 0, 0) 100%), #242426;
-  border-top-color: #ff6500;
-  box-shadow: 0 14px 38px rgba(255, 101, 0, 0.25), 0 0 0 1px rgba(255, 101, 0, 0.3);
-
-  .department-name {
-    color: #ffffff;
-    text-shadow: 0 0 12px rgba(255, 101, 0, 0.4);
-  }
-
-  .event-group small {
-    color: #ff9e66;
-    font-weight: 700;
-  }
-
-  .event-group small::after {
-    background: rgba(255, 101, 0, 0.3);
-  }
-
-  .event-group li::before {
-    color: #ff7a00;
-    text-shadow: 0 0 8px rgba(255, 101, 0, 0.6);
-  }
-
-  .event-group li {
-    color: #ffffff;
-  }
-
-  .card-action {
-    color: #ff8533;
-    border-top-color: rgba(255, 101, 0, 0.25);
-    transform: translateX(4px);
-  }
-
-  .track-visual img {
-    transform: scale(1.08) rotate(-1.5deg);
-    opacity: 1;
-    filter: drop-shadow(0 0 10px rgba(255, 101, 0, 0.45));
-  }
-
-  .track-visual {
-    background: radial-gradient(circle at center, rgba(255, 101, 0, 0.22), transparent 70%), #1a1716;
-  }
+  transform: translateY(-4px);
+  background: #ffffff;
+  border-color: $orange;
+  border-top-color: $orange;
+  box-shadow: 0 14px 36px rgba(255, 101, 0, 0.2), 0 0 0 1px $orange;
 }
 
 /* MOBILE STYLES (Single column portrait stacked cards on mobile/tablet) */
