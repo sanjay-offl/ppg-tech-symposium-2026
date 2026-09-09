@@ -24,7 +24,13 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
     <div class="container">
       <a href="/#departments" class="back-link">← Back to Departments</a>
       <div class="dept-header-wrap">
-        <div class="dept-badge">{department.abbr}</div>
+        <div class="dept-badge">
+          {department.image && !department.image.includes('retouch_') ? (
+            <img src={department.image} alt={`${department.name} Logo`} class="dept-badge-logo" />
+          ) : (
+            <span>{department.abbr}</span>
+          )}
+        </div>
         <div class="dept-header-info">
           <span class="section-label">Department Track</span>
           <h1 class="dept-title">{department.name}</h1>
@@ -146,15 +152,25 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 .dept-badge {
   display: grid;
   place-items: center;
-  width: 110px;
-  height: 110px;
+  width: 115px;
+  height: 115px;
   flex-shrink: 0;
-  border-radius: 20px;
-  background: linear-gradient(135deg, $orange 0%, #cc4e00 100%);
-  color: white;
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(255, 101, 0, 0.08) 0%, #ffffff 100%);
+  border: 1px solid rgba(255, 101, 0, 0.25);
+  color: $orange;
   font: 900 2.4rem/1 $technical;
   letter-spacing: 0.05em;
-  box-shadow: 0 10px 28px rgba(255, 101, 0, 0.25);
+  box-shadow: 0 10px 28px rgba(255, 101, 0, 0.15);
+  overflow: hidden;
+  padding: 10px;
+}
+
+.dept-badge-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(255, 101, 0, 0.25));
 }
 
 .dept-header-info {
