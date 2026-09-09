@@ -43,10 +43,12 @@ const { department } = Astro.props as { department: Department };
   height: 100%;
   overflow: hidden;
   padding: 0 24px 22px;
-  border-top: 3px solid rgba(255, 101, 0, 0.5);
   border-radius: 14px;
-  color: white;
-  background: $card;
+  color: $black;
+  background: #ffffff;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  border-top: 3px solid $orange;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
   transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
               background 350ms ease,
               border-color 350ms ease,
@@ -62,7 +64,7 @@ const { department } = Astro.props as { department: Department };
   margin: 0 -24px 18px;
   overflow: hidden;
   isolation: isolate;
-  background: radial-gradient(circle at center, rgba(255, 101, 0, 0.15), transparent 68%), #171719;
+  background: radial-gradient(circle at center, rgba(255, 101, 0, 0.12), transparent 68%), #f9f9fb;
   transition: background 350ms ease;
 }
 
@@ -72,8 +74,8 @@ const { department } = Astro.props as { department: Department };
   width: 84%;
   height: 84%;
   object-fit: contain;
-  opacity: .78;
-  filter: drop-shadow(0 0 7px rgba(255, 255, 255, .2));
+  opacity: .9;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .08));
   transition: transform 350ms ease, opacity 350ms ease, filter 350ms ease;
 }
 
@@ -81,14 +83,14 @@ const { department } = Astro.props as { department: Department };
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: rgba(0, 0, 0, .35);
+  background: rgba(255, 255, 255, .1);
 }
 
 .department-name {
   margin: 0;
   padding: 0 4px;
-  color: white;
-  font: 700 0.98rem/1.2 $technical;
+  color: $black;
+  font: 700 1.02rem/1.2 $technical;
   letter-spacing: .03em;
   text-align: center;
   text-transform: uppercase;
@@ -115,9 +117,10 @@ const { department } = Astro.props as { department: Department };
   display: flex;
   align-items: center;
   gap: 7px;
-  color: rgba(255, 255, 255, .45);
+  color: $muted;
   font-size: .62rem;
   font-weight: 700;
+  font-family: $technical;
   letter-spacing: .1em;
   text-transform: uppercase;
   transition: color 350ms ease;
@@ -127,7 +130,7 @@ const { department } = Astro.props as { department: Department };
   content: '';
   flex: 1;
   height: 1px;
-  background: rgba(255, 255, 255, .1);
+  background: $line;
   transition: background 350ms ease;
 }
 
@@ -140,7 +143,8 @@ const { department } = Astro.props as { department: Department };
 }
 
 .event-group li {
-  color: rgba(255, 255, 255, .85);
+  color: #333338;
+  font-family: $body;
   font-size: .78rem;
   line-height: 1.45;
   padding: 1px 0;
@@ -149,7 +153,7 @@ const { department } = Astro.props as { department: Department };
 .event-group li::before {
   content: '>';
   margin-right: 6px;
-  color: rgba(255, 101, 0, 0.7);
+  color: $orange;
   font-weight: 700;
   transition: color 350ms ease, text-shadow 350ms ease;
 }
@@ -157,8 +161,8 @@ const { department } = Astro.props as { department: Department };
 .card-action {
   margin-top: auto;
   padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, .09);
-  color: rgba(255, 255, 255, 0.5);
+  border-top: 1px solid $line;
+  color: $orange;
   font-family: $technical;
   font-weight: 700;
   font-size: 0.72rem;
@@ -173,17 +177,17 @@ const { department } = Astro.props as { department: Department };
 .department-card:focus-within,
 .department-card:active {
   transform: translateY(-6px) scale(1.02);
-  background: linear-gradient(160deg, rgba(255, 101, 0, 0.16) 0%, rgba(255, 101, 0, 0.05) 60%, rgba(0, 0, 0, 0) 100%), #242426;
-  border-top-color: #ff6500;
-  box-shadow: 0 14px 38px rgba(255, 101, 0, 0.25), 0 0 0 1px rgba(255, 101, 0, 0.3);
+  background: linear-gradient(160deg, rgba(255, 101, 0, 0.06) 0%, rgba(255, 101, 0, 0.02) 60%, #ffffff 100%);
+  border-color: $orange;
+  border-top-color: $orange;
+  box-shadow: 0 16px 36px rgba(255, 101, 0, 0.18), 0 0 0 1px $orange;
 
   .department-name {
-    color: #ffffff;
-    text-shadow: 0 0 12px rgba(255, 101, 0, 0.4);
+    color: $orange;
   }
 
   .event-group small {
-    color: #ff9e66;
+    color: $orange;
     font-weight: 700;
   }
 
@@ -192,28 +196,27 @@ const { department } = Astro.props as { department: Department };
   }
 
   .event-group li::before {
-    color: #ff7a00;
-    text-shadow: 0 0 8px rgba(255, 101, 0, 0.6);
+    color: $orange;
   }
 
   .event-group li {
-    color: #ffffff;
+    color: $black;
   }
 
   .card-action {
-    color: #ff8533;
-    border-top-color: rgba(255, 101, 0, 0.25);
+    color: $orange;
+    border-top-color: rgba(255, 101, 0, 0.3);
     transform: translateX(4px);
   }
 
   .track-visual img {
     transform: scale(1.08) rotate(-1.5deg);
     opacity: 1;
-    filter: drop-shadow(0 0 10px rgba(255, 101, 0, 0.45));
+    filter: drop-shadow(0 6px 16px rgba(255, 101, 0, 0.25));
   }
 
   .track-visual {
-    background: radial-gradient(circle at center, rgba(255, 101, 0, 0.22), transparent 70%), #1a1716;
+    background: radial-gradient(circle at center, rgba(255, 101, 0, 0.18), transparent 70%), #fff8f5;
   }
 }
 

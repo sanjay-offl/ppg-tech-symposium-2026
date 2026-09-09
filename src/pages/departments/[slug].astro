@@ -105,9 +105,9 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 
 .dept-hero {
   padding: 160px 0 60px;
-  background: radial-gradient(circle at top center, rgba(255, 101, 0, 0.15), transparent 70%), #0d0d0f;
-  color: white;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: radial-gradient(circle at top center, rgba(255, 101, 0, 0.08), transparent 70%), $surface;
+  color: $black;
+  border-bottom: 1px solid $line;
 }
 
 .back-link {
@@ -117,9 +117,9 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   margin-bottom: 32px;
   padding: 8px 16px;
   border-radius: 999px;
-  background: rgba(255, 101, 0, 0.12);
-  border: 1px solid rgba(255, 101, 0, 0.35);
-  color: #ff6500;
+  background: rgba(255, 101, 0, 0.08);
+  border: 1px solid rgba(255, 101, 0, 0.25);
+  color: $orange;
   font-family: $technical;
   font-weight: 700;
   font-size: 13.5px;
@@ -129,11 +129,11 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   transition: all 0.2s ease;
 
   &:hover {
-    background: #ff6500;
+    background: $orange;
     color: #ffffff;
-    border-color: #ff6500;
+    border-color: $orange;
     transform: translateX(-4px);
-    box-shadow: 0 4px 14px rgba(255, 101, 0, 0.35);
+    box-shadow: 0 4px 14px $orange-glow;
   }
 }
 
@@ -154,7 +154,7 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   color: white;
   font: 900 2.4rem/1 $technical;
   letter-spacing: 0.05em;
-  box-shadow: 0 10px 30px rgba(255, 101, 0, 0.35);
+  box-shadow: 0 10px 28px rgba(255, 101, 0, 0.25);
 }
 
 .dept-header-info {
@@ -165,7 +165,7 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   margin: 6px 0 20px;
   font: clamp(2.2rem, 5vw, 4rem)/1.05 $display;
   letter-spacing: 0.02em;
-  color: white;
+  color: $black;
 }
 
 .dept-meta {
@@ -173,9 +173,10 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   flex-wrap: wrap;
   gap: 32px;
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid $line;
+  font-family: $body;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.85);
+  color: $black;
 
   strong {
     display: block;
@@ -196,7 +197,7 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   }
 
   a {
-    color: white;
+    color: $black;
     text-decoration: none;
     transition: color 0.2s ease;
 
@@ -208,8 +209,8 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 
 .dept-events-section {
   padding: 70px 0 100px;
-  background: #141416;
-  color: white;
+  background: #ffffff;
+  color: $black;
 }
 
 .events-group-block {
@@ -218,9 +219,9 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 
 .group-title {
   margin-bottom: 28px;
-  font: 700 1.6rem/1 $technical;
-  letter-spacing: 0.06em;
-  color: white;
+  font: 700 2.2rem/1 $display;
+  letter-spacing: 0.03em;
+  color: $black;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -229,15 +230,14 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
     content: '';
     flex: 1;
     height: 1px;
-    background: rgba(255, 255, 255, 0.1);
+    background: $line;
   }
 }
 
 .non-tech-block .group-title {
-  color: #00b4d8;
-  text-shadow: 0 0 16px rgba(0, 180, 216, 0.4);
+  color: #0077b6;
   &::after {
-    background: rgba(0, 180, 216, 0.3);
+    background: rgba(0, 180, 216, 0.25);
   }
 }
 
@@ -252,11 +252,12 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   display: flex;
   flex-direction: column;
   padding: 24px;
-  background: #1c1c20;
+  background: #ffffff;
   border-radius: 16px;
+  border: 1px solid rgba(10, 10, 10, 0.08);
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 
   /* Sweeping Shimmer Reflection inside the card */
   &::before {
@@ -269,7 +270,7 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(255, 255, 255, 0.07) 50%,
+      rgba(255, 101, 0, 0.05) 50%,
       transparent 100%
     );
     transform: skewX(-25deg);
@@ -278,62 +279,25 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
     z-index: 1;
   }
 
-  /* Always Active Animated Glitter Border */
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 16px;
-    padding: 2px;
-    background-size: 300% 300%;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    z-index: 3;
-  }
-
   &.tech-card {
-    box-shadow: 0 6px 26px rgba(0, 0, 0, 0.5), 0 0 22px rgba(255, 101, 0, 0.3);
-
-    &::after {
-      background-image: linear-gradient(
-        135deg,
-        #ff6500 0%,
-        #ffd700 20%,
-        #ffffff 40%,
-        #ff3300 60%,
-        #ff9100 80%,
-        #ff6500 100%
-      );
-      animation: glitterOrangeSweep 3s linear infinite, glitterPulse 2.5s ease-in-out infinite alternate;
-    }
+    border-top: 3px solid $orange;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 101, 0, 0.1);
 
     &:hover {
-      transform: translateY(-6px) scale(1.015);
-      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), 0 0 35px rgba(255, 101, 0, 0.55);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(255, 101, 0, 0.18), 0 0 0 1px $orange;
+      border-color: $orange;
     }
   }
 
   &.non-tech-card {
-    box-shadow: 0 6px 26px rgba(0, 0, 0, 0.5), 0 0 22px rgba(0, 180, 216, 0.3);
-
-    &::after {
-      background-image: linear-gradient(
-        135deg,
-        #00b4d8 0%,
-        #90e0ef 20%,
-        #ffffff 40%,
-        #0077b6 60%,
-        #00f5d4 80%,
-        #00b4d8 100%
-      );
-      animation: glitterBlueSweep 3s linear infinite, glitterPulse 2.5s ease-in-out infinite alternate;
-    }
+    border-top: 3px solid #00b4d8;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 180, 216, 0.1);
 
     &:hover {
-      transform: translateY(-6px) scale(1.015);
-      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 180, 216, 0.55);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0, 180, 216, 0.18), 0 0 0 1px #00b4d8;
+      border-color: #00b4d8;
     }
   }
 }
@@ -341,33 +305,6 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 @keyframes glitterShimmerPass {
   0% { left: -100%; }
   35%, 100% { left: 160%; }
-}
-
-@keyframes glitterOrangeSweep {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-@keyframes glitterBlueSweep {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-@keyframes glitterPulse {
-  0% {
-    filter: brightness(1);
-    opacity: 0.85;
-  }
-  50% {
-    filter: brightness(1.4);
-    opacity: 1;
-  }
-  100% {
-    filter: brightness(1);
-    opacity: 0.85;
-  }
 }
 
 .event-badge {
@@ -379,30 +316,31 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   margin-bottom: 14px;
 
   &.tech-tag {
-    background: rgba(255, 101, 0, 0.15);
+    background: rgba(255, 101, 0, 0.08);
     color: $orange;
-    border: 1px solid rgba(255, 101, 0, 0.3);
+    border: 1px solid rgba(255, 101, 0, 0.25);
   }
 
   &.non-tech-tag {
-    background: rgba(0, 180, 216, 0.15);
-    color: #00b4d8;
-    border: 1px solid rgba(0, 180, 216, 0.3);
+    background: rgba(0, 180, 216, 0.08);
+    color: #0077b6;
+    border: 1px solid rgba(0, 180, 216, 0.25);
   }
 }
 
 .event-name {
   margin: 0 0 10px;
-  font: 700 1.35rem/1.2 $technical;
+  font: 700 1.4rem/1.2 $technical;
   letter-spacing: 0.02em;
-  color: white;
+  color: $black;
 }
 
 .event-desc {
   margin: 0 0 20px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #55555c;
+  font-family: $body;
   font-size: 13.5px;
-  line-height: 1.5;
+  line-height: 1.6;
   flex: 1;
 }
 
@@ -413,9 +351,12 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   margin-top: auto;
   padding: 10px 14px;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.25);
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  background: $surface;
+  border: 1px solid $line;
+  font-family: $technical;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #44444a;
 }
 
 .event-details-btn {
@@ -427,9 +368,9 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   width: 100%;
   padding: 11px 18px;
   border-radius: 10px;
-  background: rgba(255, 101, 0, 0.14);
-  border: 1px solid rgba(255, 101, 0, 0.4);
-  color: #ff6500;
+  background: rgba(255, 101, 0, 0.08);
+  border: 1px solid rgba(255, 101, 0, 0.3);
+  color: $orange;
   font-family: $technical;
   font-weight: 700;
   font-size: 0.82rem;
@@ -439,24 +380,24 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   transition: all 0.25s ease;
 
   &:hover {
-    background: #ff6500;
+    background: $orange;
     color: #ffffff;
-    border-color: #ff6500;
+    border-color: $orange;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 101, 0, 0.45);
+    box-shadow: 0 6px 20px rgba(255, 101, 0, 0.35);
   }
 }
 
 .non-tech-card .event-details-btn {
-  background: rgba(0, 180, 216, 0.14);
-  border-color: rgba(0, 180, 216, 0.4);
-  color: #00b4d8;
+  background: rgba(0, 180, 216, 0.08);
+  border-color: rgba(0, 180, 216, 0.3);
+  color: #0077b6;
 
   &:hover {
     background: #00b4d8;
     color: #ffffff;
     border-color: #00b4d8;
-    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.45);
+    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.35);
   }
 }
 
@@ -471,9 +412,9 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   max-width: 640px;
   padding: 38px 28px;
   border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255, 101, 0, 0.14) 0%, rgba(26, 26, 30, 0.95) 100%);
-  border: 1px solid rgba(255, 101, 0, 0.38);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.4), 0 0 35px rgba(255, 101, 0, 0.18);
+  background: linear-gradient(135deg, rgba(255, 101, 0, 0.06) 0%, #ffffff 100%);
+  border: 1px solid rgba(255, 101, 0, 0.22);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.05), 0 0 25px rgba(255, 101, 0, 0.08);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -484,7 +425,7 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   display: inline-block;
   padding: 5px 14px;
   border-radius: 999px;
-  background: rgba(255, 101, 0, 0.2);
+  background: rgba(255, 101, 0, 0.1);
   color: $orange;
   font: 700 11px $technical;
   letter-spacing: 0.1em;
@@ -494,15 +435,16 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 
 .cta-title {
   margin: 0 0 10px;
-  font: 700 2rem/1.1 $display;
+  font: 700 2.4rem/1.1 $display;
   letter-spacing: 0.02em;
-  color: white;
+  color: $black;
 }
 
 .cta-desc {
   margin: 0 0 24px;
   max-width: 480px;
-  color: rgba(255, 255, 255, 0.75);
+  color: $muted;
+  font-family: $body;
   font-size: 14px;
   line-height: 1.55;
 }
@@ -521,12 +463,12 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  box-shadow: 0 8px 24px rgba(255, 101, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(255, 101, 0, 0.35);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 
   &:hover {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(255, 101, 0, 0.6);
+    box-shadow: 0 12px 32px rgba(255, 101, 0, 0.5);
   }
 }
 
