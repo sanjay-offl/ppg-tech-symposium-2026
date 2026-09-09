@@ -60,19 +60,6 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
     transform: translateX(-4px);
     box-shadow: 0 4px 14px $orange-glow;
   }
-
-  &.non-tech-back {
-    background: rgba(0, 180, 216, 0.08);
-    border-color: rgba(0, 180, 216, 0.25);
-    color: #0077b6;
-
-    &:hover {
-      background: #00b4d8;
-      color: #ffffff;
-      border-color: #00b4d8;
-      box-shadow: 0 4px 14px rgba(0, 180, 216, 0.35);
-    }
-  }
 }
 .event-detail-box {
   padding: 38px;
@@ -80,26 +67,6 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   background: #ffffff;
   border: 1px solid rgba(255, 101, 0, 0.2);
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05), 0 0 25px rgba(255, 101, 0, 0.08);
-
-  &.is-non-tech {
-    border-color: rgba(0, 180, 216, 0.25);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05), 0 0 25px rgba(0, 180, 216, 0.12);
-
-    .event-badge {
-      background: rgba(0, 180, 216, 0.08);
-      color: #0077b6;
-      border: 1px solid rgba(0, 180, 216, 0.25);
-    }
-
-    .pass-link {
-      background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-      box-shadow: 0 4px 16px rgba(0, 180, 216, 0.35);
-
-      &:hover {
-        box-shadow: 0 8px 24px rgba(0, 180, 216, 0.5);
-      }
-    }
-  }
 }
 .event-badge {
   display: inline-block;
