@@ -9,6 +9,11 @@ export interface Department {
   nonTechnicalEvents: string[];
 }
 
+export interface EventStage {
+  title: string;
+  description: string;
+}
+
 export interface EventItem {
   name: string;
   slug: string;
@@ -19,6 +24,11 @@ export interface EventItem {
   time: string;
   teamSize: string;
   registrationStatus: 'Open' | 'Coming soon';
+  duration?: string;
+  format?: string;
+  concept?: string;
+  stages?: EventStage[];
+  rules?: string[];
 }
 
 export interface RegistrationPayload {
