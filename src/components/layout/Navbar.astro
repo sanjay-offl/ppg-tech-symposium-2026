@@ -7,13 +7,13 @@ import { departments } from '@/data/departments';
   <ul class="nav-links" id="primary-links">
     <li><a href="/about">About</a></li>
     <li class="has-dropdown">
-      <a href="/#departments" class="dropdown-trigger">
+      <a href="/departments" class="dropdown-trigger">
         Departments <span class="caret" aria-hidden="true">▾</span>
       </a>
       <div class="dropdown-menu" role="menu">
-        <a href="/#departments" class="dropdown-item overview-item" role="menuitem">
+        <a href="/departments" class="dropdown-item overview-item" role="menuitem">
           <strong>All Departments</strong>
-          <small>Explore 7 Tracks & Events</small>
+          <small>Explore 8 Disciplines & 35+ Events</small>
         </a>
         <div class="dropdown-divider"></div>
         {departments.map((dept) => (
@@ -24,6 +24,7 @@ import { departments } from '@/data/departments';
         ))}
       </div>
     </li>
+    <li><a href="/events">Events</a></li>
     <li><a href="/schedule">Schedule</a></li>
     <li><a href="/faq">FAQ</a></li>
     <li><a href="/contact">Contact</a></li>

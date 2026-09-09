@@ -78,10 +78,10 @@ export const faqs: FAQItem[] = [
     answer: 'Winners across all 41 technical and non-technical events will receive exciting cash prizes, winner certificates, and trophies/mementos awarded during the grand Valedictory ceremony.'
   },
   {
-    id: 'f1-giveaway',
+    id: 'awards-overview',
     category: 'Prizes & Certificates',
-    question: 'How does the Hot Wheels F1 Collection giveaway work?',
-    answer: 'In keeping with our racing theme, an exclusive Hot Wheels Formula 1 die-cast car collection will be awarded to standout performers and top event winners. This is a limited collector prize given to select championship champions!'
+    question: 'How are the top performers recognized?',
+    answer: 'Outstanding performers and winners across all 8 departments receive prestigious trophies, merit certificates, and cash awards presented by department heads and dignitaries at the symposium valedictory.'
   },
   {
     id: 'certificates',

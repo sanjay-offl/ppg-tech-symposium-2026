@@ -1,0 +1,221 @@
+---
+import type { EventItem } from '@/types';
+import EventBadge from './EventBadge.astro';
+
+interface Props {
+  event: EventItem;
+  showDepartment?: boolean;
+}
+
+const { event, showDepartment = false } = Astro.props;
+const summary = event.concept || event.description;
+const formatDetails = [
+  event.format ? event.format : `Team: ${event.teamSize}`,
+  event.duration ? event.duration : null,
+  event.venue ? event.venue : 'Campus'
+].filter(Boolean).join(' • ');
+---
+
+<article class="event-card">
+  <div class="card-header">
+    <div class="header-main">
+      <h3 class="event-title">{event.name}</h3>
+      {showDepartment && <span class="dept-badge">{event.department}</span>}
+    </div>
+    <EventBadge type={event.category} />
+  </div>
+
+  <p class="card-body">
+    {summary}
+  </p>
+
+  <div class="format-line">
+    <svg class="format-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"></circle>
+      <polyline points="12 6 12 12 16 14"></polyline>
+    </svg>
+    <span class="format-text">{formatDetails}</span>
+  </div>
+
+  <div class="card-actions">
+    <a href={`/events/${event.slug}`} class="btn-details">
+      View Details
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </a>
+    <a href={`/register?event=${event.slug}`} class="btn-register">
+      Register
+    </a>
+  </div>
+</article>
+
+<style lang="scss">
+@use '../../styles/variables' as *;
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px;
+  background: #141414; /* Pure neutral dark black */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: $orange;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.header-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.event-title {
+  font-family: $display;
+  font-size: 1.55rem;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0;
+}
+
+.dept-badge {
+  font-family: $technical;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #a3a3a3;
+  letter-spacing: 0.04em;
+}
+
+.card-body {
+  font-family: $body;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #b5b5b5;
+  margin: 0 0 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.format-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  margin-bottom: 18px;
+  font-family: $technical;
+  font-size: 0.78rem;
+  color: #e5e5e5;
+  letter-spacing: 0.03em;
+}
+
+.format-icon {
+  flex-shrink: 0;
+  color: $orange;
+}
+
+.format-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.btn-details {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #222222;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-family: $technical;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    background: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+
+    svg {
+      transform: translateX(3px);
+    }
+  }
+}
+
+.btn-register {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: $orange;
+  border: 1px solid $orange;
+  color: #ffffff;
+  font-family: $technical;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #ff7a00;
+    border-color: #ff7a00;
+    box-shadow: 0 4px 16px rgba(255, 101, 0, 0.4);
+  }
+}
+
+@media (max-width: 480px) {
+  .event-card {
+    padding: 18px;
+  }
+  .event-title {
+    font-size: 1.35rem;
+  }
+}
+</style>

@@ -7,5 +7,39 @@ import { events } from '@/data/events';
 <script>
 import { submitToGoogleSheet } from '../../services/googleSheets';
 const form = document.querySelector<HTMLFormElement>('[data-registration-form]');
+
+// Auto-select event or department from URL search params
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const eventSlug = params.get('event');
+  const deptSlug = params.get('dept');
+
+  if (eventSlug && form) {
+    const eventSelect = form.querySelector<HTMLSelectElement>('select[name="selectedEvent"]');
+    if (eventSelect) {
+      for (const option of Array.from(eventSelect.options)) {
+        const optVal = option.value.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        if (optVal.includes(eventSlug.toLowerCase()) || eventSlug.toLowerCase().includes(optVal)) {
+          option.selected = true;
+          break;
+        }
+      }
+    }
+  }
+
+  if (deptSlug && form) {
+    const deptSelect = form.querySelector<HTMLSelectElement>('select[name="department"]');
+    if (deptSelect) {
+      for (const option of Array.from(deptSelect.options)) {
+        const optVal = option.value.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        if (optVal.includes(deptSlug.toLowerCase()) || deptSlug.toLowerCase().includes(optVal)) {
+          option.selected = true;
+          break;
+        }
+      }
+    }
+  }
+});
+
 form?.addEventListener('submit', async (event) => { event.preventDefault(); const status = form.querySelector<HTMLElement>('[data-form-status]'); const button = form.querySelector<HTMLButtonElement>('button[type="submit"]'); const data = Object.fromEntries(new FormData(form).entries()); let valid = true; form.querySelectorAll<HTMLElement>('.error').forEach((node) => node.textContent = ''); for (const field of ['fullName','email','phone','collegeName','department','yearOfStudy','selectedEvent']) { const value = String(data[field] ?? '').trim(); const error = form.querySelector<HTMLElement>(`[data-error="${field}"]`); if (!value) { if (error) error.textContent = 'This field is required.'; valid = false; } if (field === 'email' && value && !/^\S+@\S+\.\S+$/.test(value)) { if (error) error.textContent = 'Enter a valid email.'; valid = false; } if (field === 'phone' && value && !/^\+?[0-9\s-]{10,15}$/.test(value)) { if (error) error.textContent = 'Enter a valid phone number.'; valid = false; } } if (!valid || !status || !button) return; button.disabled = true; button.textContent = 'Submitting...'; status.textContent = ''; try { await submitToGoogleSheet(data, 'Registrations'); form.reset(); status.textContent = 'Registration received. We will contact you with the next steps.'; } catch { status.textContent = 'Submission could not be completed. Please email the coordinator.'; status.classList.add('error-status'); } finally { button.disabled = false; button.textContent = 'Submit Registration'; } });
 </script>

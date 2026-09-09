@@ -4,12 +4,11 @@ import Hero from '@/components/home/Hero.astro';
 import Stats from '@/components/home/Stats.astro';
 import About from '@/components/home/About.astro';
 import DepartmentGrid from '@/components/departments/DepartmentGrid.astro';
-import PrizeGiveaway from '@/components/home/PrizeGiveaway.astro';
 import FAQAccordion from '@/components/faq/FAQAccordion.astro';
+import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
 ---
 <MainLayout>
   <Hero />
-  <PrizeGiveaway />
   <Stats />
   <About />
   <section class="departments-preview reveal" id="departments">
@@ -21,6 +20,7 @@ import FAQAccordion from '@/components/faq/FAQAccordion.astro';
       <DepartmentGrid />
     </div>
   </section>
+  <SymposiumGuidelines />
   <section class="home-faq reveal" id="faq">
     <div class="container">
       <div class="faq-header">
@@ -41,7 +41,7 @@ import FAQAccordion from '@/components/faq/FAQAccordion.astro';
   position: relative;
   overflow: hidden;
   padding: 100px 0;
-  background: white;
+  background: #0a0a0a;
 
   .container {
     position: relative;
@@ -58,9 +58,9 @@ import FAQAccordion from '@/components/faq/FAQAccordion.astro';
     margin: 0 auto 44px;
     padding: 22px 52px;
     border-radius: 20px;
-    background: #ffffff;
-    border: 1px solid rgba(255, 101, 0, 0.14);
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
+    background: #141414;
+    border: 1px solid rgba(255, 101, 0, 0.3);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
     text-align: center;
     width: fit-content;
     max-width: calc(100% - 32px);
@@ -71,13 +71,18 @@ import FAQAccordion from '@/components/faq/FAQAccordion.astro';
       justify-content: center;
       gap: 10px;
       margin: 0 auto;
+      color: $orange;
+      font-family: $technical;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
     .section-title {
       margin: 10px 0 0;
       font: clamp(2.6rem, 6vw, 4.5rem)/.95 $display;
       letter-spacing: .01em;
-      color: $black;
+      color: #ffffff;
     }
   }
 
