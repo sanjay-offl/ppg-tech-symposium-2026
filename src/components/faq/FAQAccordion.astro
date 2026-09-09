@@ -1,0 +1,270 @@
+---
+import { faqs, faqCategories, type FAQCategory } from '@/data/faq';
+
+interface Props {
+  limit?: number;
+  showFilters?: boolean;
+  activeCategory?: FAQCategory;
+}
+
+const { limit, showFilters = true, activeCategory = 'All' } = Astro.props;
+const displayFaqs = limit ? faqs.slice(0, limit) : faqs;
+
+// Generate Schema.org FAQPage structured data for SEO
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': displayFaqs.map((faq) => ({
+    '@type': 'Question',
+    'name': faq.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': faq.answer
+    }
+  }))
+};
+---
+
+<div class="faq-container">
+  {showFilters && (
+    <div class="faq-filters" role="tablist" aria-label="Filter FAQ by topic">
+      {faqCategories.map((cat) => (
+        <button
+          class={`faq-filter-btn ${cat === activeCategory ? 'active' : ''}`}
+          data-faq-filter={cat}
+          type="button"
+          role="tab"
+          aria-selected={cat === activeCategory ? 'true' : 'false'}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+  )}
+
+  <div class="faq-list" role="region" aria-label="Frequently Asked Questions">
+    {displayFaqs.map((faq, index) => (
+      <details
+        class="faq-item"
+        data-faq-category={faq.category}
+        id={`faq-${faq.id}`}
+        open={index === 0 && !limit}
+      >
+        <summary class="faq-summary">
+          <div class="faq-question-wrap">
+            <span class="faq-cat-badge">{faq.category}</span>
+            <span class="faq-question">{faq.question}</span>
+          </div>
+          <span class="faq-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line class="icon-line icon-h" x1="12" y1="5" x2="12" y2="19"></line>
+              <line class="icon-line icon-v" x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </span>
+        </summary>
+        <div class="faq-answer">
+          <p>{faq.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+</div>
+
+<style lang="scss">
+@use '../../styles/variables' as *;
+
+.faq-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+  justify-content: center;
+}
+
+.faq-filter-btn {
+  padding: 8px 18px;
+  border: 1px solid $line;
+  border-radius: 999px;
+  background: white;
+  color: $black;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: $orange;
+    color: $orange;
+  }
+
+  &.active {
+    background: $orange;
+    border-color: $orange;
+    color: white;
+    box-shadow: 0 4px 16px $orange-glow;
+  }
+}
+
+.faq-list {
+  display: grid;
+  gap: 14px;
+}
+
+.faq-item {
+  border: 1px solid $line;
+  border-radius: 14px;
+  background: white;
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+
+  &:hover {
+    border-color: rgba(255, 101, 0, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  }
+
+  &[open] {
+    border-color: rgba(255, 101, 0, 0.4);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+
+    .faq-icon {
+      background: $orange;
+      color: white;
+      transform: rotate(45deg);
+    }
+
+    .faq-question {
+      color: $orange;
+    }
+  }
+}
+
+.faq-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.faq-question-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.faq-cat-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $orange;
+}
+
+.faq-question {
+  font-family: $technical;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  color: $black;
+  transition: color 0.2s;
+}
+
+.faq-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $surface;
+  color: $muted;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s, color 0.2s;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.faq-answer {
+  padding: 0 24px 22px;
+  border-top: 1px solid rgba(10, 10, 10, 0.05);
+
+  p {
+    margin: 16px 0 0;
+    color: #4b5563;
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 640px) {
+  .faq-summary {
+    padding: 16px 18px;
+  }
+
+  .faq-question {
+    font-size: 1.08rem;
+  }
+
+  .faq-answer {
+    padding: 0 18px 18px;
+  }
+
+  .faq-icon {
+    width: 30px;
+    height: 30px;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+</style>
+
+<script>
+  function setupFaq() {
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-faq-filter]');
+    const faqItems = document.querySelectorAll<HTMLDetailsElement>('.faq-item');
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const selected = btn.dataset.faqFilter;
+        
+        filterButtons.forEach((b) => {
+          const isActive = b === btn;
+          b.classList.toggle('active', isActive);
+          b.setAttribute('aria-selected', String(isActive));
+        });
+
+        faqItems.forEach((item) => {
+          const cat = item.dataset.faqCategory;
+          const match = selected === 'All' || cat === selected;
+          item.hidden = !match;
+        });
+      });
+    });
+  }
+
+  setupFaq();
+  document.addEventListener('astro:after-swap', setupFaq);
+</script>

@@ -1,0 +1,51 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import RegistrationForm from '@/components/registration/RegistrationForm.astro';
+---
+<MainLayout title="Register | VIYUGAM 2K26">
+  <section class="register-page">
+    <div class="container">
+      <a href="/" class="back-link">← Back to Home</a>
+      <div class="intro">
+        <span class="section-label">Join the Race</span>
+        <h1>REGISTER<br />NOW.</h1>
+        <p>Secure your place at VIYUGAM 2K26. The registration fee is ₹250 per head.</p>
+      </div>
+      <RegistrationForm />
+    </div>
+  </section>
+</MainLayout>
+
+<style lang="scss">
+@use '../styles/variables' as *;
+.register-page { padding: 180px 0 110px; background: $surface; }
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 101, 0, 0.12);
+  border: 1px solid rgba(255, 101, 0, 0.35);
+  color: #ff6500;
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #ff6500;
+    color: #ffffff;
+    border-color: #ff6500;
+    transform: translateX(-4px);
+    box-shadow: 0 4px 14px rgba(255, 101, 0, 0.35);
+  }
+}
+.intro { margin-bottom: 36px; }
+.intro h1 { margin: 18px 0 12px; font: clamp(4rem, 10vw, 8rem)/.86 $display; }
+.intro p { color: $muted; }
+</style>

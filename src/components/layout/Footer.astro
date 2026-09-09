@@ -1,0 +1,94 @@
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">VIYUGAM <span>2K26</span></div>
+    <ul class="footer-nav" aria-label="Footer navigation">
+      <li><a href="/about">About</a></li>
+      <li><a href="/departments">Departments</a></li>
+      <li><a href="/schedule">Schedule</a></li>
+      <li><a href="/faq">FAQ</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/register" class="footer-highlight">Register</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <address>PPG Institute of Technology · NH-209, Sathy Road<br />Saravanampatti, Coimbatore - 641035, Tamil Nadu</address>
+    <small>© 2026 PPGIT · All rights reserved</small>
+  </div>
+</footer>
+<style lang="scss">
+@use '../../styles/variables' as *;
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 44px max(32px, calc((100% - 1180px) / 2)) 32px;
+  color: rgba(255,255,255,.5);
+  background: #050505;
+  font-size: 12px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.footer-brand {
+  color: white;
+  font: 700 20px $technical;
+  letter-spacing: .04em;
+  span { color: $orange; }
+}
+.footer-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  a {
+    color: rgba(255,255,255,.6);
+    text-decoration: none;
+    transition: color .2s;
+    &:hover { color: white; }
+  }
+  .footer-highlight {
+    color: $orange;
+    font-weight: 700;
+  }
+}
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.footer address {
+  font-style: normal;
+  line-height: 1.6;
+}
+.footer small {
+  text-align: right;
+}
+@media (max-width: 760px) {
+  .footer {
+    padding: 32px 20px;
+    text-align: center;
+  }
+  .footer-top, .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-nav {
+    justify-content: center;
+  }
+  .footer small {
+    text-align: center;
+  }
+}
+</style>

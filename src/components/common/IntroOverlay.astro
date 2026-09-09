@@ -1,0 +1,554 @@
+---
+/* IntroOverlay.astro - PPG Institute of Technology Brand Intro Animation Overlay */
+const pathname = Astro.url.pathname;
+const isHome = pathname === '/' || pathname === '/index.html' || pathname === '';
+---
+
+{isHome && (
+  <>
+    <!-- Inline synchronous check BEFORE first paint to eliminate any white flash or flicker -->
+    <script is:inline>
+      (function() {
+        var isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+        if (!isHomePage) {
+          document.documentElement.classList.add('no-intro-overlay');
+        }
+      })();
+    </script>
+
+    <div id="brand-intro-overlay" class="brand-intro-overlay">
+      <canvas id="intro-motion-canvas"></canvas>
+      <button class="intro-skip-btn" id="introSkipBtn" type="button">Skip ➔</button>
+    </div>
+
+    <div class="intro-lockup-wrap" id="introLockupWrap">
+      <div class="intro-logo-box" id="introLogoBox">
+        <!-- Full single PNG logo -->
+        <img src="/images/intro/ppg_logo_clean.png" alt="PPG Institute of Technology Logo" class="intro-logo-full" id="introLogoFull" />
+
+        <!-- 5 Sliced Emblem Parts for mechanical assembly -->
+        <div class="intro-emblem-parts" id="introEmblemParts">
+          <img src="/images/intro/quad_tl.png" class="emblem-part part-tl" id="partTL" alt="Emblem Top Left" />
+          <img src="/images/intro/quad_tr.png" class="emblem-part part-tr" id="partTR" alt="Emblem Top Right" />
+          <img src="/images/intro/quad_bl.png" class="emblem-part part-bl" id="partBL" alt="Emblem Bottom Left" />
+          <img src="/images/intro/quad_br.png" class="emblem-part part-br" id="partBR" alt="Emblem Bottom Right" />
+          <img src="/images/intro/ribbon.png" class="emblem-part part-ribbon" id="partRibbon" alt="Emblem Brown Ribbon" />
+        </div>
+      </div>
+
+      <div class="intro-text-box" id="introTextBox">
+        <h1 class="intro-main-title" id="introMainTitle">PPG INSTITUTE OF TECHNOLOGY</h1>
+        <div class="intro-subtitle" id="introSubtitle">AN AUTONOMOUS INSTITUTION</div>
+      </div>
+    </div>
+  </>
+)}
+
+<style lang="scss">
+:root {
+  --orange: #FF6500;
+  --orange-glow: rgba(255, 101, 0, 0.35);
+  --black: #0A0A0A;
+  --dark: #1C1C1E;
+}
+
+:global(html.no-intro-overlay) #brand-intro-overlay,
+:global(html.no-intro-overlay) #introLockupWrap,
+:global(html.no-intro-overlay) .brand-intro-overlay,
+:global(html.no-intro-overlay) .intro-lockup-wrap {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+body.intro-active {
+  overflow: hidden !important;
+}
+
+/* === BRAND INTRO OVERLAY === */
+.brand-intro-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFFFFF;
+  z-index: 999999;
+  overflow: hidden;
+  user-select: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+  visibility: visible;
+  opacity: 1;
+
+  &.dismissed {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+#intro-motion-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* === BRANDING LOCKUP === */
+.intro-lockup-wrap {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  z-index: 1000000;
+  pointer-events: none;
+  will-change: transform, top, left, opacity;
+  transform-origin: top left;
+  opacity: 1 !important;
+
+  &.dismissed-lockup {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    display: none !important;
+  }
+}
+
+.intro-logo-box {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  flex-shrink: 0;
+  will-change: transform, filter;
+  transform-origin: center center;
+}
+
+.intro-logo-full {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0 12px 28px rgba(255, 101, 0, 0.28));
+}
+
+.intro-emblem-parts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.emblem-part {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  will-change: transform, opacity, filter;
+}
+
+.intro-text-box {
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 24px;
+  border-left: 5px solid var(--orange);
+  will-change: transform, opacity, filter;
+  white-space: nowrap;
+}
+
+.intro-main-title {
+  font-family: 'Orbitron', 'Rajdhani', sans-serif;
+  font-size: clamp(18px, 2.8vw, 34px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #111116;
+  line-height: 1.15;
+  text-transform: uppercase;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  margin: 0;
+
+  :global(.char) {
+    display: inline-block;
+    will-change: transform, opacity, filter;
+  }
+
+  :global(.char.space) {
+    width: 0.3em;
+  }
+}
+
+.intro-subtitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(10px, 1.2vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: #5C2D18;
+  text-transform: uppercase;
+  margin-top: 6px;
+  opacity: 0;
+  will-change: transform, opacity;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: var(--orange);
+    border-radius: 2px;
+  }
+}
+
+.intro-skip-btn {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  z-index: 10;
+  background: rgba(17, 17, 22, 0.06);
+  border: 1px solid rgba(17, 17, 22, 0.15);
+  color: #111116;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--orange);
+    color: #FFFFFF;
+    border-color: var(--orange);
+    box-shadow: 0 4px 14px var(--orange-glow);
+  }
+}
+
+@media (max-width: 768px) {
+  .intro-lockup-wrap {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 16px !important;
+    width: 90vw !important;
+  }
+  .intro-logo-box {
+    width: 155px !important;
+    height: 155px !important;
+    margin: 0 auto !important;
+  }
+  .intro-text-box {
+    padding-left: 0 !important;
+    border-left: none !important;
+    border-top: 3px solid var(--orange) !important;
+    padding-top: 12px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+  .intro-main-title {
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: clamp(15px, 4vw, 22px) !important;
+    white-space: normal !important;
+  }
+  .intro-subtitle {
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: clamp(9.5px, 2.4vw, 11.5px) !important;
+    margin-top: 6px !important;
+    &::before {
+      display: none !important;
+    }
+  }
+}
+</style>
+
+<script>
+import { gsap } from 'gsap';
+
+let introCanvasAnimId: number | null = null;
+
+function startIntroCanvasStreaks() {
+    const canvas = document.getElementById('intro-motion-canvas') as HTMLCanvasElement | null;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    function resize() {
+        if (!canvas) return;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resize();
+
+    const rays: Array<{
+      x: number;
+      y: number;
+      length: number;
+      angle: number;
+      speed: number;
+      width: number;
+      color: string;
+      opacity: number;
+    }> = [];
+    const totalRays = 48;
+
+    for (let i = 0; i < totalRays; i++) {
+        const spawnOnBottom = Math.random() > 0.35;
+        const rayAngle = -Math.PI * 0.26 + (Math.random() - 0.5) * 0.12;
+
+        rays.push({
+            x: spawnOnBottom ? Math.random() * (canvas.width * 0.95) : -120,
+            y: spawnOnBottom ? canvas.height + Math.random() * 250 : Math.random() * canvas.height,
+            length: Math.random() * 320 + 160,
+            angle: rayAngle,
+            speed: Math.random() * 34 + 22,
+            width: Math.random() * 3.2 + 1.2,
+            color: Math.random() > 0.45 ? '#FF6500' : (Math.random() > 0.5 ? '#5C2D18' : '#111116'),
+            opacity: Math.random() * 0.12 + 0.05
+        });
+    }
+
+    const startTime = Date.now();
+
+    function render() {
+        if (!ctx || !canvas) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const elapsed = (Date.now() - startTime) / 1000;
+
+        if (elapsed < 1.8) {
+            ctx.save();
+            ctx.strokeStyle = 'rgba(255, 101, 0, 0.18)';
+            ctx.lineWidth = 1.2;
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height / 2, Math.max(0, 280 - elapsed * 140), 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        rays.forEach(r => {
+            ctx.save();
+            ctx.strokeStyle = r.color;
+            ctx.globalAlpha = r.opacity * (1 - Math.min(1, elapsed / 3.4));
+            ctx.lineWidth = r.width;
+            ctx.lineCap = 'square';
+            ctx.beginPath();
+            ctx.moveTo(r.x, r.y);
+            ctx.lineTo(r.x + Math.cos(r.angle) * r.length, r.y + Math.sin(r.angle) * r.length);
+            ctx.stroke();
+
+            if (r.width > 2.2) {
+                ctx.lineWidth = 1.0;
+                ctx.beginPath();
+                ctx.moveTo(r.x + 6, r.y - 5);
+                ctx.lineTo(r.x + 6 + Math.cos(r.angle) * (r.length * 0.7), r.y - 5 + Math.sin(r.angle) * (r.length * 0.7));
+                ctx.stroke();
+            }
+
+            ctx.restore();
+
+            r.x += Math.cos(r.angle) * r.speed;
+            r.y += Math.sin(r.angle) * r.speed;
+
+            if (r.y < -r.length || r.x > canvas.width + r.length) {
+                const spawnOnBottom = Math.random() > 0.35;
+                r.x = spawnOnBottom ? Math.random() * (canvas.width * 0.95) : -r.length;
+                r.y = spawnOnBottom ? canvas.height + Math.random() * 180 : Math.random() * canvas.height;
+            }
+        });
+
+        if (elapsed < 4.5) {
+            introCanvasAnimId = requestAnimationFrame(render);
+        }
+    }
+
+    render();
+}
+
+function stopIntroCanvasStreaks() {
+    if (introCanvasAnimId !== null) {
+        cancelAnimationFrame(introCanvasAnimId);
+        introCanvasAnimId = null;
+    }
+}
+
+function playBrandIntroAnimation() {
+    const overlay = document.getElementById('brand-intro-overlay');
+    const lockupWrap = document.getElementById('introLockupWrap');
+    const logoBox = document.getElementById('introLogoBox');
+    const logoFull = document.getElementById('introLogoFull');
+    const emblemParts = document.getElementById('introEmblemParts');
+    const textBox = document.getElementById('introTextBox');
+    const mainTitleEl = document.getElementById('introMainTitle');
+    const subtitle = document.getElementById('introSubtitle');
+
+    const partTL = document.getElementById('partTL');
+    const partTR = document.getElementById('partTR');
+    const partBL = document.getElementById('partBL');
+    const partBR = document.getElementById('partBR');
+    const partRibbon = document.getElementById('partRibbon');
+
+    if (!overlay || !lockupWrap) return;
+
+    lockupWrap.classList.remove('dismissed-lockup');
+    overlay.style.backgroundColor = '#FFFFFF';
+    overlay.style.opacity = '1';
+    overlay.classList.remove('dismissed');
+
+    document.body.classList.add('intro-active');
+
+    if (mainTitleEl && !mainTitleEl.querySelector('.char')) {
+        const text = mainTitleEl.textContent || '';
+        mainTitleEl.innerHTML = text.split('').map(c =>
+            c === ' ' ? '<span class="char space">&nbsp;</span>' : `<span class="char">${c}</span>`
+        ).join('');
+    }
+    const titleChars = document.querySelectorAll('#introMainTitle .char');
+
+    const isDesktop = window.innerWidth > 768;
+    const initialOffset = isDesktop ? 200 : 0;
+    
+    gsap.set(lockupWrap, {
+        top: '50%',
+        left: '50%',
+        xPercent: -50,
+        yPercent: -50,
+        x: initialOffset,
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        filter: 'none'
+    });
+    
+    gsap.set(logoBox, { scale: 1, filter: 'none' });
+    gsap.set(logoFull, { opacity: 0, scale: 1 });
+    gsap.set(emblemParts, { opacity: 1 });
+    gsap.set(textBox, { opacity: 0, x: 25, filter: 'none' });
+    gsap.set(titleChars, { opacity: 0, x: 20, scale: 1.2, filter: 'blur(5px)' });
+    gsap.set(subtitle, { opacity: 0, y: 10 });
+
+    gsap.set(partTL, { x: -320, y: -320, rotation: -50, scale: 1.5, opacity: 0, filter: 'blur(6px)' });
+    gsap.set(partTR, { x: 320, y: -320, rotation: 50, scale: 1.5, opacity: 0, filter: 'blur(6px)' });
+    gsap.set(partBL, { x: -320, y: 320, rotation: -50, scale: 1.5, opacity: 0, filter: 'blur(6px)' });
+    gsap.set(partBR, { x: 320, y: 320, rotation: 50, scale: 1.5, opacity: 0, filter: 'blur(6px)' });
+    gsap.set(partRibbon, { y: 200, scale: 1.3, opacity: 0, filter: 'blur(5px)' });
+
+    startIntroCanvasStreaks();
+
+    let dismissedAlready = false;
+
+    function dismissIntro() {
+        if (dismissedAlready) return;
+        dismissedAlready = true;
+        clearTimeout(safetyTimer);
+
+        overlay?.classList.add('dismissed');
+        lockupWrap?.classList.add('dismissed-lockup');
+        document.body.classList.remove('intro-active');
+        stopIntroCanvasStreaks();
+        
+        setTimeout(() => {
+          overlay?.remove();
+          lockupWrap?.remove();
+        }, 500);
+    }
+
+    const safetyTimer = setTimeout(() => dismissIntro(), 5200);
+
+    const skipBtn = document.getElementById('introSkipBtn');
+    if (skipBtn) {
+        skipBtn.onclick = () => dismissIntro();
+    }
+
+    const introTL = gsap.timeline({
+        onComplete: () => {
+            dismissIntro();
+        }
+    });
+
+    introTL.to([partTL, partTR, partBL, partBR], {
+        x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, filter: 'blur(0px)',
+        duration: 0.55, stagger: 0.05, ease: 'expo.out'
+    }, 0.2)
+    .to(logoBox, {
+        x: '+=6', y: '-=5', duration: 0.04, repeat: 3, yoyo: true, ease: 'none'
+    }, 0.68)
+    .to(partRibbon, {
+        y: 0, scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.45, ease: 'back.out(2.4)'
+    }, 0.95)
+    .to(logoBox, {
+        x: '-=8', y: '+=6', duration: 0.03, repeat: 3, yoyo: true, ease: 'none'
+    }, 1.35)
+    .set(logoFull, { opacity: 1 }, 1.5)
+    .set(emblemParts, { opacity: 0 }, 1.5)
+    .to(logoBox, {
+        scale: 1.06, duration: 0.08, yoyo: true, repeat: 1, ease: 'power2.inOut'
+    }, 1.65)
+    .to(lockupWrap, {
+        x: 0, duration: 0.45, ease: 'power4.inOut'
+    }, 1.75)
+    .to(textBox, {
+        opacity: 1, x: 0, duration: 0.3, ease: 'power3.out'
+    }, 2.05)
+    .to(titleChars, {
+        opacity: 1, x: 0, scale: 1, filter: 'blur(0px)', duration: 0.38, stagger: 0.018, ease: 'back.out(1.8)'
+    }, 2.15)
+    .to(subtitle, {
+        opacity: 1, y: 0, duration: 0.4, ease: 'power3.out'
+    }, 3.1)
+    .to([logoBox, textBox], {
+        filter: 'drop-shadow(0 0 16px rgba(255, 101, 0, 0.35))', duration: 0.25, yoyo: true, repeat: 1
+    }, 3.4)
+    .to([overlay, lockupWrap], {
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.inOut'
+    }, 3.65);
+}
+
+function initIntro() {
+    const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+
+    const overlay = document.getElementById('brand-intro-overlay');
+    const lockupWrap = document.getElementById('introLockupWrap');
+
+    if (!isHomePage || document.documentElement.classList.contains('no-intro-overlay')) {
+        // Immediately remove overlay for subpages
+        overlay?.remove();
+        lockupWrap?.remove();
+        document.body.classList.remove('intro-active');
+        return;
+    }
+
+    playBrandIntroAnimation();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initIntro);
+} else {
+    initIntro();
+}
+</script>

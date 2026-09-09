@@ -1,0 +1,147 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import FAQAccordion from '@/components/faq/FAQAccordion.astro';
+import CTA from '@/components/home/CTA.astro';
+import { siteConfig } from '@/data/config';
+---
+
+<MainLayout
+  title="FAQ | VIYUGAM 2K26"
+  description="Find answers to frequently asked questions about registration fees, event rules, prizes, schedule, and venue details for VIYUGAM 2K26 at PPG Institute of Technology."
+>
+  <section class="page-heading">
+    <div class="container">
+      <a href="/" class="back-link">← Back to Home</a>
+      <span class="section-label">Got questions?</span>
+      <h1>FREQUENTLY<br />ASKED QUESTIONS.</h1>
+      <p>Everything you need to know about registration fees, multi-event entries, food, prizes, and venue logistics for VIYUGAM 2K26.</p>
+    </div>
+  </section>
+
+  <section class="faq-content">
+    <div class="container">
+      <FAQAccordion />
+
+      <div class="support-card">
+        <div class="support-text">
+          <span class="section-label">Need more help?</span>
+          <h2>STILL HAVE QUESTIONS?</h2>
+          <p>Our student coordinators and faculty organizing committee are here to assist you with registration or event inquiries.</p>
+        </div>
+        <div class="support-actions">
+          <a class="button" href="/contact">Contact Coordinator</a>
+          <a class="button button--ghost" href={`mailto:${siteConfig.email}`}>Email: {siteConfig.email}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</MainLayout>
+
+<style lang="scss">
+@use '../styles/variables' as *;
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 101, 0, 0.12);
+  border: 1px solid rgba(255, 101, 0, 0.35);
+  color: #ff6500;
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #ff6500;
+    color: #ffffff;
+    border-color: #ff6500;
+    transform: translateX(-4px);
+    box-shadow: 0 4px 14px rgba(255, 101, 0, 0.35);
+  }
+}
+
+.page-heading {
+  padding: 190px 0 80px;
+  color: white;
+  background: $black;
+
+  h1 {
+    margin: 18px 0 14px;
+    font: clamp(3.5rem, 9vw, 7.5rem) / 0.88 $display;
+    letter-spacing: 0.01em;
+  }
+
+  p {
+    max-width: 600px;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.7;
+  }
+}
+
+.faq-content {
+  padding: 80px 0 120px;
+  background: $surface;
+}
+
+.support-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  max-width: 900px;
+  margin: 64px auto 0;
+  padding: 40px;
+  border: 1px solid $line;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+
+  h2 {
+    margin: 10px 0 8px;
+    font: 2.2rem $display;
+    letter-spacing: 0.02em;
+  }
+
+  p {
+    margin: 0;
+    max-width: 440px;
+    color: $muted;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+}
+
+.support-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .support-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 22px;
+  }
+
+  .support-actions {
+    width: 100%;
+    flex-direction: column;
+
+    .button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+</style>

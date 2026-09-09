@@ -1,0 +1,21 @@
+<section class="prize-band" aria-labelledby="prize-title">
+  <div class="prize-inner container">
+    <p class="prize-kicker"><span aria-hidden="true">🏁</span> Prize Giveaway</p>
+    <h2 id="prize-title">WIN A HOT WHEELS F1 COLLECTION</h2>
+    <p class="prize-copy">The most expensive &amp; memorable prize we've ever given.<br />Real die-cast F1 cars. Compete. Win. Keep them forever.</p>
+    <span class="prize-badge">LIMITED — ONE WINNER PER TOP EVENT</span>
+    <img class="prize-image" src="/images/giveaway-sticker.webp" alt="Hot Wheels Formula 1 die-cast car collection" loading="lazy" />
+  </div>
+</section>
+
+<style lang="scss">
+@use '../../styles/variables' as *;
+.prize-band { padding: 64px 0; color: white; background: $black; text-align: center; }
+.prize-inner { display: flex; flex-direction: column; align-items: center; }
+.prize-kicker { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; color: $orange; font: 700 .7rem $technical; letter-spacing: .16em; text-transform: uppercase; }
+.prize-band h2 { max-width: 780px; margin: 0; font: clamp(2.25rem, 5vw, 3.25rem)/.92 $display; letter-spacing: .02em; }
+.prize-copy { margin: 18px 0 22px; color: #9ca3af; font-size: .88rem; line-height: 1.7; }
+.prize-badge { display: inline-flex; align-items: center; min-height: 32px; padding: 0 14px; border-radius: 999px; color: white; background: #f97316; font-size: .68rem; font-weight: 800; letter-spacing: .08em; }
+.prize-image { display: block; width: min(320px, 80vw); max-height: 190px; margin-top: 24px; object-fit: contain; filter: drop-shadow(0 0 20px rgba(249,115,22,.38)); }
+@media (max-width: 760px) { .prize-band { padding: 42px 0; }.prize-band h2 { font-size: 1.75rem; }.prize-copy { font-size: .8rem; }.prize-image { width: min(200px, 70vw); max-height: 150px; }.prize-badge { font-size: .58rem; letter-spacing: .05em; } }
+</style>
