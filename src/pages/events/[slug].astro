@@ -68,10 +68,6 @@ const isNonTech = detail?.category === 'Non-Technical';
               </ul>
             </div>
           )}
-
-          <div class="register-cta-wrap">
-            <a href={`/register?event=${encodeURIComponent(detail.name)}`} class="pass-link">Register for {detail.name} ➔</a>
-          </div>
         </div>
       )}
     </div>
@@ -165,14 +161,6 @@ const isNonTech = detail?.category === 'Non-Technical';
       background: rgba(0, 180, 216, 0.08);
     }
 
-    .pass-link {
-      background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-      box-shadow: 0 6px 20px rgba(0, 180, 216, 0.35);
-
-      &:hover {
-        box-shadow: 0 10px 28px rgba(0, 180, 216, 0.5);
-      }
-    }
   }
 }
 
@@ -361,32 +349,5 @@ const isNonTech = detail?.category === 'Non-Technical';
   font-size: 11px;
 }
 
-.register-cta-wrap {
-  margin-top: 36px;
-  padding-top: 24px;
-  border-top: 1px solid $line;
-}
 
-.pass-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px 34px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, $orange 0%, #ff7a00 100%);
-  color: white;
-  font-family: $technical;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(255, 101, 0, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-
-  &:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(255, 101, 0, 0.5);
-  }
-}
 </style>
