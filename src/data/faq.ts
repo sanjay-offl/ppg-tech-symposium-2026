@@ -15,7 +15,7 @@ export const faqs: FAQItem[] = [
     id: 'fee-coverage',
     category: 'Registration & Fee',
     question: 'What does the ₹250 registration fee cover?',
-    answer: 'The ₹250 registration fee is an all-inclusive single pass. It grants you full access to participate in events across any of the 8 departments, provides an official participation certificate, and includes complimentary lunch and refreshments for the day.'
+    answer: 'The ₹250 registration fee is an all-inclusive single pass. It grants you access to 2 technical events and 1 non-technical event, provides an official participation certificate, and includes complimentary lunch and refreshments for the day.'
   },
   {
     id: 'multiple-events',

@@ -45,19 +45,19 @@ const descriptions: Record<string, string> = {
   'Escape room': 'Solve electronic puzzles, decipher cryptic codes, and unlock your way out under time pressure.',
 
   // Information Technology
-  'Cryptica': 'Crack secret codes, decrypt ciphers, and solve cybersecurity logic puzzles.',
-  'Spin & Solve': 'Spin the mystery wheel and solve technical challenges across web, database, and software domains.',
-  'Blind Build': 'Write bug-free code and web layouts with your monitor turned off or masked.',
-  'AdRush': 'Fast-paced non-technical challenge testing spontaneous advertisement creation and marketing pitch skills.',
-  'Guess the Logo': 'Test your brand recognition and visual memory across global tech brands and logos.',
+  'AI - Spin & Solve': 'A fast-paced technical team challenge where teams randomly receive a problem through a spin wheel, use AI responsibly, build a solution or prototype, and present it.',
+  'TechQuest: The Blind Tech Labyrinth': 'A high-stakes, time-based web labyrinth where intuition and technical prowess are the only ways out.',
+  'Blind Build': '"See the Problem. Guide the Solution." A communication-driven build challenge where the Guide relays requirements to Builders working without the brief.',
+  'eFootball Mobile Tournament': 'A competitive mobile football tournament where participants compete in eFootball Mobile using their Dream Teams in a knockout format.',
+  'AdRush': 'A fun, quick-thinking advertisement event where teams create and present a spontaneous ad pitch for a random object on stage.',
 
   // Mechanical Engineering
-  'Paper presentation': 'Present technical papers on modern mechanical design, robotics, thermal engineering, and manufacturing.',
-  'CAD': 'Computer-aided design challenge testing 3D modeling speed, dimension accuracy, and drafting expertise.',
-  'Tool finder': 'Identify industrial mechanical tools and engineering components against the clock.',
-  'Quiz': 'Challenge your technical expertise across mechanical engineering principles and industrial systems.',
-  'Photography': 'Capture compelling visual moments, perspectives, and mechanical themes across the campus.',
-  'Creative ads': 'Design and act out imaginative marketing campaigns for funny or futuristic products.'
+  'CAD Designing': 'Recreate a given mechanical draft accurately using SOLIDWORKS or CATIA, demonstrating CAD skills, design accuracy, and problem-solving ability.',
+  'Mr. Mechanic': 'An interactive tool-identification challenge testing knowledge of engineering tools, instruments, components, and workshop equipment.',
+  'Reverse Engineering Sketch': 'Study an unknown mechanical component and recreate it as an accurate 2D or 3D engineering sketch without provided drawings or dimensions.',
+  'Creative Ad': 'Create an entertaining advertisement for an assigned product using creativity, acting, comedy, storytelling, slogans, dialogues, props, or AI tools.',
+  'Paper Presentation': 'Present innovative ideas, research, emerging technologies, and practical mechanical engineering solutions to expert judges.',
+  'Emoji Decode': 'A fun musical guessing game where teams decode emoji combinations to identify popular Tamil songs.'
 };
 
 const eventSpecs: Record<string, Partial<EventItem>> = {
@@ -301,6 +301,261 @@ const eventSpecs: Record<string, Partial<EventItem>> = {
       'Going over budget or failing to buy 11 players results in direct disqualification.',
       'Teams are evaluated based on total player rating points calculated from the official symposium ratings sheet.',
       'The team with the highest total rating points within budget wins.'
+    ]
+  },
+
+  // Information Technology
+  'AI - Spin & Solve': {
+    concept: 'A fast-paced technical team challenge where teams randomly receive a problem through a spin wheel, use AI responsibly, build a solution or prototype, and present it. The event tests problem-solving, technical skill, creativity, teamwork, adaptability, and responsible AI usage. Key principle: "AI can build it. You must understand it."',
+    venue: 'Computer Lab / Seminar Hall',
+    time: '10:00 AM onwards',
+    duration: '120 minutes',
+    teamSize: '3 to 4 members',
+    format: 'Team participation (3 to 4 members) | 120 minutes | Computer Lab / Seminar Hall',
+    stages: [
+      { title: 'Stage 1: Welcome & Team Formation', description: 'Introduction to the event followed by team formation and the spin-wheel draw that randomly assigns each team\'s problem (10 min introduction, 10 min formation & spin).' },
+      { title: 'Stage 2: Challenge & Development', description: 'Teams understand the problem, brainstorm, and build their solution/prototype using AI tools responsibly within the 50-minute development window, followed by final submission (5 min).' },
+      { title: 'Stage 3: Presentation & Judging', description: 'Teams present their problem, approach, solution/demo, and AI contribution (30 min), followed by judging and evaluation (7 min) and results and closing (3 min).' }
+    ],
+    rules: [
+      'Teams must consist of 3 to 4 participants; one team per participant.',
+      'Each team receives one randomly assigned challenge; no problem change after the spin.',
+      'Development time is fixed at 50 minutes and the submission deadline must be followed strictly.',
+      'AI tools are allowed for research, ideation, coding, debugging, and improvement; internet resources, documentation, libraries, and frameworks are permitted.',
+      'Participants must understand and explain their submitted solution and disclose the AI tools used.',
+      'Complete pre-built projects and external human assistance are strictly prohibited.',
+      'Copying or cheating may result in disqualification; the judges\' decision is final.',
+      '100 Marks Breakdown: Problem Understanding – 10 | Technical Solution – 25 | Functionality – 20 | Creativity & Innovation – 15 | AI Usage – 10 | Teamwork – 5 | Presentation & Demo – 10 | Q&A/Explanation – 5.'
+    ]
+  },
+  'TechQuest: The Blind Tech Labyrinth': {
+    concept: 'A high-stakes, time-based web labyrinth where intuition and technical prowess are the only ways out. Participants are dropped onto a starting webpage where every page presents four technical challenges, yielding four alphanumeric characters. A final, fifth riddle dictates the exact sequence of these characters to forge the \'Key\' to the next page. Teams are given a limited number of "lives" (attempts) to enter the correct keys, and the first team to reach the end survives.',
+    venue: 'Computer Lab',
+    time: '10:00 AM onwards',
+    duration: '45 minutes',
+    teamSize: '1 to 2 members',
+    format: 'Team participation (1 to 2 members) | 45 minutes | Computer Lab',
+    stages: [
+      { title: 'Stage 1: The Gateway', description: 'Solve 4 basic technical questions and 1 simple sequencing riddle to learn the mechanics and generate the first key.' },
+      { title: 'Stage 2: The Logic Catacombs', description: 'Face intermediate technical questions where the 5th sequencing riddle becomes trickier, demanding closer attention.' },
+      { title: 'Stage 3: The Vault', description: 'Solve the final, highly specific set of complex questions to unlock the winning page and claim the victory code.' }
+    ],
+    rules: [
+      'Teams must consist of 1 to 2 members.',
+      'Every room presents 4 technical challenges and a 5th sequence riddle used to forge the team\'s \'Key\'.',
+      'Teams are given a maximum number of "lives" (e.g., 5 total incorrect attempts) for the entire event.',
+      'Entering an incorrect key displays an error and consumes one life; losing all lives results in direct disqualification.',
+      'There are no progress bars, so participants will not know who is in the lead.',
+      'The first team to reach the final page with at least one life remaining is declared the winner.'
+    ]
+  },
+  'Blind Build': {
+    concept: '"See the Problem. Guide the Solution." A communication-driven build challenge where one team member (the Guide) holds the problem statement and must relay it accurately to the rest of the team (the Builders), who develop the actual solution without ever seeing the original brief.',
+    venue: 'Computer Lab',
+    time: '10:00 AM onwards',
+    duration: 'To be announced',
+    teamSize: 'Guide + multiple Builders',
+    format: 'Team participation (Guide + multiple Builders) | Computer Lab',
+    stages: [
+      { title: 'Stage 1: Team Formation', description: 'Each team consists of one Guide and multiple Builders. One participant from each team is assigned as the Guide, and the remaining participants act as Builders; the Guide and Builders work in separate areas.' },
+      { title: 'Stage 2: Problem Distribution', description: 'The Guide receives the complete problem statement and requirements and is the only person allowed to see it. Builders are not shown the original problem statement and work on the solution using their designated laptops, with the Guide unable to see the Builders\' screens, code, or project.' },
+      { title: 'Stage 3: Communication', description: 'The Guide explains the problem and requirements to the Builders, who develop the solution based only on the Guide\'s instructions. Builders may ask the Guide clarifying questions, and the Guide may answer and provide additional instructions, but cannot directly view, write, or modify the Builders\' code or project.' }
+    ],
+    rules: [
+      'Each team must consist of one Guide and multiple Builders.',
+      'The Guide is the only team member allowed to view the complete problem statement.',
+      'Builders must never be shown the original problem statement directly.',
+      'The Guide must not see the Builders\' screen, code, or project at any point.',
+      'The only permitted connection between the Guide and Builders is verbal communication.',
+      'The team must understand and develop the solution entirely through effective communication.'
+    ]
+  },
+  'eFootball Mobile Tournament': {
+    concept: 'A competitive mobile football tournament where participants compete in eFootball Mobile using their own Dream Teams, testing their football skills and tactics in a knockout format.',
+    venue: 'Gaming Zone / Classroom',
+    time: '10:00 AM onwards',
+    duration: '60 to 120 minutes',
+    teamSize: 'Individual',
+    format: 'Individual | Knockout Tournament | 60 to 120 minutes | Gaming Zone / Classroom',
+    stages: [
+      { title: 'Stage 1: Registration & Check-in', description: 'Participants register and report when called.' },
+      { title: 'Stage 2: Match Setup', description: 'Players connect through Friend Match, then start a Standard Match.' },
+      { title: 'Stage 3: Tournament Matches', description: 'Matches follow the knockout tournament bracket, with match duration decided by the coordinator.' },
+      { title: 'Stage 4: Final', description: 'Finalists compete for the championship.' }
+    ],
+    rules: [
+      'Participants must bring their own fully charged Android/iOS device and charger.',
+      'Players must use their own eFootball account; account sharing is prohibited.',
+      'The latest official version of the game must be used.',
+      'Players are responsible for their own internet connection.',
+      'Match duration is 6 minutes for tournament matches; the match format may be decided by the coordinator.',
+      'Players must report within 5 minutes of being called, otherwise a walkover will be awarded.',
+      'Winners must submit a final-score screenshot.',
+      'The coordinator\'s decision is final in all disputes.'
+    ]
+  },
+  'AdRush': {
+    concept: 'A fun, quick-thinking advertisement event where a random object is displayed on stage. Teams must come up with a creative advertisement for that object — as if they\'re selling it to an audience — highlighting its "features," uses, and why people should buy it.',
+    venue: 'Department Classroom',
+    time: '10:00 AM onwards',
+    duration: '30 minutes',
+    teamSize: '1 to 2 members',
+    format: 'Solo or Team participation (1 to 2 members) | 30 minutes | Department Classroom',
+    stages: [
+      { title: 'Stage 1: The Reveal', description: 'Coordinators display a random object on the table; participants get 2 minutes of observation time (no touching allowed).' },
+      { title: 'Stage 2: Ad Prep', description: 'Participants prepare a short advertisement pitch for the object within 3 minutes.' },
+      { title: 'Stage 3: The Pitch', description: 'The participant(s) present the ad on stage within a strict 1-minute time limit.' }
+    ],
+    rules: [
+      'Participation can be solo or in teams of 2 members.',
+      'The object must not be touched or handled during observation; only visual inspection is allowed.',
+      'Limited AI use is permitted only for a short tagline/catch-line; the full ad pitch must be created and delivered by the participant(s) themselves.',
+      'Ads must be original and prepared on the spot — pre-written or fully AI-generated ads will lead to disqualification.',
+      'Each participant/team gets a fresh object per round; the one with the highest combined judge score across rounds wins.',
+      '100% Points Breakdown: Creativity – 40% | Humor / Persuasiveness – 30% | Presentation Confidence – 30%.'
+    ]
+  },
+
+  // Mechanical Engineering
+  'CAD Designing': {
+    concept: 'Recreate a given mechanical draft accurately using SOLIDWORKS or CATIA, demonstrating CAD skills, design accuracy, and problem-solving ability.',
+    venue: 'CAD Lab',
+    time: '10:00 AM onwards',
+    duration: '30 minutes per batch',
+    teamSize: 'Individual',
+    format: 'Individual | 30 minutes per batch | CAD Lab',
+    stages: [
+      { title: 'Stage 1 – Analyse', description: 'Study the given draft, dimensions, and features.' },
+      { title: 'Stage 2 – Model', description: 'Create the required 3D part accurately.' },
+      { title: 'Stage 3 – Assemble', description: 'Complete the required assembly and submit the final design.' }
+    ],
+    rules: [
+      'Individual participation only.',
+      'SOLIDWORKS or CATIA only.',
+      'Draft will be provided at the start of each batch.',
+      'Participants may bring their own laptop with permitted software.',
+      'Both part and assembly are mandatory.',
+      'Only work created during the event will be evaluated.',
+      'Judging is based on completion, accuracy, time, and part & assembly quality.',
+      'Highest overall score wins; judges\' decision is final.'
+    ]
+  },
+  'Mr. Mechanic': {
+    concept: 'An interactive tool-identification challenge testing participants\' knowledge of engineering tools, instruments, components, and workshop equipment through images, physical samples, and technical clues.',
+    venue: 'Dynamics Lab',
+    time: '10:00 AM onwards',
+    duration: '5 minutes per batch',
+    teamSize: 'Individual',
+    format: 'Individual | 5 minute per batch | Dynamics Lab',
+    stages: [
+      { title: 'Stage 1 – Identify', description: 'Identify the displayed tool or instrument.' },
+      { title: 'Stage 2 – Know Your Tool', description: 'State its application and basic function.' },
+      { title: 'Stage 3 – Mechanic\'s Challenge', description: 'Answer rapid-fire technical identification questions.' }
+    ],
+    rules: [
+      'One participant per team.',
+      'Questions cover mechanical, manufacturing, automobile, electrical, and general engineering tools.',
+      'Questions may use physical samples, images, or technical clues.',
+      'Answers must be given within the specified time.',
+      'Mobile phones and electronic devices are not permitted unless allowed by organizers.',
+      'Points are awarded for correct answers.',
+      'Highest total score wins.',
+      'A tie-breaker will be conducted if required; judges\' decision is final.'
+    ]
+  },
+  'Reverse Engineering Sketch': {
+    concept: 'Participants study an unknown mechanical component and recreate it as an accurate 2D or 3D engineering sketch without a provided drawing or dimensions. The event tests observation, measurement, engineering drawing, dimensional accuracy, and technical understanding.',
+    venue: 'MFT Lab',
+    time: '10:00 AM onwards',
+    duration: '30 minutes per batch',
+    teamSize: '2 to 4 members',
+    format: 'Team (2–4 members) | 30 minutes per batch | MFT Lab',
+    stages: [
+      { title: 'Stage 1 – Observe & Measure (10 min)', description: 'Examine the component and take necessary measurements.' },
+      { title: 'Stage 2 – Sketch & Dimension (15 min)', description: 'Create the required views with dimensions.' },
+      { title: 'Stage 3 – Explain (5 min)', description: 'Explain the component\'s name, function, and application.' }
+    ],
+    rules: [
+      'Component will be provided without a drawing or dimensions.',
+      'Participants must bring basic drawing tools.',
+      'Mobile phones, internet, reference books, and prepared drawings are prohibited.',
+      'Required front, top, side, or sectional views must be included where necessary.',
+      'Copying or outside assistance leads to disqualification.',
+      '100 Marks Breakdown: Dimensional Accuracy – 30 | Correct Views – 25 | Drawing Quality – 20 | Engineering Representation – 15 | Time Management – 10.',
+      'Highest score wins; tie-breaker may be conducted if required.'
+    ]
+  },
+  'Creative Ad': {
+    concept: 'Teams receive a product and create an entertaining advertisement using creativity, acting, comedy, storytelling, slogans, dialogues, props, or AI-assisted ideas.',
+    venue: 'College Campus',
+    time: '10:00 AM onwards',
+    duration: '60 minutes',
+    teamSize: '2 to 3 members',
+    format: 'Team (2–3 members) | 60 minutes | College Campus',
+    stages: [
+      { title: 'Stage 1 – Product Reveal', description: 'Understand the assigned product and identify its selling points.' },
+      { title: 'Stage 2 – Create & Prepare', description: 'Develop the concept, script, slogan, and presentation.' },
+      { title: 'Stage 3 – Advertise', description: 'Present the final advertisement before the judges.' }
+    ],
+    rules: [
+      'Product will be provided by the organizers.',
+      'Limited preparation time will be given.',
+      'Acting, comedy, storytelling, dialogues, slogans, and props are allowed.',
+      'AI tools may be used for ideas, scripts, slogans, images, videos, and voiceovers.',
+      'Advertisement must be related to the given product.',
+      'Content must be appropriate and respectful.',
+      'No assistance from other teams or outsiders.',
+      'Judging is based on Creativity, Product Promotion, Presentation, Entertainment, Teamwork, Slogan/Tagline, AI Usage, and Overall Impact.',
+      'Highest overall score wins; judges\' decision is final.'
+    ]
+  },
+  'Paper Presentation': {
+    concept: 'A platform for presenting innovative ideas, research, emerging technologies, and practical solutions while demonstrating technical knowledge, research ability, analytical thinking, and communication skills.',
+    venue: 'College Campus',
+    time: '10:00 AM onwards',
+    duration: '60 minutes',
+    teamSize: '1 to 4 members',
+    format: 'Solo / Team (maximum 4 members) | 60 minutes | College Campus',
+    stages: [
+      { title: 'Stage 1 – Research & Submit', description: 'Submit the final PPT and 3-page paper write-up before the deadline.' },
+      { title: 'Stage 2 – Present (7 min)', description: 'Present the paper using a maximum of 7 slides.' },
+      { title: 'Stage 3 – Defend (3 min)', description: 'Answer questions from the judges.' }
+    ],
+    rules: [
+      'Maximum 4 members per team.',
+      'Final PPT + 3-page paper write-up must be submitted before the specified deadline.',
+      'Maximum 7 slides.',
+      'Presentation: 7 minutes + 3 minutes Q&A.',
+      'Content must be original; plagiarism may lead to disqualification.',
+      'Professional and appropriate content is required.',
+      '100 Marks Breakdown: Content & Innovation – 30 | Presentation Skills – 25 | Technical Knowledge & Q&A – 25 | Impact & Practicality – 20.',
+      'Highest score wins; tie-breaker may be conducted if required.'
+    ]
+  },
+  'Emoji Decode': {
+    concept: 'A fun musical guessing game where teams decode emoji combinations to identify popular Tamil songs. It tests music knowledge, observation, memory, creativity, and quick thinking.',
+    venue: 'College Campus',
+    time: '10:00 AM onwards',
+    duration: '60 minutes',
+    teamSize: '2 members',
+    format: 'Team (2 members) | 60 minutes | College Campus',
+    stages: [
+      { title: 'Stage 1 – Decode the Hit', description: 'Identify songs from emoji clues.' },
+      { title: 'Stage 2 – Speed Decode', description: 'Answer rapid emoji clues within 20 seconds each.' },
+      { title: 'Stage 3 – Final Challenge', description: 'Solve more difficult clues featuring classics, recent hits, melodies, kuthu, and trending songs.' }
+    ],
+    rules: [
+      'Two participants per team.',
+      'Report 10 minutes before the event.',
+      'Songs will be from Tamil cinema and popular Tamil music.',
+      'Only the given emoji clues may be used.',
+      '20 seconds per question and only one final answer is allowed.',
+      'Mobile phones, internet, and external assistance are prohibited.',
+      'No hints unless announced by organizers.',
+      'Participants must not reveal answers while another team is playing.',
+      'Correct answers receive points.',
+      'Highest total score wins; tie-breaker will be conducted if necessary.',
+      'Organizers\' decision is final.'
     ]
   }
 };
