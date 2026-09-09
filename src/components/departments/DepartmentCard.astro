@@ -4,9 +4,8 @@ const { department } = Astro.props as { department: Department };
 ---
 <a href={`/departments/${department.slug}`} class="department-card-link">
   <article class="department-card">
-    <div class="track-visual">
-      <img src={department.image} alt={`${department.name} track`} loading="lazy" />
-      <div class="track-shade"></div>
+    <div class="dept-card-header">
+      <span class="dept-abbr-badge">{department.abbr}</span>
     </div>
     <h3 class="department-name">{department.name}</h3>
     <div class="events-content">
@@ -56,34 +55,27 @@ const { department } = Astro.props as { department: Department };
   cursor: pointer;
 }
 
-.track-visual {
-  position: relative;
-  display: grid;
-  place-items: center;
-  height: 140px;
-  margin: 0 -24px 18px;
-  overflow: hidden;
-  isolation: isolate;
-  background: radial-gradient(circle at center, rgba(255, 101, 0, 0.12), transparent 68%), #f9f9fb;
-  transition: background 350ms ease;
+.dept-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0 12px;
 }
 
-.track-visual img {
-  position: absolute;
-  z-index: -2;
-  width: 84%;
-  height: 84%;
-  object-fit: contain;
-  opacity: .9;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .08));
-  transition: transform 350ms ease, opacity 350ms ease, filter 350ms ease;
-}
-
-.track-shade {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: rgba(255, 255, 255, .1);
+.dept-abbr-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 68px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: rgba(255, 101, 0, 0.08);
+  border: 1px solid rgba(255, 101, 0, 0.25);
+  color: $orange;
+  font: 900 1.1rem/1 $technical;
+  letter-spacing: 0.08em;
+  transition: all 0.3s ease;
 }
 
 .department-name {
@@ -177,7 +169,7 @@ const { department } = Astro.props as { department: Department };
 .department-card:focus-within,
 .department-card:active {
   transform: translateY(-6px) scale(1.02);
-  background: linear-gradient(160deg, rgba(255, 101, 0, 0.06) 0%, rgba(255, 101, 0, 0.02) 60%, #ffffff 100%);
+  background: #ffffff;
   border-color: $orange;
   border-top-color: $orange;
   box-shadow: 0 16px 36px rgba(255, 101, 0, 0.18), 0 0 0 1px $orange;
@@ -209,14 +201,11 @@ const { department } = Astro.props as { department: Department };
     transform: translateX(4px);
   }
 
-  .track-visual img {
-    transform: scale(1.08) rotate(-1.5deg);
-    opacity: 1;
-    filter: drop-shadow(0 6px 16px rgba(255, 101, 0, 0.25));
-  }
-
-  .track-visual {
-    background: radial-gradient(circle at center, rgba(255, 101, 0, 0.18), transparent 70%), #fff8f5;
+  .dept-abbr-badge {
+    background: $orange;
+    color: #ffffff;
+    border-color: $orange;
+    box-shadow: 0 4px 14px rgba(255, 101, 0, 0.35);
   }
 }
 

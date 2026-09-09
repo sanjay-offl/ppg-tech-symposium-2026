@@ -259,26 +259,6 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   isolation: isolate;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 
-  /* Sweeping Shimmer Reflection inside the card */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 65%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 101, 0, 0.05) 50%,
-      transparent 100%
-    );
-    transform: skewX(-25deg);
-    animation: glitterShimmerPass 4s infinite ease-in-out;
-    pointer-events: none;
-    z-index: 1;
-  }
-
   &.tech-card {
     border-top: 3px solid $orange;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 101, 0, 0.1);
@@ -300,11 +280,6 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
       border-color: #00b4d8;
     }
   }
-}
-
-@keyframes glitterShimmerPass {
-  0% { left: -100%; }
-  35%, 100% { left: 160%; }
 }
 
 .event-badge {
