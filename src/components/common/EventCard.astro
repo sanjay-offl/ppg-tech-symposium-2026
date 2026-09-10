@@ -1,6 +1,7 @@
 ---
 import type { EventItem } from '@/types';
 import EventBadge from './EventBadge.astro';
+import { getDepartmentBySlug } from '@/data/departments';
 
 interface Props {
   event: EventItem;
@@ -15,6 +16,10 @@ const formatDetails = [
   event.duration ? event.duration : null,
   event.venue ? event.venue : 'Campus'
 ].filter(Boolean).join(' • ');
+
+const deptObj = event.departmentSlug ? getDepartmentBySlug(event.departmentSlug) : undefined;
+const regUrl = deptObj?.registrationUrl || `/register?event=${event.slug}`;
+const isExternalReg = Boolean(deptObj?.registrationUrl);
 ---
 
 <article class="event-card">
@@ -47,7 +52,12 @@ const formatDetails = [
       </svg>
     </a>
     {showRegister && (
-      <a href={`/register?event=${event.slug}`} class="btn-register">
+      <a
+        href={regUrl}
+        target={isExternalReg ? "_blank" : undefined}
+        rel={isExternalReg ? "noopener noreferrer" : undefined}
+        class="btn-register"
+      >
         Register
       </a>
     )}

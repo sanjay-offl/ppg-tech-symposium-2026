@@ -14,6 +14,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const eventSlug = params.get('event');
   const deptSlug = params.get('dept');
 
+  const itEvents = ['ai-spin-and-solve', 'techquest', 'blind-tech', 'blind-build', 'efootball', 'adrush'];
+  const isITEvent = eventSlug && itEvents.some((e) => eventSlug.toLowerCase().includes(e));
+
+  if (deptSlug === 'it' || deptSlug === 'information-technology' || isITEvent) {
+    window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSc7_-3VZCzi3lsqOCBi8-TDE1a5iiY89Flo_TziXkYFtVCaQw/viewform?usp=publish-editor';
+    return;
+  }
+
   if (eventSlug && form) {
     const eventSelect = form.querySelector<HTMLSelectElement>('select[name="selectedEvent"]');
     if (eventSelect) {
@@ -39,6 +47,13 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
+
+  const deptSelect = form?.querySelector<HTMLSelectElement>('select[name="department"]');
+  deptSelect?.addEventListener('change', () => {
+    if (deptSelect.value.toLowerCase().includes('information technology')) {
+      window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSc7_-3VZCzi3lsqOCBi8-TDE1a5iiY89Flo_TziXkYFtVCaQw/viewform?usp=publish-editor';
+    }
+  });
 });
 
 form?.addEventListener('submit', async (event) => { event.preventDefault(); const status = form.querySelector<HTMLElement>('[data-form-status]'); const button = form.querySelector<HTMLButtonElement>('button[type="submit"]'); const data = Object.fromEntries(new FormData(form).entries()); let valid = true; form.querySelectorAll<HTMLElement>('.error').forEach((node) => node.textContent = ''); for (const field of ['fullName','email','phone','collegeName','department','yearOfStudy','selectedEvent']) { const value = String(data[field] ?? '').trim(); const error = form.querySelector<HTMLElement>(`[data-error="${field}"]`); if (!value) { if (error) error.textContent = 'This field is required.'; valid = false; } if (field === 'email' && value && !/^\S+@\S+\.\S+$/.test(value)) { if (error) error.textContent = 'Enter a valid email.'; valid = false; } if (field === 'phone' && value && !/^\+?[0-9\s-]{10,15}$/.test(value)) { if (error) error.textContent = 'Enter a valid phone number.'; valid = false; } } if (!valid || !status || !button) return; button.disabled = true; button.textContent = 'Submitting...'; status.textContent = ''; try { await submitToGoogleSheet(data, 'Registrations'); form.reset(); status.textContent = 'Registration received. We will contact you with the next steps.'; } catch { status.textContent = 'Submission could not be completed. Please email the coordinator.'; status.classList.add('error-status'); } finally { button.disabled = false; button.textContent = 'Submit Registration'; } });

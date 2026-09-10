@@ -7,6 +7,7 @@ export interface Department {
   coordinators: string[];
   technicalEvents: string[];
   nonTechnicalEvents: string[];
+  registrationUrl?: string;
 }
 
 export interface EventStage {
