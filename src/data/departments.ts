@@ -30,7 +30,8 @@ export const departments: Department[] = [
     email: 'mohanm.it@ppg.edu.in',
     coordinators: ['Aravind Samy', 'Thanaraj'],
     technicalEvents: ['CAD Designing', 'Mr. Mechanic', 'Reverse Engineering Sketch', 'Paper Presentation'],
-    nonTechnicalEvents: ['Creative Ad', 'Emoji Decode']
+    nonTechnicalEvents: ['Creative Ad', 'Emoji Decode'],
+    registrationUrl: 'https://forms.gle/NxqhVtV6MmcmBpHNA'
   },
   {
     name: 'Electronics and Communication Engineering',
@@ -60,7 +61,8 @@ export const departments: Department[] = [
     email: 'cyberzen2k25@gmail.com',
     coordinators: ['Nitheesh', 'Dhanu Shree'],
     technicalEvents: ['VibeCode Clash', 'Circuit Breaker', 'Prompt War'],
-    nonTechnicalEvents: ['Apex Quiz Challenge', 'Memory Master']
+    nonTechnicalEvents: ['Apex Quiz Challenge', 'Memory Master'],
+    registrationUrl: 'https://forms.gle/ofmENiDuVkfGZvbf9'
   },
   {
     name: 'Biomedical Engineering',
@@ -80,7 +82,7 @@ export const departments: Department[] = [
     email: 'aispartanz.ppg.it@gmail.com',
     coordinators: ['Vyas', 'Akash'],
     technicalEvents: ['IDEA2PROTOTYPE', 'PROMPT2PIXEL', 'Web Redesign'],
-    nonTechnicalEvents: ['AI Short Film', 'Human VS AI']
+    nonTechnicalEvents: ['AI Shortfilm', 'MemeRush']
   }
 ];
 

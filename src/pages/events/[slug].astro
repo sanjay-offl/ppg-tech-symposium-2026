@@ -3,7 +3,6 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import EventBadge from '@/components/common/EventBadge.astro';
 import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
 import { events, getEvent } from '@/data/events';
-import { getDepartmentBySlug } from '@/data/departments';
 
 export function getStaticPaths() {
   return events.map((event) => ({
@@ -14,9 +13,6 @@ export function getStaticPaths() {
 
 const { event } = Astro.props;
 const detail = event ?? getEvent(Astro.params.slug ?? '');
-const deptObj = detail?.departmentSlug ? getDepartmentBySlug(detail.departmentSlug) : undefined;
-const regUrl = deptObj?.registrationUrl || `/register?event=${detail?.slug}`;
-const isExternalReg = Boolean(deptObj?.registrationUrl);
 ---
 
 <MainLayout
@@ -58,16 +54,6 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
               <div class="spec-item">
                 <span class="spec-label">Venue</span>
                 <strong class="spec-value">📍 {detail.venue || 'College Campus'}</strong>
-              </div>
-              <div class="spec-item spec-action">
-                <a
-                  href={regUrl}
-                  target={isExternalReg ? "_blank" : undefined}
-                  rel={isExternalReg ? "noopener noreferrer" : undefined}
-                  class="hero-reg-btn"
-                >
-                  Register for Event
-                </a>
               </div>
             </div>
           </div>
@@ -153,25 +139,7 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
                 </div>
               )}
 
-              <!-- Registration Box -->
-              <div class="sidebar-card register-side-card">
-                <span class="reg-kicker">SINGLE PASS · ALL ACCESS</span>
-                <h3 class="reg-card-title">Join {detail.name}</h3>
-                <p class="reg-card-copy">
-                  Register for VIYUGAM 2K26 to secure your team slot. Includes lunch, refreshment, event participation & certificates.
-                </p>
-                <a
-                  href={regUrl}
-                  target={isExternalReg ? "_blank" : undefined}
-                  rel={isExternalReg ? "noopener noreferrer" : undefined}
-                  class="sidebar-reg-btn"
-                >
-                  Proceed to Register ➔
-                </a>
-                <div class="secure-badge">
-                  <span>🔒 Official PPG Institute Event</span>
-                </div>
-              </div>
+
 
               <!-- Event Details Summary -->
               <div class="sidebar-card summary-card">
@@ -196,6 +164,16 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
                   <span class="s-label">Venue</span>
                   <span class="s-val">{detail.venue || 'Campus'}</span>
                 </div>
+                {detail.coordinators && detail.coordinators.length > 0 && (
+                  <div class="summary-row coord-summary-row">
+                    <span class="s-label">Coordinators</span>
+                    <div class="coord-val-list">
+                      {detail.coordinators.map((coord) => (
+                        <span class="s-val coord-val-item">{coord}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </aside>
           </div>
@@ -652,6 +630,21 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
     font-weight: 700;
     color: #0a0a0a;
   }
+}
+
+.coord-summary-row {
+  align-items: flex-start;
+}
+
+.coord-val-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.coord-val-item {
+  font-size: 0.84rem;
 }
 
 @media (max-width: 900px) {

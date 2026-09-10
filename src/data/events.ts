@@ -1349,19 +1349,81 @@ export const events: EventItem[] = [
     department: 'Artificial Intelligence & Machine Learning',
     departmentSlug: 'ai-ml',
     category: 'Technical',
-    format: 'Team (2 to 4 members)',
-    duration: '90 minutes',
-    venue: 'AI/ML Lab',
-    time: '10:00 AM onwards',
+    format: 'Individual / Team (2 to 4 members)',
+    duration: '11:00 AM to 12:30 PM',
+    venue: 'A207',
+    time: '11:00 AM to 12:30 PM',
     teamSize: '2 - 4 Members',
     registrationStatus: 'Open',
-    concept: 'Transform innovative AI concepts into working functional prototypes.',
-    description: 'Build functional machine learning demos or micro-apps solving targeted problems within 90 minutes.',
+    concept: 'Develop a solution for the given on-spot problem statement using your own innovative ideas, technologies and AI tools within the given duration. The prototype should demonstrate core functionality.',
+    description: 'An on-spot innovation challenge where participants analyse a problem, design a solution, and develop a working prototype using software and AI technologies.',
     stages: [
-      { title: 'Stage 1 — Build', description: 'Code model inference and basic UI demo.' },
-      { title: 'Stage 2 — Pitch', description: 'Demonstrate live functionality to evaluators.' }
+      {
+        title: 'Stage 1 — On-Spot Problem Statement Selection',
+        description: 'Based on the given themes, participants will be provided with problem statements on the spot to analyse requirements, target users, and problem context.'
+      },
+      {
+        title: 'Stage 2 — Develop Prototype Model',
+        description: 'Develop an innovative solution and create a working prototype/model within the given time using permitted software and AI technologies.'
+      },
+      {
+        title: 'Stage 3 — Presentation',
+        description: 'Present the idea and demonstrate the working prototype to judges, explaining the problem, solution, tech stack, and real-world applications.'
+      }
     ],
-    rules: ['Pre-trained weights permitted, must build inference logic live.']
+    rules: [
+      'Participants can participate individually or as a team (maximum 4 members).',
+      'Problem statements will be provided on the spot by organizers; choose only one.',
+      'Pre-made complete projects or previously developed solutions are strictly prohibited.',
+      'Plagiarism, direct copying of existing projects, and copyright infringement are strictly prohibited.',
+      'Participants must be able to explain and demonstrate the working of their prototype.',
+      'Participants must submit/show their working prototype within the given time limit.',
+      'Participants must bring their own laptop, charger, and required accessories.'
+    ],
+    coordinators: [
+      'KEERTHANA SRI R G — 9789706728',
+      'ADHITH S — 7397617357'
+    ]
+  },
+  {
+    name: 'WEB REDESIGN',
+    slug: 'web-redesign',
+    department: 'Artificial Intelligence & Machine Learning',
+    departmentSlug: 'ai-ml',
+    category: 'Technical',
+    format: 'Individual / Team (2 to 4 members)',
+    duration: '2:00 PM to 3:00 PM',
+    venue: 'A207',
+    time: '2:00 PM to 3:00 PM',
+    teamSize: '2 - 4 Members',
+    registrationStatus: 'Open',
+    concept: 'WEB REDESIGN is a web development and UI/UX challenge where participants receive a sample website and recreate it accurately with clean, responsive design.',
+    description: 'Recreate a reference website layout, design, content structure, navigation, and functionality using permitted web technologies and tools.',
+    stages: [
+      {
+        title: 'Stage 1 — Analyse',
+        description: 'Examine the reference website provided by organizers to understand page structure, layout, navigation, UI elements, and styling.'
+      },
+      {
+        title: 'Stage 2 — Redesign',
+        description: 'Recreate and implement the reference website maintaining core design and functionality while ensuring a clean and responsive interface.'
+      },
+      {
+        title: 'Stage 3 — Presentation',
+        description: 'Demonstrate completed website and explain implementation, design choices, responsiveness, and improvements made during the challenge.'
+      }
+    ],
+    rules: [
+      'Core purpose and functionality of the provided sample website must be maintained.',
+      'Website must be created during the event from sample websites provided by organizers.',
+      'Previously developed websites or templates cannot be submitted as final work.',
+      'Participants may use HTML, CSS, JavaScript, frameworks, and tools (VS Code, Android Studio, etc.).',
+      'Participants must bring their own laptop, charger, and required accessories.'
+    ],
+    coordinators: [
+      'ARVIND M — 8148954829',
+      'PONSEELAN P — 6381098458'
+    ]
   },
   {
     name: 'PROMPT2PIXEL',
@@ -1369,75 +1431,114 @@ export const events: EventItem[] = [
     department: 'Artificial Intelligence & Machine Learning',
     departmentSlug: 'ai-ml',
     category: 'Technical',
-    format: 'Individual',
-    duration: '45 minutes',
-    venue: 'AI/ML Lab 2',
-    time: '11:30 AM onwards',
-    teamSize: 'Individual',
+    format: 'Individual / Team (2 to 4 members)',
+    duration: '3:00 PM to 4:00 PM',
+    venue: 'A207',
+    time: '3:00 PM to 4:00 PM',
+    teamSize: '2 - 4 Members',
     registrationStatus: 'Open',
-    concept: 'Generate creative visual art and designs using advanced AI prompt engineering.',
-    description: 'Visual generative AI sprint translating abstract themes into cohesive graphical artworks.',
+    concept: 'PROMPT2PIXEL is a prompting-based challenge where participants recreate a given reference image using AI image-generation tools.',
+    description: 'Carefully observe a reference image and engineer text prompts to generate an image that closely matches composition, objects, lighting, and style.',
     stages: [
-      { title: 'Round 1 — Theme Creation', description: 'Craft prompts to render theme artwork with specific parameters.' }
+      {
+        title: 'Stage 1 — Observe',
+        description: 'Analyse reference image objects, composition, colours, environment, lighting, and visual style.'
+      },
+      {
+        title: 'Stage 2 — Prompt',
+        description: 'Create and refine text prompts using permitted AI image-generation tools.'
+      },
+      {
+        title: 'Stage 3 — Recreate',
+        description: 'Submit best generated image alongside the final prompt for similarity evaluation against the reference.'
+      }
     ],
-    rules: ['Prompts must be submitted alongside generated outputs.']
+    rules: [
+      'Participants can participate individually or as a team of up to 4 members.',
+      'Participants cannot directly upload reference image into an image-to-image or copying tool.',
+      'Only permitted AI image-generation tools may be used.',
+      'Participants must submit their final prompt along with their generated image.',
+      'Only the final submitted image will be considered for evaluation.',
+      'Participants must bring their own laptop, charger, and required accessories.'
+    ],
+    coordinators: [
+      'SWETHA S — 9025597773',
+      'SREE GIRIJA S — 6379282382'
+    ]
   },
   {
-    name: 'Web Redesign',
-    slug: 'web-redesign',
+    name: 'AI Shortfilm',
+    slug: 'ai-shortfilm',
     department: 'Artificial Intelligence & Machine Learning',
     departmentSlug: 'ai-ml',
-    category: 'Technical',
-    format: 'Team (1 to 2 members)',
-    duration: '60 minutes',
-    venue: 'Computer Lab 3',
-    time: '01:30 PM onwards',
+    category: 'Non-Technical',
+    format: 'Team (2 members)',
+    duration: '2:00 PM - 3:00 PM (Batch 1) / 3:00 PM - 4:00 PM (Batch 2)',
+    venue: 'A209',
+    time: '2:00 PM to 4:00 PM',
+    teamSize: '2 Members',
+    registrationStatus: 'Open',
+    concept: 'Prepare a realistic short film based on an on-spot theme using generative AI tools within 1 hour.',
+    description: 'Create a 3 to 5-minute professional AI short film on an on-spot theme using generative AI video, script, and voice tools.',
+    stages: [
+      {
+        title: 'Stage 1 — AI Shortfilm Creation',
+        description: 'Create AI short film on given on-spot theme using AI tools and submit to the designated drive within 1 hour.'
+      }
+    ],
+    rules: [
+      'Teams must contain exactly 2 members.',
+      'Only AI-generated content permitted; pre-made footage or stock images are not allowed.',
+      'Plagiarism and copyright-infringing tools (celebrity voice clones, etc.) are strictly restricted.',
+      'Short film duration must be between 3 and 5 minutes.',
+      'Must finish within given 1-hour duration and submit to designated drive.',
+      'Evaluated on creativity, realistic visual quality, storytelling, and unique concept.',
+      'Participants must bring their own laptop, charger, and required accessories.'
+    ],
+    coordinators: [
+      'SARAVANA S — 9843871061',
+      'SIKKANTHAR AJISH A — 7010790244'
+    ]
+  },
+  {
+    name: 'MemeRush',
+    slug: 'memerush',
+    department: 'Artificial Intelligence & Machine Learning',
+    departmentSlug: 'ai-ml',
+    category: 'Non-Technical',
+    format: 'Individual / Team (2 members)',
+    duration: '11:00 AM - 12:00 PM (Batch 1) / 3:00 PM - 4:00 PM (Batch 2)',
+    venue: 'A222',
+    time: '11:00 AM to 4:00 PM',
     teamSize: '1 - 2 Members',
     registrationStatus: 'Open',
-    concept: 'Revamp and reimagine web interface designs with modern AI-driven UI/UX aesthetics.',
-    description: 'Redesign a legacy web page into a modern, responsive, aesthetic UI within 60 minutes.',
+    concept: 'A fun visual connection game where participants identify hidden song, movie, or celebrity clues from projector images.',
+    description: 'Analyse 3 to 5 visual clues displayed on screen, connect hidden patterns, and identify the correct song, movie, or celebrity name.',
     stages: [
-      { title: 'Round 1 — Wireframing & Design', description: 'Produce responsive code or UI mockups using modern CSS and design tools.' }
+      {
+        title: 'Stage 1 — Visual Clues',
+        description: '3 to 5 visual clue images displayed on projector screen.'
+      },
+      {
+        title: 'Stage 2 — Connect the Images',
+        description: 'Analyse images and identify hidden common connection.'
+      },
+      {
+        title: 'Stage 3 — Find the Answer',
+        description: 'Submit related Song, Movie, or Celebrity Name.'
+      }
     ],
-    rules: ['Evaluated on responsiveness, aesthetic polish, and accessibility.']
-  },
-  {
-    name: 'AI Short Film',
-    slug: 'ai-short-film',
-    department: 'Artificial Intelligence & Machine Learning',
-    departmentSlug: 'ai-ml',
-    category: 'Non-Technical',
-    format: 'Team (1 to 3 members)',
-    duration: '60 minutes',
-    venue: 'Auditorium',
-    time: '02:00 PM onwards',
-    teamSize: '1 - 3 Members',
-    registrationStatus: 'Open',
-    concept: 'Create compelling short stories and video narratives using AI generative tools.',
-    description: 'Screen original 2-minute short films scripted, voiced, and rendered with generative AI tools.',
-    stages: [
-      { title: 'Screening', description: 'Screen short film followed by a 2-minute creative commentary.' }
+    rules: [
+      'Individual or team participation (maximum 2 members).',
+      'Each question contains 3 to 5 visual clues.',
+      'Teams must connect all images to identify the correct answer.',
+      'Faster correct answers receive bonus points.',
+      'Participants must bring their own laptop, charger, and required accessories.'
     ],
-    rules: ['Video duration: 1 to 3 minutes. All AI tools used must be credited.']
-  },
-  {
-    name: 'Human VS AI',
-    slug: 'human-vs-ai',
-    department: 'Artificial Intelligence & Machine Learning',
-    departmentSlug: 'ai-ml',
-    category: 'Non-Technical',
-    format: 'Individual',
-    duration: '30 minutes',
-    venue: 'AI Seminar Hall',
-    time: '02:30 PM onwards',
-    teamSize: 'Individual',
-    registrationStatus: 'Open',
-    concept: 'Compete head-to-head in challenges comparing human logic against AI capabilities.',
-    description: 'Test human pattern recognition, riddle solving, and speed against state-of-the-art AI outputs.',
-    stages: [
-      { title: 'Showdown', description: 'Distinguish real human writing/art from AI, and beat AI at reasoning puzzles.' }
-    ],
-    rules: ['Fastest and most accurate judge of AI vs human outputs wins.']
+    coordinators: [
+      'AATHIL TAABIR A — 8610638901',
+      'GURU PRASATH S — 6369513251'
+    ]
   }
 ];
 

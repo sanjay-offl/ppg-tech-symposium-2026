@@ -39,6 +39,7 @@ export interface EventItem {
   scoring?: string[];
   scoringBreakdown?: ScoringItem[];
   themes?: string[];
+  coordinators?: string[];
 }
 
 export interface RegistrationPayload {
