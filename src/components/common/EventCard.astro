@@ -43,6 +43,17 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
     <span class="format-text">{formatDetails}</span>
   </div>
 
+  {event.coordinators && event.coordinators.length > 0 && (
+    <div class="coord-box">
+      <span class="coord-title">Event Coordinators</span>
+      <div class="coord-list">
+        {event.coordinators.map((coord) => (
+          <span class="coord-item">{coord}</span>
+        ))}
+      </div>
+    </div>
+  )}
+
   <div class="card-actions">
     <a href={`/events/${event.slug}`} class="btn-details">
       View Details
@@ -229,6 +240,39 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
     border-color: #ff7a00;
     box-shadow: 0 4px 16px rgba(255, 101, 0, 0.4);
   }
+}
+
+.coord-box {
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  background: #fff9f5;
+  border: 1px dashed rgba(255, 101, 0, 0.35);
+  border-radius: 8px;
+}
+
+.coord-title {
+  display: block;
+  font-family: $technical;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $orange;
+  margin-bottom: 4px;
+}
+
+.coord-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.coord-item {
+  font-family: $technical;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: 0.02em;
 }
 
 @media (max-width: 480px) {

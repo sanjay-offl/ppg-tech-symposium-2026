@@ -82,7 +82,7 @@ export const departments: Department[] = [
     email: 'aispartanz.ppg.it@gmail.com',
     coordinators: ['Vyas', 'Akash'],
     technicalEvents: ['IDEA2PROTOTYPE', 'PROMPT2PIXEL', 'Web Redesign'],
-    nonTechnicalEvents: ['AI Short Film', 'Human VS AI']
+    nonTechnicalEvents: ['AI Shortfilm', 'MemeRush']
   }
 ];
 
