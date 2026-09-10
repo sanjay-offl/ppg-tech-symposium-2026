@@ -5,9 +5,10 @@ import EventBadge from './EventBadge.astro';
 interface Props {
   event: EventItem;
   showDepartment?: boolean;
+  showRegister?: boolean;
 }
 
-const { event, showDepartment = false } = Astro.props;
+const { event, showDepartment = false, showRegister = false } = Astro.props;
 const summary = event.concept || event.description;
 const formatDetails = [
   event.format ? event.format : `Team: ${event.teamSize}`,
@@ -45,9 +46,11 @@ const formatDetails = [
         <polyline points="12 5 19 12 12 19"></polyline>
       </svg>
     </a>
-    <a href={`/register?event=${event.slug}`} class="btn-register">
-      Register
-    </a>
+    {showRegister && (
+      <a href={`/register?event=${event.slug}`} class="btn-register">
+        Register
+      </a>
+    )}
   </div>
 </article>
 
@@ -155,8 +158,7 @@ const formatDetails = [
 }
 
 .card-actions {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   gap: 10px;
   margin-top: auto;
 }
@@ -165,6 +167,7 @@ const formatDetails = [
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
   gap: 6px;
   padding: 10px 14px;
   border-radius: 10px;
