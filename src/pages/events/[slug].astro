@@ -3,6 +3,7 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import EventBadge from '@/components/common/EventBadge.astro';
 import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
 import { events, getEvent } from '@/data/events';
+import { getDepartmentBySlug } from '@/data/departments';
 
 export function getStaticPaths() {
   return events.map((event) => ({
@@ -13,6 +14,9 @@ export function getStaticPaths() {
 
 const { event } = Astro.props;
 const detail = event ?? getEvent(Astro.params.slug ?? '');
+const deptObj = detail?.departmentSlug ? getDepartmentBySlug(detail.departmentSlug) : undefined;
+const regUrl = deptObj?.registrationUrl || `/register?event=${detail?.slug}`;
+const isExternalReg = Boolean(deptObj?.registrationUrl);
 ---
 
 <MainLayout
@@ -56,7 +60,12 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
                 <strong class="spec-value">📍 {detail.venue || 'College Campus'}</strong>
               </div>
               <div class="spec-item spec-action">
-                <a href={`/register?event=${detail.slug}`} class="hero-reg-btn">
+                <a
+                  href={regUrl}
+                  target={isExternalReg ? "_blank" : undefined}
+                  rel={isExternalReg ? "noopener noreferrer" : undefined}
+                  class="hero-reg-btn"
+                >
                   Register for Event
                 </a>
               </div>
@@ -151,7 +160,12 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
                 <p class="reg-card-copy">
                   Register for VIYUGAM 2K26 to secure your team slot. Includes lunch, refreshment, event participation & certificates.
                 </p>
-                <a href={`/register?event=${detail.slug}`} class="sidebar-reg-btn">
+                <a
+                  href={regUrl}
+                  target={isExternalReg ? "_blank" : undefined}
+                  rel={isExternalReg ? "noopener noreferrer" : undefined}
+                  class="sidebar-reg-btn"
+                >
                   Proceed to Register ➔
                 </a>
                 <div class="secure-badge">

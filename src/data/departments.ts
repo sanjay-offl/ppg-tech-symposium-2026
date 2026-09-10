@@ -19,7 +19,8 @@ export const departments: Department[] = [
     email: 'techtitansppg@gmail.com',
     coordinators: ['Deeksha', 'Abhishek'],
     technicalEvents: ['AI: Spin and Solve', 'TechQuest: The Blind Tech Labyrinth', 'Blind Build'],
-    nonTechnicalEvents: ['eFootball Mobile Tournament', 'AdRush']
+    nonTechnicalEvents: ['eFootball Mobile Tournament', 'AdRush'],
+    registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSc7_-3VZCzi3lsqOCBi8-TDE1a5iiY89Flo_TziXkYFtVCaQw/viewform?usp=publish-editor'
   },
   {
     name: 'Mechanical Engineering',
