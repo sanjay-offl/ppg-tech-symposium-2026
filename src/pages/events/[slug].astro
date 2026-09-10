@@ -164,7 +164,16 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
                   <span class="s-label">Venue</span>
                   <span class="s-val">{detail.venue || 'Campus'}</span>
                 </div>
-
+                {detail.coordinators && detail.coordinators.length > 0 && (
+                  <div class="summary-row coord-row">
+                    <span class="s-label">Coordinators</span>
+                    <div class="s-coords-list">
+                      {detail.coordinators.map((coord) => (
+                        <div class="s-coord-item">{coord}</div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </aside>
           </div>
@@ -621,6 +630,30 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
     font-weight: 700;
     color: #0a0a0a;
   }
+}
+
+.coord-row {
+  flex-direction: column;
+  align-items: flex-start !important;
+  gap: 6px;
+}
+
+.s-coords-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.s-coord-item {
+  font-family: $technical;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827;
+  background: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(10, 10, 10, 0.08);
 }
 
 

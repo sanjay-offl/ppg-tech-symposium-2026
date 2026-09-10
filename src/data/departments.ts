@@ -71,8 +71,8 @@ export const departments: Department[] = [
     image: '/images/departments/bme.png',
     email: 'hodbiomedppgit@gmail.com',
     coordinators: ['Krishna Kumar — 9876543216', 'Ashwini — 9876543217'],
-    technicalEvents: ['InnoVision', 'Idea Hub', 'Technical Quiz'],
-    nonTechnicalEvents: ['BIOSCOPE', 'Guess the organs']
+    technicalEvents: ['InnoVision', 'Idea Hub', 'Mind Rush'],
+    nonTechnicalEvents: ['CONNECT', 'Guess the Organ']
   },
   {
     name: 'Artificial Intelligence & Machine Learning',

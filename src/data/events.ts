@@ -1255,19 +1255,25 @@ export const events: EventItem[] = [
     department: 'Biomedical Engineering',
     departmentSlug: 'bme',
     category: 'Technical',
-    format: 'Team (2 to 4 members)',
-    duration: '60 minutes',
-    venue: 'BME Seminar Hall',
+    format: 'Team of 2 to 4',
+    duration: '7 minutes per team (5 minutes discussion & 2 minutes Q&A)',
+    venue: 'Department of Biomedical Engineering',
     time: '10:00 AM onwards',
     teamSize: '2 - 4 Members',
     registrationStatus: 'Open',
-    concept: 'Pitch futuristic biomedical devices and healthcare technological innovations.',
-    description: 'Showcase biomedical concepts, diagnostic devices, and healthcare IoT prototypes to industry veterans.',
+    concept: 'A technical paper presentation competition where participants showcase knowledge, research, and innovative biomedical solutions.',
+    description: 'A technical paper presentation competition where participants showcase knowledge, research, and innovative biomedical solutions.',
     stages: [
-      { title: 'Stage 1 — Presentation', description: 'Present technical healthcare concepts and device architectures.' },
-      { title: 'Stage 2 — Clinician Q&A', description: 'Defend clinical safety, biomedical compliance, and commercial viability.' }
+      { title: 'Stage 1 — Paper Presentation', description: 'Present a biomedical/healthcare topic. Judged on technical knowledge, innovation, relevance, and clarity.' },
+      { title: 'Stage 2 — Technical Q&A', description: 'Judges ask questions on the paper, methodology, applications, and limitations.' }
     ],
-    rules: ['Maximum 4 members per team.', 'PPT limit: 10 slides.', 'Prototype demonstration carries extra weight.']
+    rules: [
+      'Teams consist of 2 to 4 members.',
+      'Present an original technical paper within the given time.',
+      'No external assistance or plagiarism; violations may lead to disqualification.',
+      'Scoring based on technical content, innovation, presentation, Q&A, and applicability.'
+    ],
+    coordinators: ['Pooja S — 9876543216', 'Vasantha Leela — 9876543217']
   },
   {
     name: 'Idea Hub',
@@ -1275,78 +1281,113 @@ export const events: EventItem[] = [
     department: 'Biomedical Engineering',
     departmentSlug: 'bme',
     category: 'Technical',
-    format: 'Individual or Team (1 to 3 members)',
-    duration: '45 minutes',
-    venue: 'BME Smart Class',
+    format: 'Team of 2 to 4',
+    duration: '7 minutes (5 minutes discussion & 2 minutes Q&A)',
+    venue: 'Department of Biomedical Engineering',
     time: '11:00 AM onwards',
-    teamSize: '1 - 3 Members',
+    teamSize: '2 - 4 Members',
     registrationStatus: 'Open',
-    concept: 'Brainstorm and present practical engineering solutions for clinical and healthcare challenges.',
-    description: 'Rapid ideation sprint tackling hospital workflow bottlenecks and assistive medical tech needs.',
+    concept: 'An innovation-driven competition where teams present technology-based solutions to real-world healthcare and engineering challenges.',
+    description: 'An innovation-driven competition where teams present technology-based solutions to real-world healthcare and engineering challenges.',
     stages: [
-      { title: 'Stage 1 — Problem Statement', description: 'Select a clinical pain point from the provided pool.' },
-      { title: 'Stage 2 — Pitch', description: 'Deliver a 5-minute solution pitch outlining feasibility and patient benefit.' }
+      { title: 'Stage 1 — Spot Theme', description: 'Teams receive a problem statement/topic on the spot and get a limited time to understand the problem, brainstorm, and develop an innovative solution.' },
+      { title: 'Stage 2 — Innovation Pitch', description: 'Teams present their solution through a short pitch, highlighting innovation, concept, feasibility, system design, and real-world applications.' },
+      { title: 'Stage 3 — Judge’s Q&A', description: 'Teams answer questions from the judges to demonstrate their technical knowledge, problem-solving approach, feasibility, and practical impact.' }
     ],
-    rules: ['Teams must submit solutions within designated ideation window.']
+    rules: [
+      'Teams must have 2–4 members with valid student IDs.',
+      'The problem statement/theme will be given on the spot; teams must develop their solution within the allotted time.',
+      'Ideas must be original and relevant to the given problem. Plagiarism or copied solutions will lead to disqualification.',
+      'Scoring based on Problem Understanding, Innovation, Technical Feasibility, Impact & Applicability, Presentation & Q&A.'
+    ],
+    coordinators: ['Swetha — 9876543216', 'Ashwini — 9876543217']
   },
   {
-    name: 'Technical Quiz',
-    slug: 'bme-technical-quiz',
+    name: 'Mind Rush',
+    slug: 'mind-rush',
     department: 'Biomedical Engineering',
     departmentSlug: 'bme',
     category: 'Technical',
-    format: 'Team (2 members)',
-    duration: '40 minutes',
-    venue: 'BME Lab',
+    format: 'Team of 2 to 4',
+    duration: 'Round 1: 15 minutes | Round 2: 15 minutes | Round 3: 30 minutes',
+    venue: 'Department of Biomedical Engineering',
     time: '01:30 PM onwards',
-    teamSize: '2 Members',
+    teamSize: '2 - 4 Members',
     registrationStatus: 'Open',
-    concept: 'Test your foundational and advanced knowledge across biomedical engineering and biosciences.',
-    description: 'Comprehensive quiz covering human anatomy, physiological sensors, medical imaging, and biomaterials.',
+    concept: 'A fast-paced technical competition testing participants’ biomedical knowledge, speed, and problem-solving skills.',
+    description: 'A fast-paced technical competition testing participants’ biomedical knowledge, speed, and problem-solving skills.',
     stages: [
-      { title: 'Stage 1 — MCQs', description: 'Written test on biomedical instrumentation and physiology.' },
-      { title: 'Stage 2 — Visual Identification', description: 'Identify diagnostic equipment and ECG/EEG wave patterns.' }
+      { title: 'Stage 1 — Med IQ', description: 'Identify devices, sensors, signals/waveforms, medical images, and answer MCQs.' },
+      { title: 'Stage 2 — Pulse Rush', description: 'Answer rapid-fire technical questions against the clock.' },
+      { title: 'Stage 3 — Case Breaker', description: 'Analyze a real-world biomedical case, identify the problem, and propose a solution.' }
     ],
-    rules: ['Negative marking applies in Stage 2.']
+    rules: [
+      'Each team consists of 2 to 4 participants.',
+      'Three rounds with increasing difficulty.',
+      'No external assistance or communication; violations may lead to disqualification.',
+      'Scores from all rounds are combined.'
+    ],
+    coordinators: ['Pooja — 9876543216', 'Nivethitha — 9876543217']
   },
   {
-    name: 'BIOSCOPE',
-    slug: 'bioscope',
+    name: 'CONNECT',
+    slug: 'connect',
     department: 'Biomedical Engineering',
     departmentSlug: 'bme',
     category: 'Non-Technical',
-    format: 'Team (2 members)',
-    duration: '45 minutes',
-    venue: 'BME Classroom 1',
+    format: 'Team participation (1 to 4 members)',
+    duration: '90 minutes',
+    venue: 'College Campus',
     time: '11:30 AM onwards',
-    teamSize: '2 Members',
+    teamSize: '1 - 4 Members',
     registrationStatus: 'Open',
-    concept: 'A fun movie and media trivia challenge featuring medical cinema and pop culture history.',
-    description: 'Cinema and entertainment trivia quiz focusing on hospital scenes, medical dramas, and iconic movies.',
+    concept: 'CONNECT is a fun biomedical-themed team event that tests creativity, observation, knowledge, and quick thinking through three exciting challenges.',
+    description: 'CONNECT is a fun biomedical-themed team event that tests creativity, observation, knowledge, and quick thinking through three exciting challenges.',
     stages: [
-      { title: 'Round 1 — Clip Identification', description: 'Identify movies from audio dialogues and scenes.' },
-      { title: 'Round 2 — Rapid Clues', description: 'Connect musical scores to their respective films.' }
+      { title: 'Stage 1 — Med Sketch', description: 'Identify biomedical terms, organs, instruments, or concepts from sketches.' },
+      { title: 'Stage 2 — Bio Connect', description: 'Connect the given biological and biomedical clues to find the correct answer.' },
+      { title: 'Stage 3 — Hear and Heal', description: 'Listen to music and identify the related medical concept.' }
     ],
-    rules: ['No cell phones or search engines allowed.']
+    rules: [
+      'Teams must have 1 to 4 members.',
+      'Each stage must be completed within the given time.',
+      'Mobile phones and external assistance are not allowed.',
+      'Teams must give one final answer for each challenge.',
+      'Points are awarded for correct answers in each stage.',
+      'In case of a tie, a tie-breaker may be conducted.',
+      'The team with the highest total score will be declared the winner.'
+    ],
+    coordinators: ['Vinotha — 9876543216', 'Kaneeshma — 9876543217']
   },
   {
-    name: 'Guess the organs',
-    slug: 'guess-the-organs',
+    name: 'Guess the Organ',
+    slug: 'guess-the-organ',
     department: 'Biomedical Engineering',
     departmentSlug: 'bme',
     category: 'Non-Technical',
-    format: 'Individual',
-    duration: '30 minutes',
-    venue: 'BME Lab 2',
+    format: 'Team participation (1 to 4 members)',
+    duration: '60 minutes',
+    venue: 'To be announced',
     time: '02:30 PM onwards',
-    teamSize: 'Individual',
+    teamSize: '1 - 4 Members',
     registrationStatus: 'Open',
-    concept: 'Identify anatomical structures, organ functions, and biological systems in a fast-paced quiz.',
-    description: 'High-speed anatomical puzzle contest matching organ functions, 3D cross sections, and fun biological facts.',
+    concept: 'Guess the Organ is a fun medical-themed team event that tests participants\' observation, memory, and quick-thinking skills through three exciting rounds.',
+    description: 'Guess the Organ is a fun medical-themed team event that tests participants\' observation, memory, and quick-thinking skills through three exciting rounds.',
     stages: [
-      { title: 'Round 1 — Silhouette Match', description: 'Match microscopic and macroscopic views to body organs.' }
+      { title: 'Stage 1 — Mystery Detective (20 mins)', description: 'Identify the organ using visual clues and mystery images within the given time.' },
+      { title: 'Stage 2 — Memory Challenge (20 mins)', description: 'Observe organ images for a limited time and identify them from memory after they disappear.' },
+      { title: 'Stage 3 — Wrong Answer Only (20 mins)', description: 'Answer organ-related questions with a valid wrong answer. Correct answers are not allowed.' }
     ],
-    rules: ['Fastest time with highest accuracy wins.']
+    rules: [
+      'Each team must have 1 to 4 members.',
+      'Teams must follow the time limit and instructions for each stage.',
+      'Points are awarded for correct answers in Stages 1 and 2.',
+      'In Stage 3, only valid wrong answers receive points.',
+      'Mobile phones, internet access, and external assistance are not allowed.',
+      'Teams must give one final answer for each question.',
+      'The team with the highest cumulative score will be declared the winner.'
+    ],
+    coordinators: ['Vinotha — 9876543216', 'Mala — 9876543217']
   },
   {
     name: 'IDEA2PROTOTYPE',
