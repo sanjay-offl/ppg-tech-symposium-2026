@@ -18,6 +18,33 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .button:hover { background: $orange-bright; transform: translateY(-2px); box-shadow: 0 12px 32px $orange-glow; }
 .button--ghost { background: transparent; color: $black; box-shadow: none; }
 .button--ghost:hover { background: rgba(0,0,0,.05); box-shadow: none; }
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255, 101, 0, 0.1);
+  border: 1px solid rgba(255, 101, 0, 0.3);
+  color: $orange;
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: $orange;
+    color: #ffffff;
+    border-color: $orange;
+    transform: translateX(-4px);
+    box-shadow: 0 4px 14px $orange-glow;
+  }
+}
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 @media (max-width: 640px) { .container { width: min(100% - 32px, 1180px); } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+

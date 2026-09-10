@@ -1,0 +1,63 @@
+---
+interface Props {
+  type: 'Technical' | 'Non-Technical' | string;
+  class?: string;
+}
+
+const { type, class: className = '' } = Astro.props;
+const isTech = type?.toLowerCase().includes('technical') && !type?.toLowerCase().includes('non-technical') && !type?.toLowerCase().includes('non technical');
+const label = isTech ? 'TECHNICAL' : 'NON-TECHNICAL';
+---
+
+<span class={`event-badge ${isTech ? 'badge-tech' : 'badge-non-tech'} ${className}`}>
+  <span class="badge-dot" aria-hidden="true"></span>
+  {label}
+</span>
+
+<style lang="scss">
+@use '../../styles/variables' as *;
+
+.event-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: $technical;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Technical events: outlined accent color border */
+.badge-tech {
+  border: 1px solid rgba(255, 101, 0, 0.6);
+  background: rgba(255, 101, 0, 0.1);
+  color: #ff7a00;
+
+  .badge-dot {
+    background: #ff6500;
+  }
+}
+
+/* Non-Technical events: secondary distinct subtle solid badge in neutral white/gray */
+.badge-non-tech {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f0f0f0;
+
+  .badge-dot {
+    background: #a0a0a0;
+  }
+}
+</style>

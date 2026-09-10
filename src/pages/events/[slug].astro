@@ -1,142 +1,673 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import EventBadge from '@/components/common/EventBadge.astro';
+import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
 import { events, getEvent } from '@/data/events';
-export function getStaticPaths() { return events.map((event) => ({ params: { slug: event.slug }, props: { event } })); }
+
+export function getStaticPaths() {
+  return events.map((event) => ({
+    params: { slug: event.slug },
+    props: { event }
+  }));
+}
+
 const { event } = Astro.props;
 const detail = event ?? getEvent(Astro.params.slug ?? '');
 ---
-<MainLayout title={`${detail?.name ?? 'Event'} | VIYUGAM 2K26`}>
-  <section class="detail">
-    <div class="container">
-      <a href="javascript:history.back()" class="back-link">← Back to Department</a>
-      {detail && (
-        <div class="event-detail-box">
-          <span class="event-badge">{detail.category} · {detail.department}</span>
-          <h1>{detail.name}</h1>
-          <p class="lead">{detail.description}</p>
-          <div class="facts">
-            <div><small>Department</small><strong>{detail.department}</strong></div>
-            <div><small>Category</small><strong>{detail.category}</strong></div>
-            <div><small>Venue</small><strong>📍 {detail.venue}</strong></div>
-            <div><small>Time</small><strong>⏰ {detail.time}</strong></div>
-            <div><small>Team Size</small><strong>👥 {detail.teamSize}</strong></div>
+
+<MainLayout
+  title={`${detail?.name ?? 'Event'} | VIYUGAM 2K26`}
+  description={detail?.concept || detail?.description || 'VIYUGAM 2K26 Event Details'}
+>
+  <div class="event-page-wrapper">
+    <section class="event-hero">
+      <div class="container">
+        <a href={`/departments/${detail?.departmentSlug || ''}`} class="back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to {detail?.department}
+        </a>
+
+        {detail && (
+          <div class="event-header-content">
+            <div class="header-tags">
+              <a href={`/departments/${detail.departmentSlug}`} class="dept-link-tag">
+                {detail.department}
+              </a>
+              <EventBadge type={detail.category} />
+            </div>
+
+            <h1 class="event-main-title">{detail.name}</h1>
+            <p class="event-concept-lead">{detail.concept || detail.description}</p>
+
+            <div class="event-specs-bar">
+              <div class="spec-item">
+                <span class="spec-label">Format / Team</span>
+                <strong class="spec-value">{detail.format || `Team (${detail.teamSize})`}</strong>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Duration</span>
+                <strong class="spec-value">{detail.duration || detail.time || 'To be announced'}</strong>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Venue</span>
+                <strong class="spec-value">📍 {detail.venue || 'College Campus'}</strong>
+              </div>
+              <div class="spec-item spec-action">
+                <a href={`/register?event=${detail.slug}`} class="hero-reg-btn">
+                  Register for Event
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+
+    {detail && (
+      <section class="event-body-section">
+        <div class="container">
+          <div class="event-grid-layout">
+            <!-- Left Main Column: Stages & Rules -->
+            <div class="main-column">
+              <!-- Challenge Stages -->
+              {detail.stages && detail.stages.length > 0 && (
+                <div class="content-block">
+                  <h2 class="block-title">CHALLENGE STAGES</h2>
+                  <div class="stages-timeline">
+                    {detail.stages.map((stage, idx) => (
+                      <div class="stage-card">
+                        <div class="stage-badge">STAGE {idx + 1}</div>
+                        <div class="stage-body">
+                          <h3 class="stage-title">{stage.title}</h3>
+                          <p class="stage-desc">{stage.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <!-- Approved Themes (e.g. Agri events) -->
+              {detail.themes && detail.themes.length > 0 && (
+                <div class="content-block themes-block">
+                  <h2 class="block-title">APPROVED PRESENTATION THEMES</h2>
+                  <ol class="themes-list">
+                    {detail.themes.map((theme) => (
+                      <li class="theme-item">{theme}</li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+
+              <!-- Rules & Regulations -->
+              {detail.rules && detail.rules.length > 0 && (
+                <div class="content-block">
+                  <h2 class="block-title">RULES AND REGULATIONS</h2>
+                  <ul class="rules-list">
+                    {detail.rules.map((rule) => (
+                      <li class="rule-item">{rule}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <!-- Scoring / Judging Criteria -->
+              {detail.scoring && detail.scoring.length > 0 && (
+                <div class="content-block">
+                  <h2 class="block-title">SCORING AND EVALUATION</h2>
+                  <ul class="rules-list scoring-list">
+                    {detail.scoring.map((scoreRule) => (
+                      <li class="rule-item">{scoreRule}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            <!-- Right Sidebar Column: Scoring breakdown & Action Card -->
+            <aside class="sidebar-column">
+              <!-- Scoring Breakdown Card if exists -->
+              {detail.scoringBreakdown && detail.scoringBreakdown.length > 0 && (
+                <div class="sidebar-card scoring-breakdown-card">
+                  <h3 class="sidebar-title">Scoring Breakdown</h3>
+                  <div class="breakdown-list">
+                    {detail.scoringBreakdown.map((item) => (
+                      <div class="breakdown-row">
+                        <span class="breakdown-label">{item.label}</span>
+                        <span class="breakdown-pts">{item.points}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <!-- Registration Box -->
+              <div class="sidebar-card register-side-card">
+                <span class="reg-kicker">SINGLE PASS · ALL ACCESS</span>
+                <h3 class="reg-card-title">Join {detail.name}</h3>
+                <p class="reg-card-copy">
+                  Register for VIYUGAM 2K26 to secure your team slot. Includes lunch, refreshment, event participation & certificates.
+                </p>
+                <a href={`/register?event=${detail.slug}`} class="sidebar-reg-btn">
+                  Proceed to Register ➔
+                </a>
+                <div class="secure-badge">
+                  <span>🔒 Official PPG Institute Event</span>
+                </div>
+              </div>
+
+              <!-- Event Details Summary -->
+              <div class="sidebar-card summary-card">
+                <h4 class="summary-heading">Event Overview</h4>
+                <div class="summary-row">
+                  <span class="s-label">Department</span>
+                  <span class="s-val">{detail.department}</span>
+                </div>
+                <div class="summary-row">
+                  <span class="s-label">Category</span>
+                  <span class="s-val">{detail.category}</span>
+                </div>
+                <div class="summary-row">
+                  <span class="s-label">Team Format</span>
+                  <span class="s-val">{detail.format || detail.teamSize}</span>
+                </div>
+                <div class="summary-row">
+                  <span class="s-label">Duration</span>
+                  <span class="s-val">{detail.duration || detail.time || 'TBA'}</span>
+                </div>
+                <div class="summary-row">
+                  <span class="s-label">Venue</span>
+                  <span class="s-val">{detail.venue || 'Campus'}</span>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
-      )}
-    </div>
-  </section>
+      </section>
+    )}
+  </div>
+
+  <SymposiumGuidelines />
 </MainLayout>
 
 <style lang="scss">
 @use '../../styles/variables' as *;
-.detail {
-  min-height: 80vh;
-  padding: 160px 0 110px;
-  background: $surface;
-  color: $black;
+
+.event-page-wrapper {
+  background: #0a0a0a; /* Pure neutral black */
+  color: #ffffff;
 }
+
+.event-hero {
+  padding: 160px 0 50px;
+  background: #000000; /* Pure deep black */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   padding: 8px 16px;
   border-radius: 999px;
-  background: rgba(255, 101, 0, 0.08);
-  border: 1px solid rgba(255, 101, 0, 0.25);
-  color: $orange;
+  background: #181818;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
   font-family: $technical;
   font-weight: 700;
-  font-size: 13.5px;
+  font-size: 0.8rem;
   letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-decoration: none;
-  width: fit-content;
   transition: all 0.2s ease;
 
   &:hover {
     background: $orange;
     color: #ffffff;
     border-color: $orange;
-    transform: translateX(-4px);
-    box-shadow: 0 4px 14px $orange-glow;
-  }
-
-  &.non-tech-back {
-    background: rgba(0, 180, 216, 0.08);
-    border-color: rgba(0, 180, 216, 0.25);
-    color: #0077b6;
-
-    &:hover {
-      background: #00b4d8;
-      color: #ffffff;
-      border-color: #00b4d8;
-      box-shadow: 0 4px 14px rgba(0, 180, 216, 0.35);
-    }
+    transform: translateX(-3px);
   }
 }
-.event-detail-box {
-  padding: 38px;
-  border-radius: 20px;
-  background: #ffffff;
-  border: 1px solid rgba(255, 101, 0, 0.2);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05), 0 0 25px rgba(255, 101, 0, 0.08);
 
-  &.is-non-tech {
-    border-color: rgba(0, 180, 216, 0.25);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05), 0 0 25px rgba(0, 180, 216, 0.12);
-
-    .event-badge {
-      background: rgba(0, 180, 216, 0.08);
-      color: #0077b6;
-      border: 1px solid rgba(0, 180, 216, 0.25);
-    }
-
-    .pass-link {
-      background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
-      box-shadow: 0 4px 16px rgba(0, 180, 216, 0.35);
-
-      &:hover {
-        box-shadow: 0 8px 24px rgba(0, 180, 216, 0.5);
-      }
-    }
-  }
-}
-.event-badge {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: rgba(255, 101, 0, 0.08);
-  color: $orange;
-  font: 700 11px $technical;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.header-tags {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 14px;
 }
-.detail h1 {
-  max-width: 850px;
+
+.dept-link-tag {
+  font-family: $technical;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $orange;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #ff7a00;
+    text-decoration: underline;
+  }
+}
+
+.event-main-title {
   margin: 0 0 16px;
-  font: clamp(3rem, 7vw, 5.5rem)/.92 $display;
+  font: clamp(2.4rem, 6vw, 4.4rem)/0.96 $display;
   letter-spacing: 0.02em;
-  color: $black;
+  color: #ffffff;
 }
-.lead {
-  max-width: 660px;
-  color: $muted;
+
+.event-concept-lead {
+  max-width: 800px;
   font-family: $body;
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   line-height: 1.65;
+  color: #ffffff;
+  margin: 0 0 32px;
 }
-.facts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  margin: 32px 0;
-  padding: 24px;
+
+.event-specs-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  align-items: center;
+  padding: 20px 24px;
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
-  background: $surface;
-  border: 1px solid $line;
 }
-.facts div { display: grid; gap: 4px; }
-.facts small { color: $muted; font: 700 .7rem $technical; text-transform: uppercase; letter-spacing: 0.08em; }
-.facts strong { font: 1.1rem $technical; color: $black; }
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &.spec-action {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.spec-label {
+  font-family: $technical;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #d4d4d4;
+}
+
+.spec-value {
+  font-family: $technical;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+.hero-reg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: $orange;
+  color: #ffffff;
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #ff7a00;
+    box-shadow: 0 4px 18px rgba(255, 101, 0, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
+/* Main Content Grid */
+.event-body-section {
+  padding: 70px 0 100px;
+  background: #f5f5f7; /* Crisp white/light surface */
+}
+
+.event-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.content-block {
+  padding: 32px;
+  background: #ffffff; /* Clean white card */
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
+}
+
+.block-title {
+  margin: 0 0 24px;
+  font: 700 clamp(1.6rem, 3vw, 2.2rem)/1 $display;
+  letter-spacing: 0.02em;
+  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(10, 10, 10, 0.08);
+  }
+}
+
+/* Stages */
+.stages-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.stage-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 20px;
+  background: #f8f8fa;
+  border: 1px solid rgba(10, 10, 10, 0.06);
+  border-radius: 12px;
+}
+
+.stage-badge {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(255, 101, 0, 0.12);
+  border: 1px solid rgba(255, 101, 0, 0.3);
+  color: $orange;
+  font-family: $technical;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stage-title {
+  font-family: $technical;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin: 0 0 6px;
+  letter-spacing: 0.02em;
+}
+
+.stage-desc {
+  font-family: $body;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* Themes */
+.themes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.theme-item {
+  font-family: $body;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #1a1a1a;
+  font-weight: 500;
+  padding: 4px 0;
+}
+
+/* Rules */
+.rules-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rule-item {
+  position: relative;
+  padding-left: 24px;
+  font-family: $body;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #1a1a1a;
+  font-weight: 500;
+
+  &::before {
+    content: '➔';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: $orange;
+    font-size: 0.75rem;
+  }
+}
+
+/* Sidebar */
+.sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 90px;
+}
+
+.sidebar-card {
+  padding: 24px;
+  background: #ffffff; /* Crisp white card */
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.sidebar-title {
+  margin: 0 0 16px;
+  font-family: $technical;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+}
+
+.breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(10, 10, 10, 0.1);
+}
+
+.breakdown-label {
+  font-family: $body;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.breakdown-pts {
+  font-family: $technical;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: $orange;
+}
+
+.register-side-card {
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 101, 0, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.reg-kicker {
+  display: inline-block;
+  font-family: $technical;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $orange;
+  margin-bottom: 8px;
+}
+
+.reg-card-title {
+  margin: 0 0 10px;
+  font-family: $display;
+  font-size: 1.8rem;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.reg-card-copy {
+  font-family: $body;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #d4d4d4;
+  margin: 0 0 20px;
+}
+
+.sidebar-reg-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: $orange;
+  color: #ffffff;
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #ff7a00;
+    box-shadow: 0 4px 18px rgba(255, 101, 0, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
+.secure-badge {
+  margin-top: 14px;
+  font-family: $technical;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #a3a3a3;
+  letter-spacing: 0.04em;
+}
+
+.summary-card {
+  border-top: 3.5px solid $orange;
+}
+
+.summary-heading {
+  margin: 0 0 16px;
+  font-family: $technical;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #0a0a0a;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .s-label {
+    font-family: $technical;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .s-val {
+    font-family: $technical;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #0a0a0a;
+  }
+}
+
+@media (max-width: 900px) {
+  .event-grid-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-column {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .event-hero {
+    padding: 120px 0 40px;
+  }
+  .content-block {
+    padding: 20px;
+  }
+  .stage-card {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .event-specs-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .spec-item.spec-action {
+    grid-column: 1 / -1;
+  }
+  .hero-reg-btn {
+    width: 100%;
+  }
+}
 </style>

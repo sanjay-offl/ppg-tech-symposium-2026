@@ -1,76 +1,76 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
 import DepartmentGrid from '@/components/departments/DepartmentGrid.astro';
-import DeptScrollLineCanvas from '@/components/animations/DeptScrollLineCanvas.astro';
-
-return Astro.redirect('/#departments');
+import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
 ---
 
 <MainLayout title="Departments | VIYUGAM 2K26">
   <section class="page-heading">
     <div class="container">
-      <span class="section-label">Seven disciplines</span>
-      <h1>MEET THE<br />DEPARTMENTS.</h1>
+      <span class="section-label">Eight Disciplines • 35+ Events</span>
+      <h1>ALL DEPARTMENTS</h1>
+      <p class="heading-sub">
+        Explore specialized technical challenges, workshops, and non-technical competitions hosted across all 8 engineering disciplines at VIYUGAM 2K26.
+      </p>
     </div>
   </section>
+
   <section class="content">
-    <DeptScrollLineCanvas />
     <div class="container">
       <div class="dept-header-box">
         <span class="section-label">Compete & Win</span>
-        <h2 class="section-title">EVENTS BY DEPT.</h2>
+        <h2 class="section-title">CHOOSE YOUR DEPARTMENT</h2>
       </div>
       <DepartmentGrid />
     </div>
   </section>
+
+  <SymposiumGuidelines />
 </MainLayout>
 
 <style lang="scss">
 @use '../../styles/variables' as *;
 
 .page-heading {
-  padding: 190px 0 80px;
+  padding: 180px 0 70px;
   color: white;
-  background: $black;
+  background: #000000;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  .section-label {
+    display: inline-block;
+    color: $orange;
+    font-family: $technical;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
 
   h1 {
-    margin: 18px 0 0;
-    font: clamp(4rem, 10vw, 8rem)/.86 $display;
-  }
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 24px;
-  padding: 8px 16px;
-  border-radius: 999px;
-  background: rgba(255, 101, 0, 0.12);
-  border: 1px solid rgba(255, 101, 0, 0.35);
-  color: #ff6500;
-  font-family: $technical;
-  font-weight: 700;
-  font-size: 13.5px;
-  letter-spacing: 0.06em;
-  text-decoration: none;
-  width: fit-content;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: #ff6500;
+    margin: 0 0 16px;
+    font: clamp(3rem, 7vw, 5.5rem)/0.92 $display;
+    letter-spacing: 0.02em;
     color: #ffffff;
-    border-color: #ff6500;
-    transform: translateX(-4px);
-    box-shadow: 0 4px 14px rgba(255, 101, 0, 0.35);
+  }
+
+  .heading-sub {
+    max-width: 680px;
+    margin: 0 auto;
+    font-family: $body;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #a3a3a3;
   }
 }
 
 .content {
   position: relative;
   overflow: hidden;
-  padding: 80px 0 110px;
-  background: $surface;
+  padding: 70px 0 100px;
+  background: #f5f5f7;
 
   .container {
     position: relative;
@@ -86,11 +86,11 @@ return Astro.redirect('/#departments');
   align-items: center;
   justify-content: center;
   margin: 0 auto 44px;
-  padding: 22px 52px;
+  padding: 20px 48px;
   border-radius: 20px;
   background: #ffffff;
-  border: 1px solid rgba(255, 101, 0, 0.14);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
   text-align: center;
   width: fit-content;
   max-width: calc(100% - 32px);
@@ -99,40 +99,43 @@ return Astro.redirect('/#departments');
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin: 0 auto;
+    font-family: $technical;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: $orange;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
 
   .section-title {
-    margin: 10px 0 0;
-    font: clamp(2.6rem, 6vw, 4.5rem)/.95 $display;
-    letter-spacing: .01em;
-    color: $black;
+    margin: 8px 0 0;
+    font: clamp(2.2rem, 5vw, 3.8rem)/0.95 $display;
+    letter-spacing: 0.01em;
+    color: #0a0a0a;
   }
 }
+
 @media (max-width: 640px) {
+  .page-heading {
+    padding: 130px 0 50px;
+
+    .heading-sub {
+      font-size: 0.9rem;
+      padding: 0 16px;
+    }
+  }
+
   .content {
-    padding: 38px 0 70px;
+    padding: 38px 0 60px;
   }
 
   .dept-header-box {
     padding: 10px 20px;
-    margin: -10px auto 22px;
+    margin: 0 auto 24px;
     border-radius: 12px;
 
-    .section-label {
-      font-size: .64rem;
-      gap: 6px;
-      letter-spacing: .12em;
-
-      &::before {
-        width: 16px;
-      }
-    }
-
     .section-title {
-      margin: 4px 0 0;
-      font: clamp(1.7rem, 5.2vw, 2.2rem)/.95 $display;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
     }
   }
 }

@@ -14,8 +14,8 @@ export const faqs: FAQItem[] = [
   {
     id: 'fee-coverage',
     category: 'Registration & Fee',
-    question: 'What does the ₹250 registration fee cover?',
-    answer: 'The ₹250 registration fee is an all-inclusive single pass. It grants you full access to participate in events across any of the 8 departments, provides an official participation certificate, and includes complimentary lunch and refreshments for the day.'
+    question: 'What does the registration fee cover?',
+    answer: 'The registration fee is an all-inclusive single pass. It grants you full access to participate in events across any of the 8 departments, provides an official participation certificate, and includes complimentary lunch and refreshments for the day.'
   },
   {
     id: 'multiple-events',
@@ -39,7 +39,7 @@ export const faqs: FAQItem[] = [
     id: 'payment-process',
     category: 'Registration & Fee',
     question: 'How do I pay and verify my registration?',
-    answer: 'Submit your details on the Register page, then proceed to the Payment page. Pay ₹250 via the official UPI QR code and enter your UTR / transaction reference number. Your registration status will be confirmed once verified.'
+    answer: 'Submit your details on the Register page, then proceed to the Payment page. Complete your payment via the official UPI QR code and enter your UTR / transaction reference number. Your registration status will be confirmed once verified.'
   },
   {
     id: 'on-spot-registration',
@@ -78,10 +78,10 @@ export const faqs: FAQItem[] = [
     answer: 'Winners across all 41 technical and non-technical events will receive exciting cash prizes, winner certificates, and trophies/mementos awarded during the grand Valedictory ceremony.'
   },
   {
-    id: 'f1-giveaway',
+    id: 'awards-overview',
     category: 'Prizes & Certificates',
-    question: 'How does the Hot Wheels F1 Collection giveaway work?',
-    answer: 'In keeping with our racing theme, an exclusive Hot Wheels Formula 1 die-cast car collection will be awarded to standout performers and top event winners. This is a limited collector prize given to select championship champions!'
+    question: 'How are the top performers recognized?',
+    answer: 'Outstanding performers and winners across all 8 departments receive prestigious trophies, merit certificates, and cash awards presented by department heads and dignitaries at the symposium valedictory.'
   },
   {
     id: 'certificates',

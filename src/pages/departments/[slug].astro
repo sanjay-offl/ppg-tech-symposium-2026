@@ -1,20 +1,45 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import EventCard from '@/components/common/EventCard.astro';
+import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
 import { departments } from '@/data/departments';
 import { events } from '@/data/events';
 import type { Department } from '@/types';
 
 export async function getStaticPaths() {
-  return departments.map((department) => ({
+  const paths = departments.map((department) => ({
     params: { slug: department.slug },
     props: { department }
   }));
+
+  // Support aliases for backward compatibility
+  const aliases: Record<string, string> = {
+    'ai-data-science': 'ai-ds',
+    'information-technology': 'it',
+    'mechanical-engineering': 'mechanical',
+    'electronics-communication': 'ece',
+    'agricultural-engineering': 'agri'
+  };
+
+  for (const [alias, targetSlug] of Object.entries(aliases)) {
+    const dept = departments.find((d) => d.slug === targetSlug);
+    if (dept) {
+      paths.push({
+        params: { slug: alias },
+        props: { department: dept }
+      });
+    }
+  }
+
+  return paths;
 }
 
 const { department } = Astro.props as { department: Department };
 
-// Filter events for this specific department
-const deptEvents = events.filter((e) => e.department.toLowerCase() === department.name.toLowerCase());
+// Filter events for this department
+const deptEvents = events.filter(
+  (e) => e.departmentSlug === department.slug || e.department.toLowerCase() === department.name.toLowerCase()
+);
 const techEvents = deptEvents.filter((e) => e.category === 'Technical');
 const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 ---
@@ -22,28 +47,41 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 <MainLayout title={`${department.abbr} (${department.name}) | VIYUGAM 2K26`} description={`Events and track details for ${department.name} at PPG Institute of Technology.`}>
   <section class="dept-hero">
     <div class="container">
-      <a href="/#departments" class="back-link">← Back to Departments</a>
+      <a href="/departments" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        All Departments
+      </a>
+
       <div class="dept-header-wrap">
         <div class="dept-badge">
-          {department.image && !department.image.includes('retouch_') ? (
+          {department.image ? (
             <img src={department.image} alt={`${department.name} Logo`} class="dept-badge-logo" />
           ) : (
             <span>{department.abbr}</span>
           )}
         </div>
+
         <div class="dept-header-info">
           <span class="section-label">Department Track</span>
           <h1 class="dept-title">{department.name}</h1>
+
           <div class="dept-meta">
             <div class="coordinators-box">
-              <strong>Student Coordinators:</strong>
+              <strong>Student Coordinators</strong>
               <ul>
                 {department.coordinators.map((coord) => <li>{coord}</li>)}
               </ul>
             </div>
             <div class="contact-box">
-              <strong>Email:</strong>
+              <strong>Contact Email</strong>
               <a href={`mailto:${department.email}`}>{department.email}</a>
+            </div>
+            <div class="events-count-box">
+              <strong>Total Events</strong>
+              <span>{deptEvents.length} Events ({techEvents.length} Tech, {nonTechEvents.length} Non-Tech)</span>
             </div>
           </div>
         </div>
@@ -55,40 +93,26 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
     <div class="container">
       <!-- Technical Events -->
       <div class="events-group-block">
-        <h2 class="group-title">⚡ TECHNICAL EVENTS ({techEvents.length})</h2>
+        <div class="group-header">
+          <h2 class="group-title">TECHNICAL EVENTS</h2>
+          <span class="count-badge">{techEvents.length} Events</span>
+        </div>
         <div class="event-cards-grid">
           {techEvents.map((evt) => (
-            <article class="event-detail-card tech-card">
-              <div class="event-badge tech-tag">TECHNICAL</div>
-              <h3 class="event-name">{evt.name}</h3>
-              <p class="event-desc">{evt.description}</p>
-              <div class="event-specs">
-                <span>📍 {evt.venue}</span>
-                <span>⏰ {evt.time}</span>
-                <span>👥 {evt.teamSize}</span>
-              </div>
-              <a href={`/events/${evt.slug}`} class="event-details-btn">View Event Details ➔</a>
-            </article>
+            <EventCard event={evt} />
           ))}
         </div>
       </div>
 
       <!-- Non-Technical Events -->
       <div class="events-group-block non-tech-block">
-        <h2 class="group-title">🎮 NON-TECHNICAL EVENTS ({nonTechEvents.length})</h2>
+        <div class="group-header">
+          <h2 class="group-title">NON-TECHNICAL EVENTS</h2>
+          <span class="count-badge">{nonTechEvents.length} Events</span>
+        </div>
         <div class="event-cards-grid">
           {nonTechEvents.map((evt) => (
-            <article class="event-detail-card non-tech-card">
-              <div class="event-badge non-tech-tag">NON-TECHNICAL</div>
-              <h3 class="event-name">{evt.name}</h3>
-              <p class="event-desc">{evt.description}</p>
-              <div class="event-specs">
-                <span>📍 {evt.venue}</span>
-                <span>⏰ {evt.time}</span>
-                <span>👥 {evt.teamSize}</span>
-              </div>
-              <a href={`/events/${evt.slug}`} class="event-details-btn">View Event Details ➔</a>
-            </article>
+            <EventCard event={evt} />
           ))}
         </div>
       </div>
@@ -98,12 +122,15 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
         <div class="dept-register-box">
           <span class="cta-label">Single Pass · All Events Included</span>
           <h3 class="cta-title">Ready to Compete in {department.name}?</h3>
-          <p class="cta-desc">₹250 pass gives you full access to all technical & non-technical events, certificate, and complimentary lunch.</p>
+          <p class="cta-desc">Registration gives you full access to all technical & non-technical events, certificate, and complimentary lunch.</p>
           <a href={`/register?dept=${department.slug}`} class="overall-register-btn">Register for Events ➔</a>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Section E: General Symposium Guidelines on every department page -->
+  <SymposiumGuidelines />
 </MainLayout>
 
 <style lang="scss">
@@ -111,25 +138,26 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 
 .dept-hero {
   padding: 160px 0 60px;
-  background: radial-gradient(circle at top center, rgba(255, 101, 0, 0.08), transparent 70%), $surface;
-  color: $black;
-  border-bottom: 1px solid $line;
+  background: #000000; /* Pure deep black */
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .back-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   padding: 8px 16px;
   border-radius: 999px;
-  background: rgba(255, 101, 0, 0.08);
-  border: 1px solid rgba(255, 101, 0, 0.25);
-  color: $orange;
+  background: #181818;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
   font-family: $technical;
   font-weight: 700;
-  font-size: 13.5px;
+  font-size: 0.8rem;
   letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-decoration: none;
   width: fit-content;
   transition: all 0.2s ease;
@@ -138,8 +166,7 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
     background: $orange;
     color: #ffffff;
     border-color: $orange;
-    transform: translateX(-4px);
-    box-shadow: 0 4px 14px $orange-glow;
+    transform: translateX(-3px);
   }
 }
 
@@ -152,36 +179,49 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 .dept-badge {
   display: grid;
   place-items: center;
-  width: 115px;
-  height: 115px;
+  width: 110px;
+  height: 110px;
   flex-shrink: 0;
-  border-radius: 22px;
-  background: linear-gradient(135deg, rgba(255, 101, 0, 0.08) 0%, #ffffff 100%);
-  border: 1px solid rgba(255, 101, 0, 0.25);
+  border-radius: 20px;
+  background: #ffffff !important; /* Pure white background for all department logos */
+  border: 2.5px solid $orange;
   color: $orange;
-  font: 900 2.4rem/1 $technical;
+  font: 900 2.2rem/1 $technical;
   letter-spacing: 0.05em;
-  box-shadow: 0 10px 28px rgba(255, 101, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   overflow: hidden;
-  padding: 10px;
+  padding: 12px;
 }
 
 .dept-badge-logo {
   width: 100%;
   height: 100%;
+  max-width: 86px;
+  max-height: 86px;
   object-fit: contain;
-  filter: drop-shadow(0 4px 10px rgba(255, 101, 0, 0.25));
+  display: block;
 }
 
 .dept-header-info {
   flex: 1;
 }
 
+.section-label {
+  display: inline-block;
+  font-family: $technical;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $orange;
+  margin-bottom: 6px;
+}
+
 .dept-title {
-  margin: 6px 0 20px;
-  font: clamp(2.2rem, 5vw, 4rem)/1.05 $display;
+  margin: 0 0 20px;
+  font: clamp(2.4rem, 5vw, 4rem)/1.05 $display;
   letter-spacing: 0.02em;
-  color: $black;
+  color: #ffffff;
 }
 
 .dept-meta {
@@ -189,17 +229,14 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   flex-wrap: wrap;
   gap: 32px;
   padding-top: 16px;
-  border-top: 1px solid $line;
-  font-family: $body;
-  font-size: 14px;
-  color: $black;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 
   strong {
     display: block;
     margin-bottom: 6px;
     color: $orange;
     font-family: $technical;
-    font-size: 12px;
+    font-size: 0.72rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
@@ -210,10 +247,16 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
     list-style: none;
     display: grid;
     gap: 4px;
+    font-family: $body;
+    font-size: 0.88rem;
+    color: #f0f0f0;
+    font-weight: 500;
   }
 
   a {
-    color: $black;
+    color: #ffffff;
+    font-family: $body;
+    font-size: 0.88rem;
     text-decoration: none;
     transition: color 0.2s ease;
 
@@ -221,175 +264,54 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
       color: $orange;
     }
   }
+
+  span {
+    font-family: $body;
+    font-size: 0.88rem;
+    color: #f0f0f0;
+    font-weight: 500;
+  }
 }
 
 .dept-events-section {
-  padding: 70px 0 100px;
-  background: #ffffff;
-  color: $black;
+  padding: 80px 0 100px;
+  background: #f5f5f7; /* Crisp white/light surface */
+  color: #0a0a0a;
 }
 
 .events-group-block {
-  margin-bottom: 56px;
+  margin-bottom: 64px;
+}
+
+.group-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+  padding-bottom: 14px;
 }
 
 .group-title {
-  margin-bottom: 28px;
-  font: 700 2.2rem/1 $display;
-  letter-spacing: 0.03em;
-  color: $black;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  &::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: $line;
-  }
+  margin: 0;
+  font: 700 clamp(1.8rem, 3.5vw, 2.6rem)/1 $display;
+  letter-spacing: 0.02em;
+  color: #0a0a0a;
 }
 
-.non-tech-block .group-title {
-  color: #0077b6;
-  &::after {
-    background: rgba(0, 180, 216, 0.25);
-  }
+.count-badge {
+  font-family: $technical;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $orange;
 }
 
 .event-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 24px;
-}
-
-.event-detail-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
-  background: #ffffff;
-  border-radius: 16px;
-  border: 1px solid rgba(10, 10, 10, 0.08);
-  overflow: hidden;
-  isolation: isolate;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-
-  &.tech-card {
-    border-top: 3px solid $orange;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 101, 0, 0.1);
-
-    &:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(255, 101, 0, 0.18), 0 0 0 1px $orange;
-      border-color: $orange;
-    }
-  }
-
-  &.non-tech-card {
-    border-top: 3px solid #00b4d8;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 180, 216, 0.1);
-
-    &:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(0, 180, 216, 0.18), 0 0 0 1px #00b4d8;
-      border-color: #00b4d8;
-    }
-  }
-}
-
-.event-badge {
-  align-self: flex-start;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font: 700 10px/1 $technical;
-  letter-spacing: 0.1em;
-  margin-bottom: 14px;
-
-  &.tech-tag {
-    background: rgba(255, 101, 0, 0.08);
-    color: $orange;
-    border: 1px solid rgba(255, 101, 0, 0.25);
-  }
-
-  &.non-tech-tag {
-    background: rgba(0, 180, 216, 0.08);
-    color: #0077b6;
-    border: 1px solid rgba(0, 180, 216, 0.25);
-  }
-}
-
-.event-name {
-  margin: 0 0 10px;
-  font: 700 1.4rem/1.2 $technical;
-  letter-spacing: 0.02em;
-  color: $black;
-}
-
-.event-desc {
-  margin: 0 0 20px;
-  color: #55555c;
-  font-family: $body;
-  font-size: 13.5px;
-  line-height: 1.6;
-  flex: 1;
-}
-
-.event-specs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: auto;
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: $surface;
-  border: 1px solid $line;
-  font-family: $technical;
-  font-size: 12.5px;
-  font-weight: 600;
-  color: #44444a;
-}
-
-.event-details-btn {
-  margin-top: 16px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 11px 18px;
-  border-radius: 10px;
-  background: rgba(255, 101, 0, 0.08);
-  border: 1px solid rgba(255, 101, 0, 0.3);
-  color: $orange;
-  font-family: $technical;
-  font-weight: 700;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.25s ease;
-
-  &:hover {
-    background: $orange;
-    color: #ffffff;
-    border-color: $orange;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 101, 0, 0.35);
-  }
-}
-
-.non-tech-card .event-details-btn {
-  background: rgba(0, 180, 216, 0.08);
-  border-color: rgba(0, 180, 216, 0.3);
-  color: #0077b6;
-
-  &:hover {
-    background: #00b4d8;
-    color: #ffffff;
-    border-color: #00b4d8;
-    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.35);
-  }
 }
 
 .dept-register-wrap {
@@ -400,12 +322,12 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 
 .dept-register-box {
   width: 100%;
-  max-width: 640px;
-  padding: 38px 28px;
+  max-width: 680px;
+  padding: 44px 32px;
   border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255, 101, 0, 0.06) 0%, #ffffff 100%);
-  border: 1px solid rgba(255, 101, 0, 0.22);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.05), 0 0 25px rgba(255, 101, 0, 0.08);
+  background: #141414; /* Pure neutral dark */
+  border: 1px solid rgba(255, 101, 0, 0.4);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -416,27 +338,30 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   display: inline-block;
   padding: 5px 14px;
   border-radius: 999px;
-  background: rgba(255, 101, 0, 0.1);
+  background: rgba(255, 101, 0, 0.15);
+  border: 1px solid rgba(255, 101, 0, 0.3);
   color: $orange;
-  font: 700 11px $technical;
+  font-family: $technical;
+  font-size: 0.74rem;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .cta-title {
-  margin: 0 0 10px;
-  font: 700 2.4rem/1.1 $display;
+  margin: 0 0 12px;
+  font: 700 clamp(1.8rem, 4vw, 2.6rem)/1.1 $display;
   letter-spacing: 0.02em;
-  color: $black;
+  color: #ffffff;
 }
 
 .cta-desc {
   margin: 0 0 24px;
   max-width: 480px;
-  color: $muted;
+  color: #a3a3a3;
   font-family: $body;
-  font-size: 14px;
+  font-size: 0.92rem;
   line-height: 1.55;
 }
 
@@ -444,62 +369,47 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 15px 36px;
+  padding: 14px 36px;
   border-radius: 999px;
-  background: linear-gradient(135deg, $orange 0%, #ff7a00 100%);
+  background: $orange;
   color: white;
   font-family: $technical;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 0.92rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
   box-shadow: 0 8px 24px rgba(255, 101, 0, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: all 0.25s ease;
 
   &:hover {
-    transform: translateY(-3px) scale(1.02);
+    background: #ff7a00;
+    transform: translateY(-2px);
     box-shadow: 0 12px 32px rgba(255, 101, 0, 0.5);
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .dept-hero {
     padding: 120px 0 40px;
   }
   .dept-header-wrap {
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
   }
   .dept-badge {
-    width: 70px;
-    height: 70px;
-    font-size: 1.6rem;
-    border-radius: 14px;
+    width: 80px;
+    height: 80px;
+    font-size: 1.8rem;
+  }
+  .dept-meta {
+    gap: 20px;
   }
   .event-cards-grid {
     grid-template-columns: 1fr;
   }
   .dept-register-box {
-    padding: 28px 20px;
-  }
-  .cta-title {
-    font-size: 1.6rem;
-  }
-  .overall-register-btn {
-    width: 100%;
-    padding: 14px 20px;
-    font-size: 14px;
+    padding: 30px 20px;
   }
 }
 </style>
-
-<script>
-  const backLink = document.querySelector<HTMLAnchorElement>('.back-link');
-  backLink?.addEventListener('click', (e) => {
-    if (window.history.length > 1 && document.referrer && document.referrer.includes(window.location.host)) {
-      e.preventDefault();
-      window.history.back();
-    }
-  });
-</script>

@@ -172,9 +172,9 @@ body.intro-active {
 }
 
 .intro-main-title {
-  font-family: 'Orbitron', 'Rajdhani', sans-serif;
+  font-family: 'Rajdhani', sans-serif;
   font-size: clamp(18px, 2.8vw, 34px);
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.06em;
   color: #111116;
   line-height: 1.15;
@@ -531,11 +531,12 @@ function playBrandIntroAnimation() {
 
 function initIntro() {
     const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const overlay = document.getElementById('brand-intro-overlay');
     const lockupWrap = document.getElementById('introLockupWrap');
 
-    if (!isHomePage || document.documentElement.classList.contains('no-intro-overlay')) {
+    if (!isHomePage || reducedMotion || document.documentElement.classList.contains('no-intro-overlay')) {
         // Immediately remove overlay for subpages
         overlay?.remove();
         lockupWrap?.remove();

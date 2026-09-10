@@ -7,13 +7,13 @@ import { departments } from '@/data/departments';
   <ul class="nav-links" id="primary-links">
     <li><a href="/about">About</a></li>
     <li class="has-dropdown">
-      <a href="/#departments" class="dropdown-trigger">
+      <a href="/departments" class="dropdown-trigger">
         Departments <span class="caret" aria-hidden="true">▾</span>
       </a>
       <div class="dropdown-menu" role="menu">
-        <a href="/#departments" class="dropdown-item overview-item" role="menuitem">
+        <a href="/departments" class="dropdown-item overview-item" role="menuitem">
           <strong>All Departments</strong>
-          <small>Explore 7 Tracks & Events</small>
+          <small>Explore 8 Disciplines & 35+ Events</small>
         </a>
         <div class="dropdown-divider"></div>
         {departments.map((dept) => (
@@ -24,13 +24,14 @@ import { departments } from '@/data/departments';
         ))}
       </div>
     </li>
+    <li><a href="/events">Events</a></li>
     <li><a href="/schedule">Schedule</a></li>
     <li><a href="/faq">FAQ</a></li>
     <li><a href="/contact">Contact</a></li>
-    <li><a class="nav-cta" href="/register">Register · ₹250</a></li>
   </ul>
 </nav>
 <style lang="scss">
+@use "sass:color";
 @use '../../styles/variables' as *;
 .navbar { position: fixed; z-index: 100; top: 20px; left: 50%; transform: translateX(-50%); width: min(920px, calc(100% - 32px)); min-height: 54px; display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border: 1px solid rgba(255,255,255,.9); border-radius: 999px; background: rgba(255,255,255,.8); backdrop-filter: blur(24px); box-shadow: 0 4px 24px rgba(0,0,0,.08); transition: background .25s, box-shadow .25s; }
 .brand { display: inline-flex; align-items: center; gap: 8px; font: 700 14px/1 $technical; text-decoration: none; letter-spacing: .04em; white-space: nowrap; }
@@ -39,8 +40,6 @@ import { departments } from '@/data/departments';
 .nav-links { display: flex; align-items: center; gap: 2px; margin: 0; padding: 0; list-style: none; }
 .nav-links a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border-radius: 999px; font-size: 12.5px; line-height: 1; text-decoration: none; color: inherit; }
 .nav-links a:hover { background: rgba(0,0,0,.06); }
-.nav-links .nav-cta { color: white; background: $orange; font-weight: 700; box-shadow: 0 3px 14px $orange-glow; }
-.nav-links .nav-cta:hover { background: darken($orange, 4%); color: white; }
 
 .has-dropdown {
   position: relative;
@@ -197,7 +196,6 @@ import { departments } from '@/data/departments';
       overflow-y: auto;
     }
   }
-  .nav-links .nav-cta { justify-content: center; margin-top: 4px; }
 }
 </style>
 <script>

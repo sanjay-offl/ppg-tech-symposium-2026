@@ -9,16 +9,35 @@ export interface Department {
   nonTechnicalEvents: string[];
 }
 
+export interface EventStage {
+  title: string;
+  description: string;
+}
+
+export interface ScoringItem {
+  label: string;
+  points: string;
+}
+
 export interface EventItem {
   name: string;
   slug: string;
   department: string;
+  departmentSlug: string;
   category: 'Technical' | 'Non-Technical';
   description: string;
+  concept?: string;
   venue: string;
   time: string;
+  duration?: string;
   teamSize: string;
+  format?: string;
   registrationStatus: 'Open' | 'Coming soon';
+  stages?: EventStage[];
+  rules?: string[];
+  scoring?: string[];
+  scoringBreakdown?: ScoringItem[];
+  themes?: string[];
 }
 
 export interface RegistrationPayload {
