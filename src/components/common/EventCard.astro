@@ -44,11 +44,19 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
   </div>
 
   {event.coordinators && event.coordinators.length > 0 && (
-    <div class="coord-box">
-      <span class="coord-title">Event Coordinators</span>
+    <div class="card-coordinators">
+      <div class="coord-label">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <span>Event Coordinators</span>
+      </div>
       <div class="coord-list">
         {event.coordinators.map((coord) => (
-          <span class="coord-item">{coord}</span>
+          <span class="coord-tag">{coord}</span>
         ))}
       </div>
     </div>
@@ -178,6 +186,51 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
   white-space: nowrap;
 }
 
+.card-coordinators {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  background: #f8f9fa;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+.coord-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: $technical;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: $orange;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.coord-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.coord-tag {
+  font-family: $technical;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #111827;
+  background: #ffffff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(10, 10, 10, 0.1);
+  line-height: 1.35;
+}
+
 .card-actions {
   display: flex;
   gap: 10px;
@@ -242,38 +295,7 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
   }
 }
 
-.coord-box {
-  margin-bottom: 14px;
-  padding: 8px 12px;
-  background: #fff9f5;
-  border: 1px dashed rgba(255, 101, 0, 0.35);
-  border-radius: 8px;
-}
 
-.coord-title {
-  display: block;
-  font-family: $technical;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: $orange;
-  margin-bottom: 4px;
-}
-
-.coord-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.coord-item {
-  font-family: $technical;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  letter-spacing: 0.02em;
-}
 
 @media (max-width: 480px) {
   .event-card {
