@@ -151,7 +151,34 @@ const mapQuery = encodeURIComponent(`${siteConfig.institution}, ${siteConfig.add
 }
 .venue p { margin: 12px 0 0; color: $muted; line-height: 1.7; }
 .venue-content { display: grid; grid-template-columns: minmax(220px, .8fr) 1.2fr; gap: 24px; align-items: start; }
-.venue-maps-link { justify-self: start; margin-top: 12px; }
+.venue-maps-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 26px;
+  border-radius: 999px;
+  background: $orange !important;
+  color: #ffffff !important;
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  box-shadow: 0 6px 20px rgba(255, 101, 0, 0.35);
+  justify-self: start;
+  margin-top: 16px;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #ff7a00 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(255, 101, 0, 0.45);
+  }
+}
 @media (max-width: 700px) {
   .contact-hero-grid { grid-template-columns: 1fr; gap: 30px; }
   .contact-hero-grid p { margin: 0; }

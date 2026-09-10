@@ -266,9 +266,9 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 .event-concept-lead {
   max-width: 800px;
   font-family: $body;
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   line-height: 1.65;
-  color: #d4d4d4;
+  color: #ffffff;
   margin: 0 0 32px;
 }
 
@@ -296,16 +296,16 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 
 .spec-label {
   font-family: $technical;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #888888;
+  color: #d4d4d4;
 }
 
 .spec-value {
   font-family: $technical;
-  font-size: 0.98rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #ffffff;
   letter-spacing: 0.03em;
@@ -337,7 +337,7 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 /* Main Content Grid */
 .event-body-section {
   padding: 70px 0 100px;
-  background: #0a0a0a; /* Pure neutral black */
+  background: #f5f5f7; /* Crisp white/light surface */
 }
 
 .event-grid-layout {
@@ -355,16 +355,17 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 
 .content-block {
   padding: 32px;
-  background: #141414; /* Pure neutral dark */
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff; /* Clean white card */
+  border: 1px solid rgba(10, 10, 10, 0.08);
   border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
 }
 
 .block-title {
   margin: 0 0 24px;
   font: 700 clamp(1.6rem, 3vw, 2.2rem)/1 $display;
   letter-spacing: 0.02em;
-  color: #ffffff;
+  color: #0a0a0a;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -373,7 +374,7 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
     content: '';
     flex: 1;
     height: 1px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(10, 10, 10, 0.08);
   }
 }
 
@@ -389,8 +390,8 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   align-items: flex-start;
   gap: 18px;
   padding: 20px;
-  background: #1c1c1c;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #f8f8fa;
+  border: 1px solid rgba(10, 10, 10, 0.06);
   border-radius: 12px;
 }
 
@@ -398,7 +399,7 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   flex-shrink: 0;
   padding: 6px 12px;
   border-radius: 8px;
-  background: rgba(255, 101, 0, 0.15);
+  background: rgba(255, 101, 0, 0.12);
   border: 1px solid rgba(255, 101, 0, 0.3);
   color: $orange;
   font-family: $technical;
@@ -412,16 +413,16 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   font-family: $technical;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #0a0a0a;
   margin: 0 0 6px;
   letter-spacing: 0.02em;
 }
 
 .stage-desc {
   font-family: $body;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: #b5b5b5;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: #1a1a1a;
   margin: 0;
 }
 
@@ -436,9 +437,10 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 
 .theme-item {
   font-family: $body;
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: #d4d4d4;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #1a1a1a;
+  font-weight: 500;
   padding: 4px 0;
 }
 
@@ -456,9 +458,10 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   position: relative;
   padding-left: 24px;
   font-family: $body;
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: #d4d4d4;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #1a1a1a;
+  font-weight: 500;
 
   &::before {
     content: '➔';
@@ -481,9 +484,10 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 
 .sidebar-card {
   padding: 24px;
-  background: #141414; /* Pure neutral dark */
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff; /* Crisp white card */
+  border: 1px solid rgba(10, 10, 10, 0.08);
   border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
 }
 
 .sidebar-title {
@@ -493,9 +497,9 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #0a0a0a;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(10, 10, 10, 0.08);
 }
 
 .breakdown-list {
@@ -508,14 +512,15 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 0;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(10, 10, 10, 0.1);
 }
 
 .breakdown-label {
   font-family: $body;
-  font-size: 0.85rem;
-  color: #a3a3a3;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a1a1a;
 }
 
 .breakdown-pts {
@@ -526,8 +531,9 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 }
 
 .register-side-card {
-  background: #181818;
-  border: 1px solid rgba(255, 101, 0, 0.35);
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 101, 0, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 
@@ -552,9 +558,9 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 
 .reg-card-copy {
   font-family: $body;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: #a3a3a3;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #d4d4d4;
   margin: 0 0 20px;
 }
 
@@ -584,40 +590,53 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 .secure-badge {
   margin-top: 14px;
   font-family: $technical;
-  font-size: 0.72rem;
-  color: #737373;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #a3a3a3;
   letter-spacing: 0.04em;
 }
 
+.summary-card {
+  border-top: 3.5px solid $orange;
+}
+
 .summary-heading {
-  margin: 0 0 14px;
+  margin: 0 0 16px;
   font-family: $technical;
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 1.05rem;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #ffffff;
+  color: #0a0a0a;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.08);
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+
+  &:last-child {
+    border-bottom: none;
+  }
 
   .s-label {
     font-family: $technical;
-    font-size: 0.75rem;
-    color: #737373;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #374151;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
   .s-val {
-    font-family: $body;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: #e5e5e5;
+    font-family: $technical;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #0a0a0a;
   }
 }
 

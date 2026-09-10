@@ -5,12 +5,14 @@ const { department } = Astro.props as { department: Department };
 <a href={`/departments/${department.slug}`} class="department-card-link">
   <article class="department-card">
     <div class="dept-card-header">
-      {department.image && !department.image.includes('retouch_') ? (
+      {department.image ? (
         <div class="dept-logo-badge">
           <img src={department.image} alt={`${department.name} Logo`} class="dept-logo-img" />
         </div>
       ) : (
-        <span class="dept-abbr-badge">{department.abbr}</span>
+        <div class="dept-abbr-badge">
+          <span>{department.abbr}</span>
+        </div>
       )}
     </div>
     <h3 class="department-name">{department.name}</h3>
@@ -50,11 +52,11 @@ const { department } = Astro.props as { department: Department };
   overflow: hidden;
   padding: 0 28px 28px;
   border-radius: 18px;
-  color: #ffffff;
-  background: #141414; /* Pure neutral dark */
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #0a0a0a;
+  background: #ffffff; /* Crisp white card */
+  border: 1px solid rgba(10, 10, 10, 0.08);
   border-top: 4px solid $orange;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
   transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
               background 350ms ease,
               border-color 350ms ease,
@@ -66,57 +68,56 @@ const { department } = Astro.props as { department: Department };
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 26px 0 14px;
-  height: 90px;
+  padding: 24px 0 10px;
+  height: 106px;
 }
 
+.dept-logo-badge,
 .dept-abbr-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 76px;
-  height: 44px;
-  padding: 0 18px;
-  border-radius: 999px;
-  background: rgba(255, 101, 0, 0.12);
-  border: 1px solid rgba(255, 101, 0, 0.35);
-  color: $orange;
-  font: 900 1.15rem/1 $technical;
-  letter-spacing: 0.08em;
-  transition: all 0.3s ease;
+  width: 76px;
+  height: 76px;
+  border-radius: 18px;
+  box-sizing: border-box;
+  padding: 8px;
+  background: #ffffff !important; /* Pure white background for all logos */
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dept-logo-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 74px;
-  height: 74px;
-  padding: 8px;
-  border-radius: 18px;
-  background: #1c1c1c;
-  border: 1px solid rgba(255, 101, 0, 0.3);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1.5px solid rgba(10, 10, 10, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.dept-abbr-badge {
+  border: 1.5px solid rgba(255, 101, 0, 0.4);
+  color: $orange;
+  font: 900 1.25rem/1 $technical;
+  letter-spacing: 0.06em;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
 }
 
 .dept-logo-img {
   width: 100%;
   height: 100%;
+  max-width: 60px;
+  max-height: 60px;
   object-fit: contain;
-  filter: drop-shadow(0 3px 6px rgba(255, 101, 0, 0.3));
+  display: block;
   transition: transform 0.35s ease;
 }
 
 .department-name {
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   padding: 0 4px;
-  color: #ffffff;
-  font: 700 1.1rem/1.25 $technical;
+  color: #0a0a0a;
+  font: 700 1.15rem/1.25 $technical;
   letter-spacing: .03em;
   text-align: center;
   text-transform: uppercase;
-  min-height: 3.2rem;
+  min-height: 2.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -131,15 +132,15 @@ const { department } = Astro.props as { department: Department };
 
 .event-group {
   position: relative;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .event-group small {
   display: flex;
   align-items: center;
   gap: 7px;
-  color: #888888;
-  font-size: .68rem;
+  color: $orange;
+  font-size: .72rem;
   font-weight: 700;
   font-family: $technical;
   letter-spacing: .1em;
@@ -150,21 +151,22 @@ const { department } = Astro.props as { department: Department };
   content: '';
   flex: 1;
   height: 1px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(10, 10, 10, 0.08);
 }
 
 .event-group ul {
   display: grid;
-  gap: 10px;
+  gap: 9px;
   margin: 10px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .event-group li {
-  color: #cccccc;
+  color: #171717;
+  font-weight: 500;
   font-family: $body;
-  font-size: .84rem;
+  font-size: .86rem;
   line-height: 1.5;
   padding: 2px 0;
 }
@@ -179,11 +181,11 @@ const { department } = Astro.props as { department: Department };
 .card-action {
   margin-top: auto;
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(10, 10, 10, 0.08);
   color: $orange;
   font-family: $technical;
   font-weight: 700;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   letter-spacing: 0.06em;
   text-align: center;
   text-transform: uppercase;
@@ -195,10 +197,17 @@ const { department } = Astro.props as { department: Department };
 .department-card:focus-within,
 .department-card:active {
   transform: translateY(-4px);
-  background: #1a1a1a;
   border-color: $orange;
   border-top-color: $orange;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.8), 0 0 0 1px $orange;
+  box-shadow: 0 16px 36px rgba(255, 101, 0, 0.16);
+
+  .dept-logo-img {
+    transform: scale(1.06);
+  }
+
+  .dept-logo-badge {
+    border-color: $orange;
+  }
 }
 
 /* MOBILE STYLES */

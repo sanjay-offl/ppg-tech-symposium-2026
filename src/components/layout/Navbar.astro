@@ -28,7 +28,6 @@ import { departments } from '@/data/departments';
     <li><a href="/schedule">Schedule</a></li>
     <li><a href="/faq">FAQ</a></li>
     <li><a href="/contact">Contact</a></li>
-    <li><a class="nav-cta" href="/register">Register Now</a></li>
   </ul>
 </nav>
 <style lang="scss">
@@ -41,8 +40,6 @@ import { departments } from '@/data/departments';
 .nav-links { display: flex; align-items: center; gap: 2px; margin: 0; padding: 0; list-style: none; }
 .nav-links a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border-radius: 999px; font-size: 12.5px; line-height: 1; text-decoration: none; color: inherit; }
 .nav-links a:hover { background: rgba(0,0,0,.06); }
-.nav-links .nav-cta { color: white; background: $orange; font-weight: 700; box-shadow: 0 3px 14px $orange-glow; }
-.nav-links .nav-cta:hover { background: color.adjust($orange, $lightness: -4%); color: white; }
 
 .has-dropdown {
   position: relative;
@@ -199,7 +196,6 @@ import { departments } from '@/data/departments';
       overflow-y: auto;
     }
   }
-  .nav-links .nav-cta { justify-content: center; margin-top: 4px; }
 }
 </style>
 <script>

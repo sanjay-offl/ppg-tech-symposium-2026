@@ -59,10 +59,11 @@ const formatDetails = [
   flex-direction: column;
   height: 100%;
   padding: 24px;
-  background: #141414; /* Pure neutral dark black */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff; /* Crisp white card */
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  border-top: 3.5px solid $orange;
   border-radius: 16px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
               border-color 0.25s ease,
               box-shadow 0.25s ease;
@@ -72,7 +73,7 @@ const formatDetails = [
   &:hover {
     transform: translateY(-4px);
     border-color: $orange;
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 16px 36px rgba(255, 101, 0, 0.16);
   }
 }
 
@@ -95,23 +96,29 @@ const formatDetails = [
   font-size: 1.55rem;
   letter-spacing: 0.03em;
   line-height: 1.1;
-  color: #ffffff;
+  color: #0a0a0a;
   margin: 0;
 }
 
 .dept-badge {
   font-family: $technical;
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: #a3a3a3;
-  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: $orange;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255, 101, 0, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  width: fit-content;
 }
 
 .card-body {
   font-family: $body;
   font-size: 0.88rem;
   line-height: 1.55;
-  color: #b5b5b5;
+  color: #1a1a1a;
+  font-weight: 450;
   margin: 0 0 16px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -125,13 +132,14 @@ const formatDetails = [
   align-items: center;
   gap: 8px;
   padding: 10px 12px;
-  background: #1c1c1c;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: #f8f8fa;
+  border: 1px solid rgba(10, 10, 10, 0.08);
   border-radius: 8px;
   margin-bottom: 18px;
   font-family: $technical;
   font-size: 0.78rem;
-  color: #e5e5e5;
+  font-weight: 700;
+  color: #0a0a0a;
   letter-spacing: 0.03em;
 }
 
@@ -160,8 +168,8 @@ const formatDetails = [
   gap: 6px;
   padding: 10px 14px;
   border-radius: 10px;
-  background: #222222;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #0a0a0a;
+  border: 1px solid #0a0a0a;
   color: #ffffff;
   font-family: $technical;
   font-size: 0.82rem;
@@ -176,8 +184,8 @@ const formatDetails = [
   }
 
   &:hover {
-    background: #2a2a2a;
-    border-color: rgba(255, 255, 255, 0.3);
+    background: $orange;
+    border-color: $orange;
     color: #ffffff;
 
     svg {
