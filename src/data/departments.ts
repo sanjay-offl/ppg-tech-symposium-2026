@@ -7,7 +7,7 @@ export const departments: Department[] = [
     abbr: 'AI/DS',
     image: '/images/departments/ai-ds-logo.png',
     email: 'aidsppgit@gmail.com',
-    coordinators: ['Rahul Krishnith', 'Sudhakar'],
+    coordinators: ['Rahul Krishnith — 9876543212', 'Sudhakar — 9876543213'],
     technicalEvents: ['Technology Casino', 'Code Breakers', 'Idea Presentation'],
     nonTechnicalEvents: ['Memory Lens', 'Stumble Guys']
   },
@@ -17,7 +17,7 @@ export const departments: Department[] = [
     abbr: 'IT',
     image: '/images/departments/it-logo.png',
     email: 'techtitansppg@gmail.com',
-    coordinators: ['Deeksha', 'Abhishek'],
+    coordinators: ['Deeksha — 9876543222', 'Abhishek — 9876543223'],
     technicalEvents: ['AI: Spin and Solve', 'TechQuest: The Blind Tech Labyrinth', 'Blind Build'],
     nonTechnicalEvents: ['eFootball Mobile Tournament', 'AdRush'],
     registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSc7_-3VZCzi3lsqOCBi8-TDE1a5iiY89Flo_TziXkYFtVCaQw/viewform?usp=publish-editor'
@@ -28,7 +28,7 @@ export const departments: Department[] = [
     abbr: 'MECH',
     image: '/images/departments/MECH.png',
     email: 'mohanm.it@ppg.edu.in',
-    coordinators: ['Aravind Samy', 'Thanaraj'],
+    coordinators: ['Aravind Samy — 9876543224', 'Thanaraj — 9876543225'],
     technicalEvents: ['CAD Designing', 'Mr. Mechanic', 'Reverse Engineering Sketch', 'Paper Presentation'],
     nonTechnicalEvents: ['Creative Ad', 'Emoji Decode'],
     registrationUrl: 'https://forms.gle/NxqhVtV6MmcmBpHNA'
@@ -39,7 +39,7 @@ export const departments: Department[] = [
     abbr: 'ECE',
     image: '/images/departments/ECE.png',
     email: 'electrosparks2024@gmail.com',
-    coordinators: ['Nakshatra', 'Subagaanthan'],
+    coordinators: ['Nakshatra — 9876543220', 'Subagaanthan — 9876543221'],
     technicalEvents: ['Circuit Crime Scene', 'PPT and Paper Presentation', 'Reverse Engineering'],
     nonTechnicalEvents: ['ECE Escape Room', 'IPL Auction']
   },
@@ -49,7 +49,7 @@ export const departments: Department[] = [
     abbr: 'AGRI',
     image: '/images/departments/agri-logo.png',
     email: 'agrowingz.ppgit@gmail.com',
-    coordinators: ['Rakshana', 'Saranya'],
+    coordinators: ['Rakshana — 9876543210', 'Saranya — 9876543211'],
     technicalEvents: ['Farm Tech (Paper Presentation)', 'Craft (CAD Design Challenge)', 'Agri Vista (Poster Presentation)'],
     nonTechnicalEvents: ['Clue Clash (Imposter)', 'Agri Canvas (Poster Making)']
   },
@@ -59,10 +59,10 @@ export const departments: Department[] = [
     abbr: 'CSE',
     image: '/images/departments/cse-logo.png',
     email: 'cyberzen2k25@gmail.com',
-    coordinators: ['Nitheesh', 'Dhanu Shree'],
-    technicalEvents: ['VibeCode Clash', 'Circuit Breaker', 'Prompt War'],
-    nonTechnicalEvents: ['Apex Quiz Challenge', 'Memory Master'],
-    registrationUrl: 'https://forms.gle/ofmENiDuVkfGZvbf9'
+    coordinators: ['Nitheesh — 9876543218', 'Dhanu Shree — 9876543219'],
+    technicalEvents: ['Vibe Coding', 'Prompt War', 'Output Hunt'],
+    nonTechnicalEvents: ['Chess Arena', 'Movie Mania'],
+    registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSe0TS5zT-kZtP3mGnpqDjE1pge9WYkoduJCkxCXMHMjGTZ43w/viewform?pli=1'
   },
   {
     name: 'Biomedical Engineering',
@@ -70,7 +70,7 @@ export const departments: Department[] = [
     abbr: 'BME',
     image: '/images/departments/bme.png',
     email: 'hodbiomedppgit@gmail.com',
-    coordinators: ['Krishna Kumar', 'Ashwini'],
+    coordinators: ['Krishna Kumar — 9876543216', 'Ashwini — 9876543217'],
     technicalEvents: ['InnoVision', 'Idea Hub', 'Technical Quiz'],
     nonTechnicalEvents: ['BIOSCOPE', 'Guess the organs']
   },
@@ -80,7 +80,7 @@ export const departments: Department[] = [
     abbr: 'AI/ML',
     image: '/images/departments/ai-ml-logo.png',
     email: 'aispartanz.ppg.it@gmail.com',
-    coordinators: ['Vyas', 'Akash'],
+    coordinators: ['Vyas — 9876543214', 'Akash — 9876543215'],
     technicalEvents: ['IDEA2PROTOTYPE', 'PROMPT2PIXEL', 'Web Redesign'],
     nonTechnicalEvents: ['AI Shortfilm', 'MemeRush']
   }

@@ -1145,8 +1145,8 @@ export const events: EventItem[] = [
   // CSE, BME, AI-ML DEPARTMENTS (Remaining Departments)
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   {
-    name: 'VibeCode Clash',
-    slug: 'vibecode-clash',
+    name: 'Vibe Coding',
+    slug: 'vibe-coding',
     department: 'Computer Science & Engineering',
     departmentSlug: 'cse',
     category: 'Technical',
@@ -1156,33 +1156,14 @@ export const events: EventItem[] = [
     time: '10:00 AM onwards',
     teamSize: '1 - 2 Members',
     registrationStatus: 'Open',
-    concept: 'An intense competitive programming battle testing algorithmic problem-solving speed and code efficiency.',
-    description: 'Speed coding contest with algorithmic problems across strings, arrays, dynamic programming, and data structures.',
+    concept: 'An intense competitive programming battle testing algorithmic problem-solving speed, creativity, and coding flow.',
+    description: 'Speed coding contest with algorithmic problems across data structures, logic puzzles, and code efficiency.',
     stages: [
       { title: 'Round 1 — Warmup', description: 'Solve fundamental data structures and logic puzzles.' },
-      { title: 'Round 2 — Speed Hack', description: 'Speed implementation of algorithmic challenges with strict runtime bounds.' }
+      { title: 'Round 2 — Speed Hack', description: 'Speed implementation of algorithmic challenges under strict time bounds.' }
     ],
-    rules: ['Individual or 2-member teams.', 'Languages: C++, Java, Python.', 'Plagiarism leads to disqualification.']
-  },
-  {
-    name: 'Circuit Breaker',
-    slug: 'circuit-breaker',
-    department: 'Computer Science & Engineering',
-    departmentSlug: 'cse',
-    category: 'Technical',
-    format: 'Team (2 members)',
-    duration: '45 minutes',
-    venue: 'CSE Lab 2',
-    time: '11:00 AM onwards',
-    teamSize: '2 Members',
-    registrationStatus: 'Open',
-    concept: 'Debugging and logic puzzle challenge to break down complex code bugs and fix algorithm flaws.',
-    description: 'Code auditing and debugging sprint where teams inspect corrupted codebases to patch syntax and logical bugs.',
-    stages: [
-      { title: 'Stage 1 — Bug Bounty', description: 'Identify and fix syntax, memory, and logical flaws.' },
-      { title: 'Stage 2 — Optimization', description: 'Refactor working code for optimal time and space complexity.' }
-    ],
-    rules: ['No external code lookup or generative AI tools allowed.', 'Scored on bugs fixed and execution time.']
+    rules: ['Individual or 2-member teams allowed.', 'Languages: C++, Java, Python, JavaScript.', 'Plagiarism or unauthorized lookup leads to disqualification.'],
+    coordinators: ['Nitheesh', 'Dhanu Shree']
   },
   {
     name: 'Prompt War',
@@ -1193,56 +1174,80 @@ export const events: EventItem[] = [
     format: 'Individual or Team (1 to 2 members)',
     duration: '45 minutes',
     venue: 'CSE Smart Lab',
+    time: '11:30 AM onwards',
+    teamSize: '1 - 2 Members',
+    registrationStatus: 'Open',
+    concept: 'Craft precise AI prompts to generate high-performing code, algorithms, and digital assets under time limits.',
+    description: 'Prompt engineering duel challenging participants to elicit deterministic outputs, accurate code, and assets from AI models.',
+    stages: [
+      { title: 'Round 1 — Text & Code Synthesis', description: 'Prompt an LLM to generate precise algorithms passing specific test cases.' },
+      { title: 'Round 2 — Asset & Logic Prompting', description: 'Direct generative models to produce target structures with minimal deviation.' }
+    ],
+    rules: ['Allowed AI tools announced on spot.', 'Scored on target match fidelity and prompt efficiency.', 'Participants must submit final text prompts alongside outputs.'],
+    coordinators: ['Nitheesh', 'Dhanu Shree']
+  },
+  {
+    name: 'Output Hunt',
+    slug: 'output-hunt',
+    department: 'Computer Science & Engineering',
+    departmentSlug: 'cse',
+    category: 'Technical',
+    format: 'Individual or Team (1 to 2 members)',
+    duration: '45 minutes',
+    venue: 'CSE Lab 2',
     time: '01:30 PM onwards',
     teamSize: '1 - 2 Members',
     registrationStatus: 'Open',
-    concept: 'Craft precise AI prompts to generate high-performing code, images, and creative tech assets under time limits.',
-    description: 'Prompt engineering duel challenging participants to elicit deterministic outputs and working apps from LLMs.',
+    concept: 'A reverse code evaluation and debugging challenge where participants trace complex code snippets to predict or achieve exact target outputs.',
+    description: 'Code auditing and output prediction contest testing deep language mechanics, dry-running skills, and bug hunting.',
     stages: [
-      { title: 'Round 1 — Text & Code Synthesis', description: 'Prompt an LLM to generate precise algorithms passing specific unit tests.' },
-      { title: 'Round 2 — Visual Asset Prompting', description: 'Direct generative models to reproduce target visual styles with minimal deviation.' }
+      { title: 'Round 1 — Code Snippet Trace', description: 'Determine the exact output of tricky code snippets across various programming constructs.' },
+      { title: 'Round 2 — Reverse Output Challenge', description: 'Modify or fix corrupted code blocks to yield target expected outputs.' }
     ],
-    rules: ['Allowed models announced on spot.', 'Scored on target match fidelity and prompt efficiency.']
+    rules: ['No compilers or external code execution tools during dry-running rounds.', 'Fastest accurate submission wins.', 'Individual or 2-member team participation.'],
+    coordinators: ['Nitheesh', 'Dhanu Shree']
   },
   {
-    name: 'Apex Quiz Challenge',
-    slug: 'apex-quiz-challenge',
-    department: 'Computer Science & Engineering',
-    departmentSlug: 'cse',
-    category: 'Non-Technical',
-    format: 'Team (2 members)',
-    duration: '45 minutes',
-    venue: 'CSE Seminar Hall',
-    time: '11:30 AM onwards',
-    teamSize: '2 Members',
-    registrationStatus: 'Open',
-    concept: 'High-energy tech trivia, pop culture, and general knowledge quiz tournament.',
-    description: 'Trivia contest testing awareness across tech titans, modern science, gaming, and global digital culture.',
-    stages: [
-      { title: 'Stage 1 — Written Prelims', description: '20 rapid-fire questions to qualify top 6 teams.' },
-      { title: 'Stage 2 — Buzzer Final', description: 'Multi-round buzzer showdown with visual and audio clues.' }
-    ],
-    rules: ['2 members per team.', 'Negative marks for incorrect buzzer responses in final round.']
-  },
-  {
-    name: 'Memory Master',
-    slug: 'memory-master',
+    name: 'Chess Arena',
+    slug: 'chess-arena',
     department: 'Computer Science & Engineering',
     departmentSlug: 'cse',
     category: 'Non-Technical',
     format: 'Individual',
-    duration: '30 minutes',
-    venue: 'CSE Classroom 3',
-    time: '02:00 PM onwards',
+    duration: 'Rapid / Blitz Rounds',
+    venue: 'CSE Seminar Hall',
+    time: '11:00 AM onwards',
     teamSize: 'Individual',
     registrationStatus: 'Open',
-    concept: 'Put your short-term memory, pattern recognition, and focus to the ultimate test.',
-    description: 'Memory agility battle challenging participants to memorize flash sequences, numbers, and layout grids.',
+    concept: 'A strategic chess tournament testing tactical foresight, positioning, and blitz speed under pressure.',
+    description: 'Competitive rapid/blitz chess tournament following standard FIDE rules across knockout elimination brackets.',
     stages: [
-      { title: 'Round 1 — Grid Recall', description: 'Recall patterns from fleeting 5-second flashes.' },
-      { title: 'Round 2 — Sequence Blitz', description: 'Reconstruct long alphanumeric sequences under countdown pressure.' }
+      { title: 'Stage 1 — Swiss / Knockout Rounds', description: 'Timed rapid matches to determine top seeds.' },
+      { title: 'Stage 2 — Final Showdown', description: 'Championship blitz match for the title.' }
     ],
-    rules: ['No pen and paper allowed during display intervals.', 'Fastest correct response wins.']
+    rules: ['Standard FIDE chess rules apply.', 'Touch-move rule strictly enforced.', 'Chess clocks used; time control announced before each round.'],
+    coordinators: ['Nitheesh', 'Dhanu Shree']
+  },
+  {
+    name: 'Movie Mania',
+    slug: 'movie-mania',
+    department: 'Computer Science & Engineering',
+    departmentSlug: 'cse',
+    category: 'Non-Technical',
+    format: 'Individual or Team (1 to 2 members)',
+    duration: '45 minutes',
+    venue: 'CSE Classroom 3',
+    time: '02:00 PM onwards',
+    teamSize: '1 - 2 Members',
+    registrationStatus: 'Open',
+    concept: 'High-energy cinema and entertainment trivia challenge covering blockbuster movies, soundtrack connections, and iconic scenes.',
+    description: 'Fun media quiz testing movie knowledge, dialogue identification, scene connections, and pop culture memory.',
+    stages: [
+      { title: 'Round 1 — Scene & Audio Clues', description: 'Identify movies from audio clips, dialogues, and still frames.' },
+      { title: 'Round 2 — Rapid Connection', description: 'Connect actor filmographies, plot twists, and hidden cinema clues.' }
+    ],
+    rules: ['1 or 2 members per team.', 'No electronic devices or internet searches allowed during trivia rounds.', 'Fastest response with highest score wins.'],
+    coordinators: ['Nitheesh', 'Dhanu Shree']
   },
   {
     name: 'InnoVision',
