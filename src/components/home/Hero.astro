@@ -1,21 +1,33 @@
 ---
 import { siteConfig } from '@/data/config';
 import CountdownTimer from './CountdownTimer.astro';
+import HeroSlideshow from './HeroSlideshow.astro';
 ---
 <section class="hero" id="home">
-  <div class="hero-car">
-    <img src="/images/hero-car.png" alt="Orange and black Formula-style race car" fetchpriority="high" />
-  </div>
-  <div class="hero-content container">
-    <p class="eyebrow">National Level Technical Symposium</p>
-    <h1>VIYU<span>GAM</span></h1>
-    <div class="year">2K26</div>
-    <CountdownTimer />
-    <p class="date">{siteConfig.date.toUpperCase()}</p>
-    <p class="meta">{siteConfig.institution}, {siteConfig.location}<br />40+ Events · 8 Departments · Cash Prizes</p>
-    <div class="hero-actions">
-      <a class="button" href="/register">Register Now</a>
-      <a class="button button--ghost" href="/departments">Explore Departments & Events <span aria-hidden="true">→</span></a>
+  <!-- Animated background blobs -->
+  <div class="blob blob--1" aria-hidden="true"></div>
+  <div class="blob blob--2" aria-hidden="true"></div>
+
+  <div class="container hero-container">
+    <!-- LEFT: Carousel -->
+    <div class="hero-slideshow-col">
+      <HeroSlideshow showLabel={false} />
+    </div>
+
+    <!-- RIGHT: Content -->
+    <div class="hero-content">
+      <p class="eyebrow anim-fadeinup" style="--anim-delay:0ms">National Level Technical Symposium</p>
+      <h1 class="anim-fadeinup" style="--anim-delay:150ms">VIYU<span>GAM</span></h1>
+      <div class="year anim-fadeinup" style="--anim-delay:250ms">2K26</div>
+      <div class="anim-fadeinup" style="--anim-delay:400ms">
+        <CountdownTimer />
+      </div>
+      <p class="date anim-fadeinup" style="--anim-delay:550ms">{siteConfig.date.toUpperCase()}</p>
+      <p class="meta anim-fadeinup" style="--anim-delay:550ms">{siteConfig.institution}, {siteConfig.location}<br />40+ Events · 8 Departments · Cash Prizes</p>
+      <div class="hero-actions anim-fadeinup" style="--anim-delay:700ms">
+        <a class="button button--primary" href="/register" id="hero-register-btn">Register Now</a>
+        <a class="button button--ghost" href="/departments" id="hero-explore-btn">Explore Departments &amp; Events <span class="arrow-icon" aria-hidden="true">→</span></a>
+      </div>
     </div>
   </div>
   <div class="hero-line" aria-hidden="true"></div>
@@ -24,26 +36,126 @@ import CountdownTimer from './CountdownTimer.astro';
 <style lang="scss">
 @use '../../styles/variables' as *;
 
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════ */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  from { transform: translate(0px, 0px); }
+  to   { transform: translate(20px, 15px); }
+}
+
+.anim-fadeinup {
+  opacity: 0;
+  animation: fadeInUp var(--anim-dur, 550ms) cubic-bezier(0.22, 1, 0.36, 1) var(--anim-delay, 0ms) both;
+}
+
+/* ═══════════════════════════════════════════════
+   BLOBS
+   ═══════════════════════════════════════════════ */
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob--1 {
+  width: 420px;
+  height: 420px;
+  top: -60px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+  animation: float 8s ease-in-out infinite alternate;
+}
+
+.blob--2 {
+  width: 320px;
+  height: 320px;
+  bottom: -40px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(249,115,22,0.05) 0%, transparent 70%);
+  animation: float 10s ease-in-out infinite alternate-reverse;
+}
+
+/* ═══════════════════════════════════════════════
+   HERO SECTION
+   ═══════════════════════════════════════════════ */
+
 .hero {
   position: relative;
-  min-height: min(880px, 100vh);
+  /* ISSUE 1 FIX: tight top padding, vertically centered content */
+  min-height: calc(100vh - 72px);
+  padding: 40px 0 48px;
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
   background: #ffffff;
 }
 
-.hero-content {
+/* ═══════════════════════════════════════════════
+   ISSUE 2 FIX: two-column flex, both columns same midpoint
+   ═══════════════════════════════════════════════ */
+
+.hero-container {
   position: relative;
   z-index: 2;
-  margin-left: auto;
-  padding: 110px 3vw 64px 48%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;           /* ← both columns share vertical midpoint */
+  justify-content: space-between;
+  gap: clamp(32px, 5vw, 64px);
+  width: 100%;
 }
+
+.hero-slideshow-col {
+  flex: 0 0 auto;
+  width: 480px;
+  max-width: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* ISSUE 2B: Slide-in entrance animation */
+  animation: slideInLeft 700ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 560px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  /* ISSUE 2 FIX: no extra top margin/padding pushing it down */
+  margin: 0;
+  padding: 0 8px;
+
+  > *:first-child { margin-top: 0 !important; }
+}
+
+/* ═══════════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════════ */
 
 .eyebrow {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin: 0 0 4px;
+  padding: 0;
   color: $orange;
   font-size: .7rem;
   font-weight: 700;
@@ -55,92 +167,154 @@ import CountdownTimer from './CountdownTimer.astro';
     width: 26px;
     height: 2px;
     background: $orange;
+    flex-shrink: 0;
   }
 }
 
 .hero h1 {
-  margin: 16px 0 0;
-  font: clamp(6rem, 12vw, 10rem)/.82 $display;
+  margin: 0;
+  font: clamp(4.5rem, 8.5vw, 7.8rem)/.85 $display;
   letter-spacing: .01em;
 
-  span {
-    color: $orange;
-  }
+  span { color: $orange; }
 }
 
 .year {
-  margin: 14px 0 32px;
-  color: rgba(10, 10, 10, .11);
-  font: clamp(3rem, 5vw, 5rem) $display;
+  margin: 4px 0 20px;
+  color: $orange;
+  font: clamp(2.4rem, 4.2vw, 3.8rem)/1 $display;
   letter-spacing: .08em;
+  font-weight: 700;
 }
 
 .date {
   margin: 0 0 5px;
-  font: 700 1.25rem $technical;
+  font: 700 1.2rem $technical;
   letter-spacing: .08em;
 }
 
 .meta {
+  margin: 0;
   color: $muted;
   font-size: .85rem;
   line-height: 1.7;
 }
 
+/* ═══════════════════════════════════════════════
+   ISSUE 5E: CTA BUTTON ANIMATIONS
+   ═══════════════════════════════════════════════ */
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 30px;
+  gap: 12px;
+  margin-top: 24px;
 }
 
-.hero-car {
-  position: absolute;
-  z-index: 1;
-  bottom: -2%;
-  left: -2%;
-  width: clamp(540px, 52vw, 860px);
-  pointer-events: none;
+/* Primary register button hover lift */
+.button--primary {
+  background: $orange;
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: .9rem;
+  letter-spacing: .04em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.2s ease;
 
-  img {
-    width: 100%;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.18));
+  &:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);
+    background: darken(#f97316, 6%);
+  }
+
+  &:active { transform: scale(0.98); }
+}
+
+/* Ghost explore button — arrow shifts right on hover */
+.button--ghost {
+  background: transparent;
+  color: $black;
+  border: 1.5px solid rgba(10,10,10,0.18);
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: .9rem;
+  letter-spacing: .03em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    border-color: $orange;
+    color: $orange;
+  }
+
+  .arrow-icon {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover .arrow-icon {
+    transform: translateX(4px);
   }
 }
+
+/* ═══════════════════════════════════════════════
+   BOTTOM LINE
+   ═══════════════════════════════════════════════ */
 
 .hero-line {
   position: absolute;
   z-index: 3;
   bottom: 0;
-  width: 70%;
+  left: 0;
+  width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, $orange, transparent);
+  background: linear-gradient(90deg, $orange, rgba(255, 101, 0, 0.2) 60%, transparent);
 }
 
-@media (max-width: 760px) {
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .hero-slideshow-col {
+    width: 400px;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
   .hero {
     min-height: auto;
-    display: flex;
-    flex-direction: column;
-    padding-top: 60px;
+    padding: 36px 0 40px;
   }
 
-  .hero-car {
-    position: relative;
-    left: 0;
-    bottom: auto;
+  .hero-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .hero-slideshow-col {
+    order: 1;
     width: 100%;
-    max-width: 460px;
-    margin: 0 auto;
-    order: 0;
+    max-width: 360px;
   }
 
   .hero-content {
-    width: 100%;
-    padding: 20px 16px 64px;
+    order: 2;
+    align-items: center;
     text-align: center;
+    max-width: 100%;
+    padding: 0 16px;
   }
 
   .eyebrow {
@@ -150,9 +324,23 @@ import CountdownTimer from './CountdownTimer.astro';
   .hero-actions {
     justify-content: center;
   }
+}
 
-  .hero-line {
-    width: 100%;
+@media (max-width: 375px) {
+  .hero {
+    padding: 28px 0 32px;
   }
+
+  .hero h1 {
+    font-size: 3.8rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
 }
 </style>

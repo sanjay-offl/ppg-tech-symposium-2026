@@ -5,10 +5,12 @@ gsap.registerPlugin(ScrollTrigger);
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const animationContext = gsap.context(() => {
     const hasHero = Boolean(document.querySelector('.hero'));
-    const hasHeroCar = Boolean(document.querySelector('.hero-car'));
+    const hasHeroSlideshow = Boolean(document.querySelector('.hero-slideshow'));
     if (hasHero) {
       gsap.set('.hero-content > *', { opacity: 0, y: 24 });
-      gsap.set('.hero-car', { opacity: 0, y: 80, scale: 0.95, rotation: -2, transformOrigin: '30% 100%' });
+      if (hasHeroSlideshow) {
+        gsap.set('.hero-slideshow', { opacity: 0, y: 32, scale: 0.96 });
+      }
       gsap.set('.hero-line', { scaleX: 0, transformOrigin: 'left center' });
     }
 
@@ -20,19 +22,12 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           .to('.hero-lines i', { scaleX: 1, duration: 0.45, stagger: 0.06, ease: 'power4.out' })
           .to('.hero-lines i', { opacity: 0, duration: 0.35 }, '-=0.5');
       }
+      if (hasHeroSlideshow) {
+        loadTimeline.to('.hero-slideshow', { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out' }, '-=0.1');
+      }
       loadTimeline
-        .to('.hero-car', { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.8, ease: 'power3.out' }, '-=0.1')
         .to('.hero-content > *', { opacity: 1, y: 0, duration: 0.55, stagger: 0.08, ease: 'power3.out' }, '-=0.2')
         .to('.hero-line', { scaleX: 1, duration: 0.65, ease: 'power2.out' }, '-=0.25');
-    }
-
-    if (hasHero && hasHeroCar) {
-      gsap.to('.hero-car img', {
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.2 },
-        y: 80,
-        x: -20,
-        ease: 'none'
-      });
     }
 
     if (document.querySelector('.reveal')) {

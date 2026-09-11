@@ -1,0 +1,629 @@
+---
+interface Props {
+  showLabel?: boolean;
+}
+
+const { showLabel = false } = Astro.props;
+
+const slides = [
+  {
+    name: 'Computer Science & Engineering',
+    abbr: 'CSE',
+    image: '/images/SLIDESHOW/CSE.png',
+    slug: 'cse',
+    tag: 'Web Dev · Blind Coding · Prompt Arena'
+  },
+  {
+    name: 'AI & Data Science',
+    abbr: 'AI & DS',
+    image: '/images/SLIDESHOW/AIDS.png',
+    slug: 'ai-ds',
+    tag: 'Tech Casino · Code Breakers · Ideas'
+  },
+  {
+    name: 'AI & Machine Learning',
+    abbr: 'AI & ML',
+    image: '/images/SLIDESHOW/AIML.png',
+    slug: 'ai-ml',
+    tag: 'Prompt Craft · Agent Arena · Tech Talk'
+  },
+  {
+    name: 'Information Technology',
+    abbr: 'IT',
+    image: '/images/SLIDESHOW/IT.png',
+    slug: 'it',
+    tag: 'Spin & Solve · Tech Labyrinth · Blind Build'
+  },
+  {
+    name: 'Electronics & Communication',
+    abbr: 'ECE',
+    image: '/images/SLIDESHOW/ECE.png',
+    slug: 'ece',
+    tag: 'Circuit Crime · PPT · IPL Auction'
+  },
+  {
+    name: 'Mechanical Engineering',
+    abbr: 'MECH',
+    image: '/images/SLIDESHOW/ME.png',
+    slug: 'mechanical',
+    tag: 'CAD Design · Mr. Mechanic · Reverse Eng.'
+  },
+  {
+    name: 'Biomedical Engineering',
+    abbr: 'BME',
+    image: '/images/SLIDESHOW/BME.png',
+    slug: 'bme',
+    tag: 'Bio-Innovations · MedTech · Healthcare'
+  },
+  {
+    name: 'Agricultural Engineering',
+    abbr: 'AGRI',
+    image: '/images/SLIDESHOW/AGRI.png',
+    slug: 'agri',
+    tag: 'Farm Tech · CAD Craft · Agri Vista'
+  }
+];
+---
+
+<div class="hero-slideshow" data-slideshow aria-roledescription="carousel" aria-label="Department Posters Slideshow">
+  <div class="slideshow-frame">
+
+    <!-- Slides Container -->
+    <div class="slides-viewport">
+      {slides.map((slide, index) => (
+        <div
+          class={`slide-item ${index === 0 ? 'is-active' : ''}`}
+          data-slide-index={index}
+          data-dept-abbr={slide.abbr}
+          data-dept-name={slide.name}
+          data-dept-slug={slide.slug}
+          aria-hidden={index === 0 ? 'false' : 'true'}
+        >
+          <a href={`/departments/${slide.slug}`} class="slide-link" title={`View ${slide.name} Events`}>
+            <img
+              src={slide.image}
+              alt={`${slide.name} Symposium Poster`}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              fetchpriority={index === 0 ? 'high' : 'auto'}
+              class="slide-img"
+              width="1145"
+              height="1374"
+            />
+            <div class="slide-overlay">
+              <span class="explore-btn">
+                Explore {slide.abbr} Events
+                <span class="arrow-icon" aria-hidden="true">↗</span>
+              </span>
+            </div>
+          </a>
+        </div>
+      ))}
+
+      <!-- ISSUE 3 FIX: Counter badge overlaid on image, top-right -->
+      <div class="slide-counter" aria-live="polite">
+        <span class="current-index" data-current-index>01</span>
+        <span class="counter-sep">/</span>
+        <span class="total-slides">{String(slides.length).padStart(2, '0')}</span>
+      </div>
+
+      <!-- ISSUE 4 FIX: Dots overlaid inside image at bottom -->
+      <div class="pagination-dots" role="tablist" aria-label="Slideshow pagination">
+        {slides.map((slide, index) => (
+          <button
+            type="button"
+            class={`dot-btn ${index === 0 ? 'is-active' : ''}`}
+            data-dot-index={index}
+            role="tab"
+            aria-selected={index === 0 ? 'true' : 'false'}
+            aria-label={`Go to slide ${index + 1}: ${slide.name}`}
+          >
+            <span class="dot-fill"></span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button
+      type="button"
+      class="nav-btn nav-btn--prev"
+      data-nav="prev"
+      aria-label="Previous department poster"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="nav-btn nav-btn--next"
+      data-nav="next"
+      aria-label="Next department poster"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Autoplay progress bar at very bottom of frame -->
+    <div class="autoplay-indicator" title="Autoplays every 4 seconds. Pauses on hover.">
+      <span class="autoplay-bar" data-autoplay-bar></span>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+@use '../../styles/variables' as *;
+
+.hero-slideshow {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.slideshow-frame {
+  position: relative;
+  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  box-shadow:
+    0 16px 40px -12px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(255, 101, 0, 0.12),
+    0 8px 24px -6px rgba(255, 101, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow:
+      0 24px 50px -12px rgba(0, 0, 0, 0.16),
+      0 0 0 1px rgba(255, 101, 0, 0.25),
+      0 12px 30px -6px rgba(255, 101, 0, 0.15);
+  }
+}
+
+/* ISSUE 3 FIX: Counter badge — absolute overlay on image, top-right */
+.slide-counter {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 12;
+  font-family: $technical;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 4px 12px;
+  border-radius: 20px;
+  pointer-events: none;
+
+  .current-index {
+    color: $orange;
+  }
+
+  .counter-sep {
+    opacity: 0.55;
+    margin: 0 3px;
+  }
+}
+
+.slides-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1145 / 1374;
+  overflow: hidden;
+  background: #0d0d0d;
+}
+
+/* ISSUE 5C FIX: Smooth slide exit→enter transition */
+.slide-item {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(30px);
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.3s;
+  z-index: 1;
+
+  &.is-exiting {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition:
+      opacity 0.3s ease-in,
+      transform 0.3s ease-in,
+      visibility 0s linear 0.3s;
+    visibility: visible;
+    z-index: 2;
+  }
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    transition:
+      opacity 0.35s ease-out 0.15s,
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+      visibility 0s linear 0s;
+    z-index: 3;
+  }
+}
+
+.slide-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.slide-link:hover .slide-img {
+  transform: scale(1.02);
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 65%, rgba(0, 0, 0, 0.75) 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 50px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  .slide-link:hover & {
+    opacity: 1;
+  }
+}
+
+.explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: $orange;
+  color: #ffffff;
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow: 0 4px 15px rgba(255, 101, 0, 0.4);
+  transform: translateY(10px);
+  transition: transform 0.3s ease, background-color 0.2s ease;
+
+  .slide-link:hover & {
+    transform: translateY(0);
+  }
+
+  .arrow-icon {
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover .arrow-icon {
+    transform: translate(2px, -2px);
+  }
+}
+
+/* Nav Buttons */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 12;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    opacity: 1;
+    background: $orange;
+    border-color: $orange;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px $orange-glow;
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  &--prev {
+    left: 14px;
+  }
+
+  &--next {
+    right: 14px;
+  }
+}
+
+/* ISSUE 4 FIX: Dots overlaid inside image at bottom */
+.pagination-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 6px 12px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.dot-btn {
+  padding: 3px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .dot-fill {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  &:hover .dot-fill {
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  &.is-active .dot-fill {
+    width: 20px;
+    height: 6px;
+    border-radius: 4px;
+    background: #f97316;
+    box-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
+  }
+}
+
+.autoplay-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  z-index: 5;
+
+  .autoplay-bar {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: $orange;
+    box-shadow: 0 0 8px $orange;
+    transition: width 0.1s linear;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+@media (max-width: 640px) {
+  .hero-slideshow {
+    max-width: 340px;
+  }
+
+  .nav-btn {
+    width: 34px;
+    height: 34px;
+
+    &--prev { left: 8px; }
+    &--next { right: 8px; }
+  }
+
+  .dept-badge .dept-name {
+    max-width: 170px;
+    font-size: 0.72rem;
+  }
+}
+</style>
+
+<script>
+function initSlideshow() {
+  const container = document.querySelector<HTMLElement>('[data-slideshow]');
+  if (!container) return;
+
+  const slides = Array.from(container.querySelectorAll<HTMLElement>('.slide-item'));
+  const dots = Array.from(container.querySelectorAll<HTMLElement>('.dot-btn'));
+  const prevBtn = container.querySelector<HTMLButtonElement>('[data-nav="prev"]');
+  const nextBtn = container.querySelector<HTMLButtonElement>('[data-nav="next"]');
+  const currentIndexEl = container.querySelector<HTMLElement>('[data-current-index]');
+  const deptLabelEl = container.querySelector<HTMLElement>('[data-dept-label]');
+  const progressBar = container.querySelector<HTMLElement>('[data-autoplay-bar]');
+
+  if (slides.length === 0) return;
+
+  let currentIndex = 0;
+  let autoplayTimer: number | undefined;
+  let progressTimer: number | undefined;
+  let isHovered = false;
+  const AUTOPLAY_INTERVAL = 4000;
+  const PROGRESS_TICK = 50;
+  let elapsed = 0;
+
+  function showSlide(index: number) {
+    if (index < 0) {
+      index = slides.length - 1;
+    } else if (index >= slides.length) {
+      index = 0;
+    }
+
+    if (index === currentIndex) return;
+
+    const prevIndex = currentIndex;
+    currentIndex = index;
+
+    // ISSUE 5C: Cross-slide animation — exit old, enter new
+    const prevSlide = slides[prevIndex];
+    const nextSlide = slides[currentIndex];
+
+    if (prevSlide) {
+      prevSlide.classList.remove('is-active');
+      prevSlide.classList.add('is-exiting');
+      prevSlide.setAttribute('aria-hidden', 'true');
+      setTimeout(() => {
+        prevSlide.classList.remove('is-exiting');
+        prevSlide.style.visibility = 'hidden';
+      }, 350);
+    }
+
+    if (nextSlide) {
+      nextSlide.style.visibility = '';
+      nextSlide.classList.add('is-active');
+      nextSlide.setAttribute('aria-hidden', 'false');
+    }
+
+    dots.forEach((dot, idx) => {
+      const isActive = idx === currentIndex;
+      dot.classList.toggle('is-active', isActive);
+      dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    if (currentIndexEl) {
+      currentIndexEl.textContent = String(currentIndex + 1).padStart(2, '0');
+    }
+
+    resetAutoplay();
+  }
+
+  function startAutoplay() {
+    elapsed = 0;
+    clearInterval(progressTimer);
+    clearTimeout(autoplayTimer);
+
+    if (isHovered) return;
+
+    progressTimer = window.setInterval(() => {
+      if (isHovered) return;
+      elapsed += PROGRESS_TICK;
+      const pct = Math.min(100, (elapsed / AUTOPLAY_INTERVAL) * 100);
+      if (progressBar) {
+        progressBar.style.width = `${pct}%`;
+      }
+    }, PROGRESS_TICK);
+
+    autoplayTimer = window.setTimeout(() => {
+      if (!isHovered) {
+        showSlide(currentIndex + 1);
+      }
+    }, AUTOPLAY_INTERVAL);
+  }
+
+  function resetAutoplay() {
+    elapsed = 0;
+    if (progressBar) {
+      progressBar.style.width = '0%';
+    }
+    startAutoplay();
+  }
+
+  prevBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showSlide(currentIndex - 1);
+  });
+
+  nextBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showSlide(currentIndex + 1);
+  });
+
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showSlide(idx);
+    });
+  });
+
+  container.addEventListener('mouseenter', () => {
+    isHovered = true;
+  });
+
+  container.addEventListener('mouseleave', () => {
+    isHovered = false;
+  });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    isHovered = true;
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    isHovered = false;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        showSlide(currentIndex + 1);
+      } else {
+        showSlide(currentIndex - 1);
+      }
+    }
+  }, { passive: true });
+
+  // Keyboard navigation
+  container.setAttribute('tabindex', '0');
+  container.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      showSlide(currentIndex - 1);
+    } else if (e.key === 'ArrowRight') {
+      showSlide(currentIndex + 1);
+    }
+  });
+
+  startAutoplay();
+
+  document.addEventListener('astro:before-preparation', () => {
+    clearInterval(progressTimer);
+    clearTimeout(autoplayTimer);
+  }, { once: true });
+}
+
+initSlideshow();
+document.addEventListener('astro:page-load', initSlideshow);
+</script>
