@@ -5,6 +5,7 @@ export interface Department {
   image: string;
   email: string;
   coordinators: string[];
+  staffCoordinators?: string[];
   technicalEvents: string[];
   nonTechnicalEvents: string[];
   registrationUrl?: string;

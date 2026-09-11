@@ -75,6 +75,14 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
                 {department.coordinators.map((coord) => <li>{coord}</li>)}
               </ul>
             </div>
+            {department.staffCoordinators && department.staffCoordinators.length > 0 && (
+              <div class="coordinators-box">
+                <strong>Staff Coordinator</strong>
+                <ul>
+                  {department.staffCoordinators.map((coord) => <li>{coord}</li>)}
+                </ul>
+              </div>
+            )}
             <div class="contact-box">
               <strong>Contact Email</strong>
               <a href={`mailto:${department.email}`}>{department.email}</a>

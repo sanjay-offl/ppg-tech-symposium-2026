@@ -1,17 +1,8 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
 import { siteConfig } from '@/data/config';
+import { departments } from '@/data/departments';
 
-const departmentCoordinators = [
-  { name: 'AGRI', coordinators: [['Rakshana', '9876543210'], ['Saranya', '9876543211']] },
-  { name: 'AI/DS', coordinators: [['Rahul Krishnith', '9876543212'], ['Sudhakar', '9876543213']] },
-  { name: 'AI/ML', coordinators: [['Vyas', '78715 34011'], ['Akash', '91594 04730']] },
-  { name: 'BME', coordinators: [['Krishna Kumar', '9876543216'], ['Ashwini', '9876543217']] },
-  { name: 'CSE', coordinators: [['Nitheesh', '9876543218'], ['Dhanu Shree', '9876543219']] },
-  { name: 'ECE', coordinators: [['Nakshatra', '9876543220'], ['Subagaanthan', '9876543221']] },
-  { name: 'IT', coordinators: [['Deeksha', '9876543222'], ['Abhishek', '9876543223']] },
-  { name: 'MECH', coordinators: [['Aravind Samy', '9876543224'], ['Thanaraj', '9876543225']] },
-];
 const mapQuery = encodeURIComponent(`${siteConfig.institution}, ${siteConfig.address}`);
 ---
 <MainLayout title="Contact | VIYUGAM 2K26">
@@ -31,15 +22,52 @@ const mapQuery = encodeURIComponent(`${siteConfig.institution}, ${siteConfig.add
         <div class="contact-details">
           <span class="section-label">Department coordinators</span>
           <div class="department-grid">
-            {departmentCoordinators.map((department) => (
+            {departments.map((dept) => (
               <section class="department-card">
-                <span class="dept-abbr-badge">{department.name}</span>
-                <h2>{department.name}</h2>
+                <div class="dept-card-header">
+                  {dept.image ? (
+                    <div class="dept-logo-badge">
+                      <img src={dept.image} alt={`${dept.name} Logo`} class="dept-logo-img" />
+                    </div>
+                  ) : (
+                    <span class="dept-abbr-badge">{dept.abbr}</span>
+                  )}
+                </div>
+                <h2>{dept.name}</h2>
+                <div class="coord-subheading">STUDENT COORDINATORS</div>
                 <ul>
-                  {department.coordinators.map(([name, phone]) => (
-                    <li><span>{name}</span><a href={`tel:${phone}`}>{phone}</a></li>
-                  ))}
+                  {dept.coordinators.map((coordStr) => {
+                    const parts = coordStr.split(' — ');
+                    const name = parts[0];
+                    const phone = parts[1] || '';
+                    const cleanPhone = phone.replace(/\s+/g, '');
+                    return (
+                      <li>
+                        <span>{name}</span>
+                        {phone && <a href={`tel:${cleanPhone}`}>{phone}</a>}
+                      </li>
+                    );
+                  })}
                 </ul>
+                {dept.staffCoordinators && dept.staffCoordinators.length > 0 && (
+                  <div class="staff-coord-block">
+                    <div class="coord-subheading staff-heading">STAFF COORDINATOR</div>
+                    <ul>
+                      {dept.staffCoordinators.map((coordStr) => {
+                        const parts = coordStr.split(' — ');
+                        const name = parts[0];
+                        const phone = parts[1] || '';
+                        const cleanPhone = phone.replace(/\s+/g, '');
+                        return (
+                          <li>
+                            <span>{name}</span>
+                            {phone && <a href={`tel:${cleanPhone}`}>{phone}</a>}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
               </section>
             ))}
           </div>
@@ -120,6 +148,32 @@ const mapQuery = encodeURIComponent(`${siteConfig.institution}, ${siteConfig.add
     box-shadow: 0 14px 32px rgba(255, 101, 0, 0.14);
   }
 }
+.dept-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.dept-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  padding: 6px;
+  background: #ffffff !important;
+  border: 1.5px solid rgba(10, 10, 10, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+
+  .dept-logo-img {
+    width: 100%;
+    height: 100%;
+    max-width: 44px;
+    max-height: 44px;
+    object-fit: contain;
+    display: block;
+  }
+}
 .dept-abbr-badge {
   display: inline-flex;
   align-items: center;
@@ -133,9 +187,35 @@ const mapQuery = encodeURIComponent(`${siteConfig.institution}, ${siteConfig.add
   color: $orange;
   font: 700 0.95rem/1 $technical;
   letter-spacing: 0.08em;
-  margin-bottom: 14px;
 }
-.department-card h2 { margin: 0 0 14px; font: 700 1.25rem $technical; letter-spacing: 0.02em; }
+.department-card h2 { margin: 0 0 10px; font: 700 1.25rem $technical; letter-spacing: 0.02em; }
+.coord-subheading {
+  font-family: $technical;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: $orange;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(10, 10, 10, 0.08);
+  }
+}
+.staff-coord-block {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(10, 10, 10, 0.1);
+}
+.staff-heading {
+  color: #111827;
+}
 .department-card ul { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
 .department-card li { display: flex; flex-direction: column; gap: 3px; font-family: $body; }
 .department-card li span { color: $black; font-weight: 600; font-size: .88rem; }
