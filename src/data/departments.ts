@@ -9,7 +9,8 @@ export const departments: Department[] = [
     email: 'aidsppgit@gmail.com',
     coordinators: ['Rahul Krishnith — 9876543212', 'Sudhakar — 9876543213'],
     technicalEvents: ['Technology Casino', 'Code Breakers', 'Idea Presentation'],
-    nonTechnicalEvents: ['Memory Lens', 'Stumble Guys']
+    nonTechnicalEvents: ['Memory Lens', 'Stumble Guys'],
+    registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSetkwhIORgx3BNdvKKh5rGtx49deC9YWYmBKhxksm6ejIdhOA/viewform?usp=header'
   },
   {
     name: 'Information Technology',
@@ -28,7 +29,7 @@ export const departments: Department[] = [
     abbr: 'MECH',
     image: '/images/departments/MECH.png',
     email: 'mohanm.it@ppg.edu.in',
-    coordinators: ['Aravind Samy — 9876543224', 'Thanaraj — 9876543225'],
+    coordinators: ['Aravind Samy — 80568 43025', 'Thanaraj — 93440 37117'],
     technicalEvents: ['CAD Designing', 'Mr. Mechanic', 'Reverse Engineering Sketch', 'Paper Presentation'],
     nonTechnicalEvents: ['Creative Ad', 'Emoji Decode'],
     registrationUrl: 'https://forms.gle/NxqhVtV6MmcmBpHNA'
@@ -42,7 +43,8 @@ export const departments: Department[] = [
     coordinators: ['Nakshatra — 9876543220', 'Subagaanthan — 9876543221'],
     staffCoordinators: ['G. Karthiga — 80567 18288'],
     technicalEvents: ['Circuit Crime Scene', 'PPT and Paper Presentation', 'Reverse Engineering'],
-    nonTechnicalEvents: ['ECE Escape Room', 'IPL Auction']
+    nonTechnicalEvents: ['ECE Escape Room', 'IPL Auction'],
+    registrationUrl: 'https://forms.gle/VFmp1MkKmPMfKEeh8'
   },
   {
     name: 'Agricultural Engineering',
