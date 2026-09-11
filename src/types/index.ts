@@ -40,6 +40,10 @@ export interface EventItem {
   scoringBreakdown?: ScoringItem[];
   themes?: string[];
   coordinators?: string[];
+  prerequisites?: string;
+  coverage?: string;
+  recommendedTools?: string;
+  rounds?: string;
 }
 
 export interface RegistrationPayload {

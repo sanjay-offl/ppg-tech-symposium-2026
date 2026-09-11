@@ -59,7 +59,13 @@ export const departments: Department[] = [
     abbr: 'CSE',
     image: '/images/departments/cse-logo.png',
     email: 'cyberzen2k25@gmail.com',
-    coordinators: ['Nitheesh — 9876543218', 'Dhanu Shree — 9876543219'],
+    coordinators: [
+      'Rishikanth — 93440 55430',
+      'Nithish S — 96007 17165',
+      'Gowsik — 90034 27793',
+      'Dhavasi K — 76038 90043',
+      'Dhanu Shree — 98428 15860'
+    ],
     technicalEvents: ['Vibe Coding', 'Prompt War', 'Output Hunt'],
     nonTechnicalEvents: ['Chess Arena', 'Movie Mania'],
     registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSe0TS5zT-kZtP3mGnpqDjE1pge9WYkoduJCkxCXMHMjGTZ43w/viewform?pli=1'
