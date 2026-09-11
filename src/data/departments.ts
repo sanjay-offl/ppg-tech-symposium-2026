@@ -17,7 +17,7 @@ export const departments: Department[] = [
     abbr: 'IT',
     image: '/images/departments/it-logo.png',
     email: 'techtitansppg@gmail.com',
-    coordinators: ['Deeksha — 9876543222', 'Abhishek — 9876543223'],
+    coordinators: ['Deeksha — 75500 47887', 'Abhishek — 85318 28481'],
     technicalEvents: ['AI: Spin and Solve', 'TechQuest: The Blind Tech Labyrinth', 'Blind Build'],
     nonTechnicalEvents: ['eFootball Mobile Tournament', 'AdRush'],
     registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSc7_-3VZCzi3lsqOCBi8-TDE1a5iiY89Flo_TziXkYFtVCaQw/viewform?usp=publish-editor'
@@ -40,6 +40,7 @@ export const departments: Department[] = [
     image: '/images/departments/ECE.png',
     email: 'electrosparks2024@gmail.com',
     coordinators: ['Nakshatra — 9876543220', 'Subagaanthan — 9876543221'],
+    staffCoordinators: ['G. Karthiga — 80567 18288'],
     technicalEvents: ['Circuit Crime Scene', 'PPT and Paper Presentation', 'Reverse Engineering'],
     nonTechnicalEvents: ['ECE Escape Room', 'IPL Auction']
   },
@@ -50,8 +51,10 @@ export const departments: Department[] = [
     image: '/images/departments/agri-logo.png',
     email: 'agrowingz.ppgit@gmail.com',
     coordinators: ['Rakshana — 9876543210', 'Saranya — 9876543211'],
+    staffCoordinators: ['G. Udhayakumar — +91 95667 44930'],
     technicalEvents: ['Farm Tech (Paper Presentation)', 'Craft (CAD Design Challenge)', 'Agri Vista (Poster Presentation)'],
-    nonTechnicalEvents: ['Clue Clash (Imposter)', 'Agri Canvas (Poster Making)']
+    nonTechnicalEvents: ['Clue Clash (Imposter)', 'Agri Canvas (Poster Making)'],
+    registrationUrl: 'https://forms.gle/Yp4xDHDPK3z4AuYKA'
   },
   {
     name: 'Computer Science & Engineering',
