@@ -1,0 +1,355 @@
+---
+import { departments } from '@/data/departments';
+---
+
+<div id="dept-modal" class="dept-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+  <div class="dept-modal__overlay" data-modal-close></div>
+  <div class="dept-modal__dialog">
+    <button type="button" class="dept-modal__close" data-modal-close aria-label="Close modal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="dept-modal__header">
+      <span class="dept-modal__badge">FAST REGISTRATION</span>
+      <h2 id="modal-title" class="dept-modal__title">SELECT YOUR DEPARTMENT</h2>
+      <p class="dept-modal__subtitle">Click your department to open its official registration form directly.</p>
+    </div>
+
+    <div class="dept-modal__grid">
+      {departments.map((dept) => {
+        const targetUrl = dept.registrationUrl || `/register?dept=${dept.slug}`;
+        const isExternal = !!dept.registrationUrl;
+        return (
+          <a
+            href={targetUrl}
+            target={isExternal ? "_blank" : "_self"}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+            class="dept-modal__card"
+          >
+            <div class="dept-modal__card-left">
+              <div class="dept-modal__card-logo">
+                <img src={dept.image} alt={`${dept.name} logo`} loading="lazy" />
+              </div>
+              <div class="dept-modal__card-info">
+                <span class="dept-modal__card-abbr">{dept.abbr}</span>
+                <span class="dept-modal__card-name">{dept.name}</span>
+              </div>
+            </div>
+            <div class="dept-modal__card-arrow" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+@use '../../styles/variables' as *;
+
+.dept-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+
+  &.is-open {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.dept-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.dept-modal__dialog {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 860px;
+  background: #ffffff;
+  border: 1px solid rgba(10, 10, 10, 0.12);
+  border-radius: 20px;
+  padding: 24px 24px 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  transform: scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  .dept-modal.is-open & {
+    transform: scale(1);
+  }
+}
+
+.dept-modal__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0f0f4;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: $orange;
+    color: #ffffff;
+    border-color: $orange;
+    transform: rotate(90deg);
+  }
+}
+
+.dept-modal__header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 0 32px;
+}
+
+.dept-modal__badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 101, 0, 0.1);
+  border: 1px solid rgba(255, 101, 0, 0.25);
+  color: $orange;
+  font-family: $technical;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.dept-modal__title {
+  font: clamp(1.4rem, 3.5vw, 2.2rem)/1.1 $display;
+  color: #0a0a0a;
+  margin: 0 0 4px;
+  letter-spacing: 0.01em;
+}
+
+.dept-modal__subtitle {
+  color: $muted;
+  font-size: 0.84rem;
+  margin: 0;
+}
+
+.dept-modal__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.dept-modal__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f8f8fb;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    background: #ffffff;
+    border-color: $orange;
+    box-shadow: 0 8px 20px rgba(255, 101, 0, 0.15);
+    transform: translateY(-2px);
+
+    .dept-modal__card-abbr {
+      color: $orange;
+    }
+
+    .dept-modal__card-arrow {
+      color: $orange;
+      transform: translateX(2px);
+    }
+  }
+}
+
+.dept-modal__card-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.dept-modal__card-logo {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 3px;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+
+.dept-modal__card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.dept-modal__card-abbr {
+  font-family: $technical;
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: #0a0a0a;
+  letter-spacing: 0.03em;
+  transition: color 0.2s ease;
+}
+
+.dept-modal__card-name {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: $muted;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dept-modal__card-arrow {
+  color: #999;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-left: 6px;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 840px) {
+  .dept-modal__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .dept-modal__dialog {
+    padding: 20px 14px 22px;
+    border-radius: 16px;
+  }
+
+  .dept-modal__header {
+    margin-bottom: 14px;
+    padding: 0 24px;
+  }
+
+  .dept-modal__title {
+    font-size: 1.35rem;
+  }
+
+  .dept-modal__subtitle {
+    font-size: 0.78rem;
+  }
+
+  .dept-modal__card {
+    padding: 9px 10px;
+    border-radius: 10px;
+  }
+
+  .dept-modal__card-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .dept-modal__card-abbr {
+    font-size: 0.8rem;
+  }
+
+  .dept-modal__card-name {
+    font-size: 0.68rem;
+  }
+}
+</style>
+
+<script>
+  function setupDeptModal() {
+    const modal = document.getElementById('dept-modal');
+    if (!modal) return;
+
+    const closers = modal.querySelectorAll('[data-modal-close]');
+
+    function openModal(e?: Event) {
+      if (e) e.preventDefault();
+      modal?.classList.add('is-open');
+      modal?.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal?.classList.remove('is-open');
+      modal?.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    closers.forEach((el) => {
+      el.addEventListener('click', closeModal);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+
+    // Attach click listener to all Register triggers on this page
+    const registerTriggers = document.querySelectorAll('a[href="/register"], button[data-open-dept-modal], .hero-actions a[href="/register"]');
+    registerTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        openModal(e);
+      });
+    });
+
+    // Also delegate click for any dynamic links with href="/register"
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const regLink = target.closest('a[href="/register"]');
+      if (regLink && window.location.pathname === '/') {
+        openModal(e);
+      }
+    });
+  }
+
+  // Run setup on DOM load and astro page transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupDeptModal);
+  } else {
+    setupDeptModal();
+  }
+  document.addEventListener('astro:page-load', setupDeptModal);
+</script>

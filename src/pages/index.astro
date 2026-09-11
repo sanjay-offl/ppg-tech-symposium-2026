@@ -6,6 +6,8 @@ import About from '@/components/home/About.astro';
 import DepartmentGrid from '@/components/departments/DepartmentGrid.astro';
 import FAQAccordion from '@/components/faq/FAQAccordion.astro';
 import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
+import CTA from '@/components/home/CTA.astro';
+import DeptSelectModal from '@/components/home/DeptSelectModal.astro';
 ---
 <MainLayout>
   <Hero />
@@ -21,6 +23,7 @@ import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
     </div>
   </section>
   <SymposiumGuidelines />
+  <CTA />
   <section class="home-faq reveal" id="faq">
     <div class="container">
       <div class="faq-header">
@@ -34,6 +37,7 @@ import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
       </div>
     </div>
   </section>
+  <DeptSelectModal />
 </MainLayout>
 <style lang="scss">
 @use '../styles/variables' as *;
