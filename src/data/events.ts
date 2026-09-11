@@ -1153,7 +1153,7 @@ export const events: EventItem[] = [
     format: 'Team (Maximum 4 members)',
     teamSize: 'Max 4 Members',
     duration: '2 Hours (90 mins build + 30 mins demo)',
-    venue: 'To Be Announced',
+    venue: 'CP LAB II',
     time: '10:00 AM onwards',
     prerequisites: 'No prior coding experience required',
     registrationStatus: 'Open',
@@ -1202,43 +1202,49 @@ export const events: EventItem[] = [
     category: 'Technical',
     format: 'Team (Maximum 4 members)',
     teamSize: 'Max 4 Members',
-    duration: 'Approximately 1 Hour 30 Minutes',
-    venue: 'To Be Announced',
+    duration: 'To Be Announced on Spot',
+    venue: 'CLASS ROOM NO:317',
     time: '01:30 PM onwards',
     coverage: 'C, C++, Python, HTML',
     registrationStatus: 'Open',
-    concept: 'Output Hunt is a code reading challenge where teams trace through short programs and predict what the output will be, choosing one answer from four options. Questions are based on C, C++, Python, and HTML, making it open to anyone with basic programming knowledge. The event runs in two progressive rounds and a live scoreboard keeps the standings visible to the whole room throughout.',
-    description: 'Code reading challenge where teams trace programs in C, C++, Python, and HTML to predict outputs across two progressive rounds.',
+    concept: 'Output Hunt is a code-output prediction challenge that tests participants’ ability to read, understand, and trace code to identify the correct output. The questions will be based on basic C, C++, Python, and HTML, making the event accessible to participants with fundamental programming knowledge. Each question will have four answer options, and team members can discuss the question before selecting their final answer.',
+    description: 'Code-output prediction challenge testing code tracing across C, C++, Python, and HTML in two progressive rounds.',
     stages: [
       {
         title: 'Stage 1 — Round 1 (Basic Output)',
-        description: 'Teams receive 20 multiple choice questions on printed sheets. Each code snippet is between 10 and 15 lines. Team members can discuss among themselves before selecting one final answer per question. The teams with the highest scores move to Round 2.'
+        description: 'Participants will be given 20 questions based on C, C++, Python, and HTML. Each program/code snippet will contain a maximum of 10–15 lines. Four answer options will be provided for each question. Team members can discuss the question among themselves and select one final answer. The questions will be provided as printed A4 sheets or through an answer form provided by the organizers, where teams can mark/select their answers.'
       },
       {
         title: 'Stage 2 — Qualification',
-        description: 'Scores from Round 1 are calculated and qualifying teams are announced on the projector with a live leaderboard showing who has advanced.'
+        description: 'Teams with the highest scores in Round 1 will qualify for the next round.'
       },
       {
         title: 'Stage 3 — Round 2 (Advanced Output)',
-        description: 'Qualified teams answer 10 questions with code snippets of around 30 to 35 lines each. Answers are submitted digitally with a visible countdown per question. Teams that submit their answer within the first half of the countdown earn a bonus on that question.'
+        description: 'Qualified teams will be given 10 questions based on C, C++, Python, and HTML. The code snippets in this round will be slightly more complex and will contain approximately 30–35 lines. Each question will have four answer options. Team members can discuss each question and select one final answer. The answers will be marked on the provided answer sheet/form. The team that scores the highest marks in Round 2 will be declared the winner.'
       }
     ],
     rules: [
       'Each team can have a maximum of 4 members.',
-      'Questions are based on C, C++, Python, and HTML only.',
-      'Team members can discuss among themselves before locking in a final answer.',
-      'Only one option can be selected per question. Answers cannot be changed after submission.',
-      'Round 1 answers go on printed sheets. Round 2 answers are submitted digitally on screen.',
-      'No mobile phones, internet access, or outside assistance is allowed in either round.'
+      'The questions will be based on C, C++, Python, and HTML.',
+      'Team members are allowed to discuss the questions among themselves before selecting an answer.',
+      'Only one option can be selected for each question.',
+      'Round 1 consists of 20 basic questions, with code snippets of a maximum of 10–15 lines.',
+      'Round 2 consists of 10 advanced questions, with code snippets of approximately 30–35 lines.',
+      'Each question will have 4 multiple-choice options.',
+      'Questions will be provided through printed A4 sheets or an answer form supplied by the organizers.',
+      'No mobile phones, internet searches, or external assistance are allowed.',
+      'Teams with the highest scores in Round 1 will qualify for Round 2.',
+      'The team with the highest score in Round 2 will be declared the winner.',
+      'In case of a tie, a tie-breaker question will be conducted.'
     ],
     scoringBreakdown: [
-      { label: 'Round 1 (Qualifying Round)', points: '20 Points (1 pt/Q)' },
-      { label: 'Round 2 (Final Round)', points: '20 Points (2 pts/Q)' },
-      { label: 'Round 2 Early Submission Bonus', points: '5 Points (0.5 pt/Q)' }
+      { label: 'Round 1 (Qualifying Round)', points: '20 Questions (4 Options)' },
+      { label: 'Round 2 (Final Round)', points: '10 Questions (4 Options)' }
     ],
     scoring: [
-      'Total Round 2 Maximum Combined Score: 25 Points.',
-      'The team with the highest Round 2 score wins. If scores are tied, one live question is shown on the projector and the first team to raise their hand with the correct answer wins.'
+      'Teams with the highest scores in Round 1 qualify for Round 2.',
+      'The team with the highest score in Round 2 will be declared the winner.',
+      'In case of a tie, a tie-breaker question will be conducted.'
     ],
     coordinators: ['Nithish S — 96007 17165']
   },
@@ -1251,7 +1257,7 @@ export const events: EventItem[] = [
     format: 'Individual Participation',
     teamSize: 'Individual',
     duration: '35 Minutes Total',
-    venue: 'To Be Announced',
+    venue: 'CP LAB II / CLASS ROOM NO:320',
     time: '11:30 AM onwards',
     recommendedTools: 'Ideogram, Adobe Firefly, Bing / Designer',
     registrationStatus: 'Open',
@@ -1260,7 +1266,7 @@ export const events: EventItem[] = [
     stages: [
       {
         title: 'Stage 1 — Image 1 Recreate',
-        description: 'The first reference image is displayed on the projector. Participants have 15 minutes to observe it and recreate it using any permitted AI image tool. Prompts can be refined and images regenerated freely within the time window. All participant screens feed into a shared live display so the audience can watch attempts evolve in real time.'
+        description: 'The first reference image is displayed on the projector. Participants have 3 minutes to observe it and recreate it using any permitted AI image tool. Prompts can be refined and images regenerated freely within the time window. All participant screens feed into a shared live display so the audience can watch attempts evolve in real time.'
       },
       {
         title: 'Stage 2 — Image 2 Recreate with Constraint',
@@ -1300,7 +1306,7 @@ export const events: EventItem[] = [
     format: 'Individual Participation',
     teamSize: 'Individual',
     duration: '10 Minutes per Match',
-    venue: 'To Be Announced',
+    venue: 'CLASS ROOM NO:317',
     time: '11:00 AM onwards',
     rounds: 'Prelims, Knockouts, Final',
     registrationStatus: 'Open',
@@ -1351,7 +1357,7 @@ export const events: EventItem[] = [
     format: 'Team (Maximum 4 members)',
     teamSize: 'Max 4 Members',
     duration: 'Approximately 50 Minutes',
-    venue: 'To Be Announced',
+    venue: 'CLASS ROOM NO:317/320',
     time: '02:00 PM onwards',
     rounds: 'Picture Clue, Frame by Frame, Reverse Riddle',
     registrationStatus: 'Open',
