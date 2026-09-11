@@ -158,7 +158,7 @@ const slides = [
 .hero-slideshow {
   position: relative;
   width: 100%;
-  max-width: 460px;
+  max-width: 420px;   /* keep portrait card from being too wide */
   margin: 0 auto;
   user-select: none;
 }
@@ -183,38 +183,18 @@ const slides = [
   }
 }
 
-/* ISSUE 3 FIX: Counter badge — absolute overlay on image, top-right */
+/* Counter hidden — dots already indicate position */
 .slide-counter {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 12;
-  font-family: $technical;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  padding: 4px 12px;
-  border-radius: 20px;
-  pointer-events: none;
-
-  .current-index {
-    color: $orange;
-  }
-
-  .counter-sep {
-    opacity: 0.55;
-    margin: 0 3px;
-  }
+  display: none;
 }
 
 .slides-viewport {
   position: relative;
   width: 100%;
+  /* Portrait poster ratio: height = width × (1374/1145) */
   aspect-ratio: 1145 / 1374;
+  /* Prevent excessive height on large screens */
+  max-height: min(60vh, 580px);
   overflow: hidden;
   background: #0d0d0d;
 }
@@ -266,7 +246,7 @@ const slides = [
 
 .slide-img {
   width: 100%;
-  height: 100%;
+  height: 100%;          /* fill the aspect-ratio container */
   object-fit: cover;
   object-position: center;
   display: block;

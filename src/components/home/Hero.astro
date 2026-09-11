@@ -4,32 +4,39 @@ import CountdownTimer from './CountdownTimer.astro';
 import HeroSlideshow from './HeroSlideshow.astro';
 ---
 <section class="hero" id="home">
-  <!-- Animated background blobs -->
+  <!-- Animated background blobs (decorative only) -->
   <div class="blob blob--1" aria-hidden="true"></div>
   <div class="blob blob--2" aria-hidden="true"></div>
 
-  <div class="container hero-container">
-    <!-- LEFT: Carousel -->
-    <div class="hero-slideshow-col">
+  <div class="hero-container">
+    <!-- LEFT: Department Illustration Carousel -->
+    <div class="hero-visual">
       <HeroSlideshow showLabel={false} />
     </div>
 
-    <!-- RIGHT: Content -->
+    <!-- RIGHT: Symposium Content -->
     <div class="hero-content">
       <p class="eyebrow anim-fadeinup" style="--anim-delay:0ms">National Level Technical Symposium</p>
-      <h1 class="anim-fadeinup" style="--anim-delay:150ms">VIYU<span>GAM</span></h1>
-      <div class="year anim-fadeinup" style="--anim-delay:250ms">2K26</div>
-      <div class="anim-fadeinup" style="--anim-delay:400ms">
+      <div class="hero-title anim-fadeinup" style="--anim-delay:150ms">
+        <h1>VIYU<span>GAM</span></h1>
+        <div class="year">2K26</div>
+      </div>
+      <div class="anim-fadeinup" style="--anim-delay:350ms">
         <CountdownTimer />
       </div>
-      <p class="date anim-fadeinup" style="--anim-delay:550ms">{siteConfig.date.toUpperCase()}</p>
-      <p class="meta anim-fadeinup" style="--anim-delay:550ms">{siteConfig.institution}, {siteConfig.location}<br />40+ Events · 8 Departments · Cash Prizes</p>
-      <div class="hero-actions anim-fadeinup" style="--anim-delay:700ms">
-        <a class="button button--primary" href="/register" id="hero-register-btn">Register Now</a>
-        <a class="button button--ghost" href="/departments" id="hero-explore-btn">Explore Departments &amp; Events <span class="arrow-icon" aria-hidden="true">→</span></a>
+      <div class="event-info anim-fadeinup" style="--anim-delay:500ms">
+        <p class="date">{siteConfig.date.toUpperCase()}</p>
+        <p class="meta">{siteConfig.institution}, {siteConfig.location}<br />40+ Events · 8 Departments · Cash Prizes</p>
+      </div>
+      <div class="hero-actions anim-fadeinup" style="--anim-delay:650ms">
+        <a class="button" href="/register" id="hero-register-btn">Register Now</a>
+        <a class="button button--ghost" href="/departments" id="hero-explore-btn">
+          Explore Events <span class="arrow-icon" aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </div>
+
   <div class="hero-line" aria-hidden="true"></div>
 </section>
 
@@ -37,31 +44,31 @@ import HeroSlideshow from './HeroSlideshow.astro';
 @use '../../styles/variables' as *;
 
 /* ═══════════════════════════════════════════════
-   ANIMATIONS
+   KEYFRAMES
    ═══════════════════════════════════════════════ */
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-40px); }
+  from { opacity: 0; transform: translateX(-32px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes float {
-  from { transform: translate(0px, 0px); }
-  to   { transform: translate(20px, 15px); }
+  from { transform: translate(0, 0); }
+  to   { transform: translate(18px, 12px); }
 }
 
 .anim-fadeinup {
   opacity: 0;
-  animation: fadeInUp var(--anim-dur, 550ms) cubic-bezier(0.22, 1, 0.36, 1) var(--anim-delay, 0ms) both;
+  animation: fadeInUp 520ms cubic-bezier(0.22, 1, 0.36, 1) var(--anim-delay, 0ms) both;
 }
 
 /* ═══════════════════════════════════════════════
-   BLOBS
+   BACKGROUND BLOBS
    ═══════════════════════════════════════════════ */
 
 .blob {
@@ -72,202 +79,188 @@ import HeroSlideshow from './HeroSlideshow.astro';
 }
 
 .blob--1 {
-  width: 420px;
-  height: 420px;
-  top: -60px;
-  left: -80px;
-  background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+  width: 380px;
+  height: 380px;
+  top: 0;
+  left: -60px;
+  background: radial-gradient(circle, rgba(249,115,22,0.07) 0%, transparent 70%);
   animation: float 8s ease-in-out infinite alternate;
 }
 
 .blob--2 {
-  width: 320px;
-  height: 320px;
-  bottom: -40px;
-  right: -60px;
-  background: radial-gradient(circle, rgba(249,115,22,0.05) 0%, transparent 70%);
-  animation: float 10s ease-in-out infinite alternate-reverse;
+  width: 280px;
+  height: 280px;
+  bottom: 0;
+  right: -40px;
+  background: radial-gradient(circle, rgba(249,115,22,0.045) 0%, transparent 70%);
+  animation: float 11s ease-in-out infinite alternate-reverse;
 }
 
 /* ═══════════════════════════════════════════════
    HERO SECTION
+   — starts immediately after <main padding-top>
+   — main already has padding-top: var(--navbar-height)
    ═══════════════════════════════════════════════ */
 
 .hero {
   position: relative;
-  /* ISSUE 1 FIX: tight top padding, vertically centered content */
-  min-height: calc(100vh - 72px);
-  padding: 40px 0 48px;
+  isolation: isolate;
+  /* Fill the viewport below the navbar */
+  min-height: calc(100svh - var(--navbar-height));
+  /* Comfortable internal breathing room — NOT large top padding */
+  padding: 2rem 0 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background: #ffffff;
+  margin-bottom: 0;   /* no negative-margin hacks into next section */
 }
 
 /* ═══════════════════════════════════════════════
-   ISSUE 2 FIX: two-column flex, both columns same midpoint
+   HERO GRID CONTAINER
+   — one 2-col grid controlling both sides
    ═══════════════════════════════════════════════ */
 
 .hero-container {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: row;
-  align-items: center;           /* ← both columns share vertical midpoint */
-  justify-content: space-between;
-  gap: clamp(32px, 5vw, 64px);
-  width: 100%;
+  width: min(100% - 3rem, 1280px);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
 }
 
-.hero-slideshow-col {
-  flex: 0 0 auto;
-  width: 480px;
-  max-width: 480px;
+/* ═══════════════════════════════════════════════
+   LEFT — DEPARTMENT ILLUSTRATION
+   ═══════════════════════════════════════════════ */
+
+.hero-visual {
+  position: relative;
+  z-index: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
-  /* ISSUE 2B: Slide-in entrance animation */
-  animation: slideInLeft 700ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
+  justify-content: center;
+  min-width: 0;        /* prevent grid blowout */
+  /* Use 'backwards' not 'both' — 'both' keeps opacity:0 before start */
+  animation: slideInLeft 680ms cubic-bezier(0.22, 1, 0.36, 1) 80ms backwards;
 }
+
+/* ═══════════════════════════════════════════════
+   RIGHT — SYMPOSIUM CONTENT
+   ═══════════════════════════════════════════════ */
 
 .hero-content {
-  flex: 1;
-  max-width: 560px;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
-  /* ISSUE 2 FIX: no extra top margin/padding pushing it down */
+  align-items: flex-start;
+  gap: 0;             /* controlled by individual element margins below */
+  min-width: 0;
+  /* Zero out any inherited margin that could push this column down */
   margin: 0;
-  padding: 0 8px;
+  padding: 0;
 
   > *:first-child { margin-top: 0 !important; }
 }
 
 /* ═══════════════════════════════════════════════
-   TYPOGRAPHY
+   EYEBROW LABEL
    ═══════════════════════════════════════════════ */
 
 .eyebrow {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 0 4px;
-  padding: 0;
+  margin: 0 0 0.6rem;
   color: $orange;
-  font-size: .7rem;
+  font-size: .68rem;
   font-weight: 700;
   letter-spacing: .16em;
   text-transform: uppercase;
 
   &::before {
     content: '';
-    width: 26px;
+    width: 24px;
     height: 2px;
     background: $orange;
     flex-shrink: 0;
   }
 }
 
-.hero h1 {
+/* ═══════════════════════════════════════════════
+   TITLE BLOCK — VIYUGAM + 2K26 as one unit
+   ═══════════════════════════════════════════════ */
+
+.hero-title {
+  margin: 0 0 0;
+  line-height: 1;
+}
+
+.hero-title h1 {
   margin: 0;
-  font: clamp(4.5rem, 8.5vw, 7.8rem)/.85 $display;
+  font: clamp(4.2rem, 8vw, 7.5rem) / 0.88 $display;
   letter-spacing: .01em;
 
   span { color: $orange; }
 }
 
 .year {
-  margin: 4px 0 20px;
+  margin-top: 0.1em;
   color: $orange;
-  font: clamp(2.4rem, 4.2vw, 3.8rem)/1 $display;
+  font: clamp(2.2rem, 4vw, 3.6rem) / 1 $display;
   letter-spacing: .08em;
   font-weight: 700;
 }
 
+/* ═══════════════════════════════════════════════
+   EVENT INFO (date + meta)
+   ═══════════════════════════════════════════════ */
+
+.event-info {
+  margin-top: 1.1rem;
+}
+
 .date {
-  margin: 0 0 5px;
-  font: 700 1.2rem $technical;
-  letter-spacing: .08em;
+  margin: 0 0 0.35rem;
+  font: 700 1.1rem $technical;
+  letter-spacing: .07em;
 }
 
 .meta {
   margin: 0;
   color: $muted;
-  font-size: .85rem;
-  line-height: 1.7;
+  font-size: .84rem;
+  line-height: 1.65;
 }
 
 /* ═══════════════════════════════════════════════
-   ISSUE 5E: CTA BUTTON ANIMATIONS
+   CTA BUTTONS
    ═══════════════════════════════════════════════ */
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 24px;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  /* Never push to bottom of viewport */
 }
 
-/* Primary register button hover lift */
-.button--primary {
-  background: $orange;
-  color: #fff;
-  border: none;
-  padding: 14px 28px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: .9rem;
-  letter-spacing: .04em;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.2s ease;
-
-  &:hover {
-    transform: scale(1.04);
-    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);
-    background: darken(#f97316, 6%);
-  }
-
-  &:active { transform: scale(0.98); }
+/* Arrow icon on ghost button */
+.arrow-icon {
+  display: inline-block;
+  transition: transform 0.2s ease;
 }
 
-/* Ghost explore button — arrow shifts right on hover */
-.button--ghost {
-  background: transparent;
-  color: $black;
-  border: 1.5px solid rgba(10,10,10,0.18);
-  padding: 14px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: .9rem;
-  letter-spacing: .03em;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: border-color 0.2s ease, color 0.2s ease;
-
-  &:hover {
-    border-color: $orange;
-    color: $orange;
-  }
-
-  .arrow-icon {
-    display: inline-block;
-    transition: transform 0.2s ease;
-  }
-
-  &:hover .arrow-icon {
-    transform: translateX(4px);
-  }
+.button--ghost:hover .arrow-icon {
+  transform: translateX(4px);
 }
 
 /* ═══════════════════════════════════════════════
-   BOTTOM LINE
+   BOTTOM ACCENT LINE
    ═══════════════════════════════════════════════ */
 
 .hero-line {
@@ -277,44 +270,40 @@ import HeroSlideshow from './HeroSlideshow.astro';
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, $orange, rgba(255, 101, 0, 0.2) 60%, transparent);
+  background: linear-gradient(90deg, $orange, rgba(255, 101, 0, 0.15) 60%, transparent);
 }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — 1024px TABLET (stacked)
    ═══════════════════════════════════════════════ */
 
-@media (max-width: 900px) {
-  .hero-slideshow-col {
-    width: 400px;
-    max-width: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero {
-    min-height: auto;
-    padding: 36px 0 40px;
-  }
-
+@media (max-width: 1024px) {
   .hero-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: min(100% - 2.5rem, 680px);
   }
 
-  .hero-slideshow-col {
+  .hero-visual {
     order: 1;
-    width: 100%;
-    max-width: 360px;
+
+    :global(.hero-slideshow) {
+      width: min(100%, 400px);
+    }
+
+    :global(.slides-viewport) {
+      max-height: min(55vh, 480px);
+    }
+
+    :global(.slide-img) {
+      max-height: min(55vh, 480px);
+    }
   }
 
   .hero-content {
     order: 2;
     align-items: center;
     text-align: center;
-    max-width: 100%;
-    padding: 0 16px;
   }
 
   .eyebrow {
@@ -326,13 +315,52 @@ import HeroSlideshow from './HeroSlideshow.astro';
   }
 }
 
-@media (max-width: 375px) {
-  .hero {
-    padding: 28px 0 32px;
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — 768px MOBILE
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  :root {
+    /* Pill navbar is smaller on mobile: top 12px + height 50px + gap 16px */
+    --navbar-height: 78px;
   }
 
-  .hero h1 {
-    font-size: 3.8rem;
+  .hero {
+    min-height: auto;
+    padding: 1.5rem 0 2.5rem;
+  }
+
+  .hero-container {
+    width: min(100% - 2rem, 560px);
+    gap: 1.75rem;
+  }
+
+  .hero-visual {
+    :global(.hero-slideshow) {
+      width: min(100%, 340px);
+    }
+
+    :global(.slides-viewport) {
+      max-height: none;
+    }
+
+    :global(.slide-img) {
+      max-height: none;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — 375px SMALL MOBILE
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 430px) {
+  .hero-title h1 {
+    font-size: clamp(3.5rem, 12vw, 4.5rem);
+  }
+
+  .year {
+    font-size: clamp(1.9rem, 7vw, 2.4rem);
   }
 }
 
@@ -341,6 +369,8 @@ import HeroSlideshow from './HeroSlideshow.astro';
    ═══════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+  .anim-fadeinup,
+  .hero-visual,
+  .blob { animation: none !important; }
 }
 </style>

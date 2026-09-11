@@ -2,7 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
 
-:root { font-family: $body; color: $black; background: #fff; font-synthesis: none; }
+:root {
+  --navbar-height: 94px; /* fixed pill top(20px) + height(~54px) + gap(20px) */
+  font-family: $body;
+  color: $black;
+  background: #fff;
+  font-synthesis: none;
+}
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; overflow-x: hidden; }
@@ -11,6 +17,9 @@ button, input, select, textarea { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 :focus-visible { outline: 3px solid $orange; outline-offset: 4px; }
 .container { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+
+/* Main content must clear the fixed floating navbar */
+main { padding-top: var(--navbar-height); }
 .section-label { display: inline-flex; align-items: center; gap: 10px; color: $orange; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .section-label::before { content: ''; width: 26px; height: 2px; background: currentColor; }
 .section-title { margin: 14px 0 0; font: clamp(3rem, 7vw, 5.5rem)/.9 $display; letter-spacing: .01em; }
