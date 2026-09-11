@@ -55,6 +55,30 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
                 <span class="spec-label">Venue</span>
                 <strong class="spec-value">📍 {detail.venue || 'College Campus'}</strong>
               </div>
+              {detail.prerequisites && (
+                <div class="spec-item">
+                  <span class="spec-label">Prerequisites</span>
+                  <strong class="spec-value">{detail.prerequisites}</strong>
+                </div>
+              )}
+              {detail.coverage && (
+                <div class="spec-item">
+                  <span class="spec-label">Coverage</span>
+                  <strong class="spec-value">{detail.coverage}</strong>
+                </div>
+              )}
+              {detail.recommendedTools && (
+                <div class="spec-item">
+                  <span class="spec-label">Tools</span>
+                  <strong class="spec-value">{detail.recommendedTools}</strong>
+                </div>
+              )}
+              {detail.rounds && (
+                <div class="spec-item">
+                  <span class="spec-label">Rounds</span>
+                  <strong class="spec-value">{detail.rounds}</strong>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -164,6 +188,30 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
                   <span class="s-label">Venue</span>
                   <span class="s-val">{detail.venue || 'Campus'}</span>
                 </div>
+                {detail.prerequisites && (
+                  <div class="summary-row">
+                    <span class="s-label">Prerequisites</span>
+                    <span class="s-val">{detail.prerequisites}</span>
+                  </div>
+                )}
+                {detail.coverage && (
+                  <div class="summary-row">
+                    <span class="s-label">Coverage</span>
+                    <span class="s-val">{detail.coverage}</span>
+                  </div>
+                )}
+                {detail.recommendedTools && (
+                  <div class="summary-row">
+                    <span class="s-label">Tools</span>
+                    <span class="s-val">{detail.recommendedTools}</span>
+                  </div>
+                )}
+                {detail.rounds && (
+                  <div class="summary-row">
+                    <span class="s-label">Rounds</span>
+                    <span class="s-val">{detail.rounds}</span>
+                  </div>
+                )}
                 {detail.coordinators && detail.coordinators.length > 0 && (
                   <div class="summary-row coord-row">
                     <span class="s-label">Coordinators</span>

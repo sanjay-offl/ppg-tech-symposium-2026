@@ -1142,7 +1142,7 @@ export const events: EventItem[] = [
   },
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // CSE, BME, AI-ML DEPARTMENTS (Remaining Departments)
+  // D6. COMPUTER SCIENCE AND ENGINEERING DEPARTMENT (cse)
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   {
     name: 'Vibe Coding',
@@ -1150,41 +1150,49 @@ export const events: EventItem[] = [
     department: 'Computer Science & Engineering',
     departmentSlug: 'cse',
     category: 'Technical',
-    format: 'Individual or Team (1 to 2 members)',
-    duration: '60 minutes',
-    venue: 'CSE Lab 1',
+    format: 'Team (Maximum 4 members)',
+    teamSize: 'Max 4 Members',
+    duration: '2 Hours (90 mins build + 30 mins demo)',
+    venue: 'CP LAB II',
     time: '10:00 AM onwards',
-    teamSize: '1 - 2 Members',
+    prerequisites: 'No prior coding experience required',
     registrationStatus: 'Open',
-    concept: 'An intense competitive programming battle testing algorithmic problem-solving speed, creativity, and coding flow.',
-    description: 'Speed coding contest with algorithmic problems across data structures, logic puzzles, and code efficiency.',
+    concept: 'Vibe Coding is a rapid website-building competition where teams leverage modern AI tools to transform concepts into functional, live websites within 90 minutes. The central theme is unveiled on the spot, requiring every team to build from scratch. At the conclusion, each team presents their live application to the room. Anyone with ideas can win this, not just programmers.',
+    description: 'Rapid website-building competition where teams leverage modern AI tools to transform concepts into functional, live websites within 90 minutes.',
     stages: [
-      { title: 'Round 1 — Warmup', description: 'Solve fundamental data structures and logic puzzles.' },
-      { title: 'Round 2 — Speed Hack', description: 'Speed implementation of algorithmic challenges under strict time bounds.' }
+      {
+        title: 'Stage 1 — Ideate',
+        description: 'The event theme is announced with a countdown on the projector. Teams spend the first few minutes deciding what they want to build and how they want to approach it before opening any tool.'
+      },
+      {
+        title: 'Stage 2 — Vibe Code',
+        description: 'Teams use AI website builders like Bolt.new, Lovable, or v0.dev to build their site within 90 minutes. At the 45-minute mark, the organizers announce a surprise Vibe Drop requirement that every team must add to their site before the build ends, giving the event a second wave of energy right when things settle down.'
+      },
+      {
+        title: 'Stage 3 — Demo Round',
+        description: 'Each team gets exactly 90 seconds to present their live site on the projector to everyone in the room.'
+      }
     ],
-    rules: ['Individual or 2-member teams allowed.', 'Languages: C++, Java, Python, JavaScript.', 'Plagiarism or unauthorized lookup leads to disqualification.'],
-    coordinators: ['Nitheesh', 'Dhanu Shree']
-  },
-  {
-    name: 'Prompt War',
-    slug: 'prompt-war',
-    department: 'Computer Science & Engineering',
-    departmentSlug: 'cse',
-    category: 'Technical',
-    format: 'Individual or Team (1 to 2 members)',
-    duration: '45 minutes',
-    venue: 'CSE Smart Lab',
-    time: '11:30 AM onwards',
-    teamSize: '1 - 2 Members',
-    registrationStatus: 'Open',
-    concept: 'Craft precise AI prompts to generate high-performing code, algorithms, and digital assets under time limits.',
-    description: 'Prompt engineering duel challenging participants to elicit deterministic outputs, accurate code, and assets from AI models.',
-    stages: [
-      { title: 'Round 1 — Text & Code Synthesis', description: 'Prompt an LLM to generate precise algorithms passing specific test cases.' },
-      { title: 'Round 2 — Asset & Logic Prompting', description: 'Direct generative models to produce target structures with minimal deviation.' }
+    rules: [
+      'Each team can have a maximum of 4 members.',
+      'The event theme is revealed only at the start. No preparation based on the theme is allowed beforehand.',
+      'Only AI tools from the organizers\' permitted list may be used. Recommended platforms are Bolt.new, Lovable, and v0.dev.',
+      'No coding knowledge is required. The AI handles the code; participants bring the ideas.',
+      'The Vibe Drop is announced at the 45-minute mark. All teams must include it in their final site before building stops.',
+      'Building ends at 90 minutes. Teams then demo their live site on the projector for exactly 90 seconds.',
+      'Importing ready-made templates without any modification is not allowed. The site must be built during the event.'
     ],
-    rules: ['Allowed AI tools announced on spot.', 'Scored on target match fidelity and prompt efficiency.', 'Participants must submit final text prompts alongside outputs.'],
-    coordinators: ['Nitheesh', 'Dhanu Shree']
+    scoringBreakdown: [
+      { label: 'Functionality', points: '25 Points' },
+      { label: 'UI Design and Creativity', points: '25 Points' },
+      { label: 'Effective AI Tool Usage', points: '20 Points' },
+      { label: 'Theme Execution', points: '10 Points' }
+    ],
+    scoring: [
+      'Total Maximum Score: 80 Points.',
+      'The team with the highest combined score wins.'
+    ],
+    coordinators: ['Rishikanth — 93440 55430']
   },
   {
     name: 'Output Hunt',
@@ -1192,20 +1200,102 @@ export const events: EventItem[] = [
     department: 'Computer Science & Engineering',
     departmentSlug: 'cse',
     category: 'Technical',
-    format: 'Individual or Team (1 to 2 members)',
-    duration: '45 minutes',
-    venue: 'CSE Lab 2',
+    format: 'Team (Maximum 4 members)',
+    teamSize: 'Max 4 Members',
+    duration: 'To Be Announced on Spot',
+    venue: 'CLASS ROOM NO:317',
     time: '01:30 PM onwards',
-    teamSize: '1 - 2 Members',
+    coverage: 'C, C++, Python, HTML',
     registrationStatus: 'Open',
-    concept: 'A reverse code evaluation and debugging challenge where participants trace complex code snippets to predict or achieve exact target outputs.',
-    description: 'Code auditing and output prediction contest testing deep language mechanics, dry-running skills, and bug hunting.',
+    concept: 'Output Hunt is a code-output prediction challenge that tests participants’ ability to read, understand, and trace code to identify the correct output. The questions will be based on basic C, C++, Python, and HTML, making the event accessible to participants with fundamental programming knowledge. Each question will have four answer options, and team members can discuss the question before selecting their final answer.',
+    description: 'Code-output prediction challenge testing code tracing across C, C++, Python, and HTML in two progressive rounds.',
     stages: [
-      { title: 'Round 1 — Code Snippet Trace', description: 'Determine the exact output of tricky code snippets across various programming constructs.' },
-      { title: 'Round 2 — Reverse Output Challenge', description: 'Modify or fix corrupted code blocks to yield target expected outputs.' }
+      {
+        title: 'Stage 1 — Round 1 (Basic Output)',
+        description: 'Participants will be given 20 questions based on C, C++, Python, and HTML. Each program/code snippet will contain a maximum of 10–15 lines. Four answer options will be provided for each question. Team members can discuss the question among themselves and select one final answer. The questions will be provided as printed A4 sheets or through an answer form provided by the organizers, where teams can mark/select their answers.'
+      },
+      {
+        title: 'Stage 2 — Qualification',
+        description: 'Teams with the highest scores in Round 1 will qualify for the next round.'
+      },
+      {
+        title: 'Stage 3 — Round 2 (Advanced Output)',
+        description: 'Qualified teams will be given 10 questions based on C, C++, Python, and HTML. The code snippets in this round will be slightly more complex and will contain approximately 30–35 lines. Each question will have four answer options. Team members can discuss each question and select one final answer. The answers will be marked on the provided answer sheet/form. The team that scores the highest marks in Round 2 will be declared the winner.'
+      }
     ],
-    rules: ['No compilers or external code execution tools during dry-running rounds.', 'Fastest accurate submission wins.', 'Individual or 2-member team participation.'],
-    coordinators: ['Nitheesh', 'Dhanu Shree']
+    rules: [
+      'Each team can have a maximum of 4 members.',
+      'The questions will be based on C, C++, Python, and HTML.',
+      'Team members are allowed to discuss the questions among themselves before selecting an answer.',
+      'Only one option can be selected for each question.',
+      'Round 1 consists of 20 basic questions, with code snippets of a maximum of 10–15 lines.',
+      'Round 2 consists of 10 advanced questions, with code snippets of approximately 30–35 lines.',
+      'Each question will have 4 multiple-choice options.',
+      'Questions will be provided through printed A4 sheets or an answer form supplied by the organizers.',
+      'No mobile phones, internet searches, or external assistance are allowed.',
+      'Teams with the highest scores in Round 1 will qualify for Round 2.',
+      'The team with the highest score in Round 2 will be declared the winner.',
+      'In case of a tie, a tie-breaker question will be conducted.'
+    ],
+    scoringBreakdown: [
+      { label: 'Round 1 (Qualifying Round)', points: '20 Questions (4 Options)' },
+      { label: 'Round 2 (Final Round)', points: '10 Questions (4 Options)' }
+    ],
+    scoring: [
+      'Teams with the highest scores in Round 1 qualify for Round 2.',
+      'The team with the highest score in Round 2 will be declared the winner.',
+      'In case of a tie, a tie-breaker question will be conducted.'
+    ],
+    coordinators: ['Nithish S — 96007 17165']
+  },
+  {
+    name: 'Prompt War',
+    slug: 'prompt-war',
+    department: 'Computer Science & Engineering',
+    departmentSlug: 'cse',
+    category: 'Technical',
+    format: 'Individual Participation',
+    teamSize: 'Individual',
+    duration: '35 Minutes Total',
+    venue: 'CP LAB II / CLASS ROOM NO:320',
+    time: '11:30 AM onwards',
+    recommendedTools: 'Ideogram, Adobe Firefly, Bing / Designer',
+    registrationStatus: 'Open',
+    concept: 'Prompt War is an image recreation challenge where participants describe a reference image using only words and use an AI image generator to recreate it as closely as possible. The event tests how well participants can observe, analyze, and communicate visual details through text alone. A surprise constraint is introduced for the second image, pushing everyone to think more creatively about how they build their prompts.',
+    description: 'Image recreation challenge where participants describe reference images via text prompts using AI image generators under surprise constraints.',
+    stages: [
+      {
+        title: 'Stage 1 — Image 1 Recreate',
+        description: 'The first reference image is displayed on the projector. Participants have 3 minutes to observe it and recreate it using any permitted AI image tool. Prompts can be refined and images regenerated freely within the time window. All participant screens feed into a shared live display so the audience can watch attempts evolve in real time.'
+      },
+      {
+        title: 'Stage 2 — Image 2 Recreate with Constraint',
+        description: 'The second reference image is displayed. Before the timer begins, organizers announce a prompt constraint that applies to everyone, for example: describe it in only 10 words, or do not name any color. Participants have 15 minutes to recreate the image while following that restriction.'
+      },
+      {
+        title: 'Stage 3 — Final Submission and Live Judging',
+        description: 'Participants submit one final image per reference before the 35-minute window closes. The top five submissions for each image are placed side by side on the projector next to the original. Judges score them live and briefly explain each decision so participants and the audience understand what separated the top entries.'
+      }
+    ],
+    rules: [
+      'This is an individual event. No team participation allowed.',
+      'Two reference images are provided, one at a time, each with a 15-minute window.',
+      'Participants can use any AI image generation tool. Recommended free tools include Ideogram, Adobe Firefly, Microsoft Designer, and Bing Image Creator.',
+      'Only text prompts are allowed. Direct image uploads or editing outside the AI tool are not permitted.',
+      'The Stage 2 prompt constraint is mandatory for all participants without exception.',
+      'One final image must be submitted per reference before the window closes. Late submissions are not accepted.'
+    ],
+    scoringBreakdown: [
+      { label: 'Similarity to Reference', points: '30 pts / image (60 pts total)' },
+      { label: 'Prompt Quality and Creativity', points: '30 pts / image (60 pts total)' },
+      { label: 'Accuracy of Detail', points: '25 pts / image (50 pts total)' },
+      { label: 'Composition', points: '15 pts / image (30 pts total)' }
+    ],
+    scoring: [
+      'Per Image Score: 100 Points | Grand Total Evaluation Score: 200 Points.',
+      'The participant with the highest grand total wins. If scores are tied, the participant with the higher Stage 2 score decides the winner.'
+    ],
+    coordinators: ['Gowsik — 90034 27793']
   },
   {
     name: 'Chess Arena',
@@ -1213,20 +1303,50 @@ export const events: EventItem[] = [
     department: 'Computer Science & Engineering',
     departmentSlug: 'cse',
     category: 'Non-Technical',
-    format: 'Individual',
-    duration: 'Rapid / Blitz Rounds',
-    venue: 'CSE Seminar Hall',
-    time: '11:00 AM onwards',
+    format: 'Individual Participation',
     teamSize: 'Individual',
+    duration: '10 Minutes per Match',
+    venue: 'CLASS ROOM NO:317',
+    time: '11:00 AM onwards',
+    rounds: 'Prelims, Knockouts, Final',
     registrationStatus: 'Open',
-    concept: 'A strategic chess tournament testing tactical foresight, positioning, and blitz speed under pressure.',
-    description: 'Competitive rapid/blitz chess tournament following standard FIDE rules across knockout elimination brackets.',
+    concept: 'Chess Arena is an individual chess tournament where participants go through preliminary rounds, knockout matches, and a final to determine the champion. Every match runs on a 10-minute time control so the pace stays sharp and every decision counts. The final match is projected live on screen with light commentary so the entire room can follow along.',
+    description: 'Individual chess tournament featuring prelims, knockouts, and a live-projected final match under a 10-minute time control.',
     stages: [
-      { title: 'Stage 1 — Swiss / Knockout Rounds', description: 'Timed rapid matches to determine top seeds.' },
-      { title: 'Stage 2 — Final Showdown', description: 'Championship blitz match for the title.' }
+      {
+        title: 'Stage 1 — Preliminary Round',
+        description: 'All registered participants compete in preliminary matches. Results are tracked on a bracket board visible to everyone in the venue. Top performers from this round move forward to the knockout stage.'
+      },
+      {
+        title: 'Stage 2 — Knockout Rounds',
+        description: 'Remaining participants compete in individual knockout matches. The bracket is updated after every match. A visible countdown timer runs on the projector so the room feels the pressure alongside the players.'
+      },
+      {
+        title: 'Stage 3 — Final Match',
+        description: 'The two finalists compete on a board projected live on screen through a camera feed or digital board. Light commentary from the MC keeps the audience engaged. The winner of the final match is declared Chess Arena Champion.'
+      }
     ],
-    rules: ['Standard FIDE chess rules apply.', 'Touch-move rule strictly enforced.', 'Chess clocks used; time control announced before each round.'],
-    coordinators: ['Nitheesh', 'Dhanu Shree']
+    rules: [
+      'This is an individual event.',
+      'Standard international chess rules apply throughout all rounds.',
+      'Each match has a 10-minute time control. Players must manage their own time.',
+      'Players must compete independently. Coaching or signals from spectators during a match are not permitted.',
+      'Players must be at their board within 3 minutes of being called. Absence beyond that is a forfeit.',
+      'In the event of a draw, the result is decided by the tiebreak format announced at the start of the event.'
+    ],
+    scoringBreakdown: [
+      { label: 'Queen (Material Value)', points: '9 Points' },
+      { label: 'Rook (Material Value)', points: '5 Points' },
+      { label: 'Bishop (Material Value)', points: '3 Points' },
+      { label: 'Knight (Material Value)', points: '3 Points' },
+      { label: 'Pawn (Material Value)', points: '1 Point' }
+    ],
+    scoring: [
+      'Standard Match Result: Win advances to next round; Loss is eliminated.',
+      'Material Value on Clock Expiry (Timeout Resolution): Queen (9 pts), Rook (5 pts), Bishop (3 pts), Knight (3 pts), Pawn (1 pt).',
+      'The participant who wins the Final Match is declared Chess Arena Champion.'
+    ],
+    coordinators: ['Dhavasi K — 76038 90043']
   },
   {
     name: 'Movie Mania',
@@ -1234,20 +1354,48 @@ export const events: EventItem[] = [
     department: 'Computer Science & Engineering',
     departmentSlug: 'cse',
     category: 'Non-Technical',
-    format: 'Individual or Team (1 to 2 members)',
-    duration: '45 minutes',
-    venue: 'CSE Classroom 3',
+    format: 'Team (Maximum 4 members)',
+    teamSize: 'Max 4 Members',
+    duration: 'Approximately 50 Minutes',
+    venue: 'CLASS ROOM NO:317/320',
     time: '02:00 PM onwards',
-    teamSize: '1 - 2 Members',
+    rounds: 'Picture Clue, Frame by Frame, Reverse Riddle',
     registrationStatus: 'Open',
-    concept: 'High-energy cinema and entertainment trivia challenge covering blockbuster movies, soundtrack connections, and iconic scenes.',
-    description: 'Fun media quiz testing movie knowledge, dialogue identification, scene connections, and pop culture memory.',
+    concept: 'Movie Mania is a team quiz event built across three rounds of movie and song identification using picture clues, frame sequences, and reversed audio. Teams compete to score points across all three rounds and a steal mechanic keeps every question alive even after one team gets it wrong. It is built to be just as entertaining for the crowd watching as it is for the teams on the floor.',
+    description: 'Team quiz event across picture clues, frame sequences, and reverse audio with high-stakes steal mechanics.',
     stages: [
-      { title: 'Round 1 — Scene & Audio Clues', description: 'Identify movies from audio clips, dialogues, and still frames.' },
-      { title: 'Round 2 — Rapid Connection', description: 'Connect actor filmographies, plot twists, and hidden cinema clues.' }
+      {
+        title: 'Stage 1 — Round 1 (Picture Clue)',
+        description: 'A picture or visual clue is displayed on the projector. Teams identify the movie it represents. Each question comes with a fixed time window for teams to discuss and submit their final answer. This round has 8 questions.'
+      },
+      {
+        title: 'Stage 2 — Round 2 (Frame by Frame)',
+        description: 'A sequence of images from a song is shown on the projector. Teams identify the song from the visual frames. Images are revealed progressively, giving more detail as the countdown runs. This round has 6 questions.'
+      },
+      {
+        title: 'Stage 3 — Round 3 (Reverse Riddle)',
+        description: 'A song is played in reverse through speakers. Teams identify the original song. This round runs as a buzzer format where the first team to signal gets to answer. This round has 5 songs.'
+      }
     ],
-    rules: ['1 or 2 members per team.', 'No electronic devices or internet searches allowed during trivia rounds.', 'Fastest response with highest score wins.'],
-    coordinators: ['Nitheesh', 'Dhanu Shree']
+    rules: [
+      'Each team can have a maximum of 4 members.',
+      'Team members can discuss before answering in Rounds 1 and 2. In Round 3, the first team to buzz in must answer within 10 seconds.',
+      'A steal rule applies across all three rounds. If a team answers incorrectly or does not answer within the time limit, any other team can immediately raise their hand to steal.',
+      'No mobile phones, internet, or outside assistance is allowed during the event.',
+      'A live scoreboard visible to all teams is updated after every single question.'
+    ],
+    scoringBreakdown: [
+      { label: 'Round 1 (Picture Clue - 8 Qs)', points: '80 Points max (10 pts/Q)' },
+      { label: 'Round 2 (Frame by Frame - 6 Qs)', points: '60 Points max (10 pts/Q)' },
+      { label: 'Round 3 (Reverse Riddle - 5 Qs)', points: '50 Points max (10 pts/Q)' },
+      { label: 'Correct Steal Answer', points: '15 Points (1.5x standard)' },
+      { label: 'Wrong Steal Answer', points: '0 Points (question closed)' }
+    ],
+    scoring: [
+      'Maximum Total: 19 Questions (190 Points max).',
+      'The team with the highest total score across all three rounds wins. If scores are tied, a reserve tiebreaker question is given (5 reserve questions ready per round).'
+    ],
+    coordinators: ['Dhanu Shree — 98428 15860']
   },
   {
     name: 'InnoVision',

@@ -59,7 +59,10 @@ export const departments: Department[] = [
     abbr: 'CSE',
     image: '/images/departments/cse-logo.png',
     email: 'cyberzen2k25@gmail.com',
-    coordinators: ['Nitheesh — 9876543218', 'Dhanu Shree — 9876543219'],
+    coordinators: [
+      'Dhanu Shree — 98428 15860',
+      'Nithish S — 96007 17165'
+    ],
     technicalEvents: ['Vibe Coding', 'Prompt War', 'Output Hunt'],
     nonTechnicalEvents: ['Chess Arena', 'Movie Mania'],
     registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSe0TS5zT-kZtP3mGnpqDjE1pge9WYkoduJCkxCXMHMjGTZ43w/viewform?pli=1'
@@ -80,7 +83,7 @@ export const departments: Department[] = [
     abbr: 'AI/ML',
     image: '/images/departments/ai-ml-logo.png',
     email: 'aispartanz.ppg.it@gmail.com',
-    coordinators: ['Vyas — 9876543214', 'Akash — 9876543215'],
+    coordinators: ['Vyas — 78715 34011', 'Akash — 91594 04730'],
     technicalEvents: ['IDEA2PROTOTYPE', 'PROMPT2PIXEL', 'Web Redesign'],
     nonTechnicalEvents: ['AI Shortfilm', 'MemeRush']
   }
