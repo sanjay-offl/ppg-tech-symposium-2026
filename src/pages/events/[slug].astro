@@ -214,7 +214,7 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
                 )}
                 {detail.coordinators && detail.coordinators.length > 0 && (
                   <div class="summary-row coord-row">
-                    <span class="s-label">Coordinators (Tap to Call)</span>
+                    <span class="s-label">Coordinators</span>
                     <div class="s-coords-list">
                       {detail.coordinators.map((coordStr) => {
                         const parts = coordStr.split(' — ');
