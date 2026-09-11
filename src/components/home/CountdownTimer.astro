@@ -2,7 +2,7 @@
 const targetDate = '2026-09-25T09:00:00+05:30';
 ---
 <div class="countdown-wrap" data-countdown data-target={targetDate} aria-label="Countdown to VIYUGAM 2K26">
-  <p class="countdown-kicker"><span aria-hidden="true"></span>Race Starts In</p>
+  <p class="countdown-kicker"><span aria-hidden="true"></span>Symposium Starts In</p>
   <div class="countdown" role="timer" aria-live="polite">
     <div class="countdown-block"><span data-unit="days">00</span><small>Days</small></div>
     <i class="countdown-separator" aria-hidden="true"></i>
@@ -17,17 +17,49 @@ const targetDate = '2026-09-25T09:00:00+05:30';
 <style lang="scss">
 @use '../../styles/variables' as *;
 
-.countdown-wrap { margin: 0 0 26px; }
-.countdown-kicker { display: flex; align-items: center; gap: 8px; margin: 0 0 5px; color: $orange; font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.countdown-wrap { margin: 0 0 24px; }
+.countdown-kicker { display: flex; align-items: center; gap: 8px; margin: 0 0 6px; color: $orange; font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .countdown-kicker span { display: inline-block; width: 24px; height: 1px; background: $orange; }
 .countdown { display: flex; align-items: center; width: max-content; max-width: 100%; }
-.countdown-block { display: flex; min-width: 64px; flex-direction: column; align-items: center; }
-.countdown-block span { color: $black; font: 64px/.82 $display; letter-spacing: .01em; }
+.countdown-block { display: flex; min-width: 66px; flex-direction: column; align-items: center; text-align: center; }
+.countdown-block span {
+  color: $black;
+  font: 64px/.82 $display;
+  letter-spacing: .01em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
 .countdown-block small { margin-top: 7px; color: #9ca3af; font-size: .62rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .countdown-separator { width: 1px; height: 40px; margin: 0 10px; background: $orange; }
 .countdown-dot { align-self: flex-start; margin: 3px 8px 0 5px; color: $orange; font-size: 1.35rem; line-height: 1; }
 .countdown-finished { color: $orange; font: 700 2rem/1 $display; letter-spacing: .08em; text-transform: uppercase; }
-@media (max-width: 760px) { .countdown-wrap { margin-bottom: 24px; }.countdown-kicker { justify-content: center; }.countdown { margin-inline: auto; }.countdown-block { min-width: 52px; }.countdown-block span { font-size: 40px; }.countdown-block small { margin-top: 5px; font-size: .55rem; letter-spacing: .1em; }.countdown-separator { height: 30px; margin-inline: 6px; }.countdown-dot { margin-right: 4px; margin-left: 2px; font-size: 1rem; }.countdown-finished { font-size: 1.7rem; text-align: center; } }
+@media (max-width: 760px) {
+  .countdown-wrap { margin-bottom: 22px; }
+  .countdown-kicker { justify-content: center; }
+  .countdown { margin-inline: auto; }
+  .countdown-block { min-width: 52px; }
+  .countdown-block span { font-size: 40px; }
+  .countdown-block small { margin-top: 5px; font-size: .55rem; letter-spacing: .1em; }
+  .countdown-separator { height: 30px; margin-inline: 6px; }
+  .countdown-dot { margin-right: 4px; margin-left: 2px; font-size: 1rem; }
+  .countdown-finished { font-size: 1.7rem; text-align: center; }
+}
+@keyframes digitPulse {
+  0%   { transform: scale(1); color: inherit; }
+  50%  { transform: scale(1.15); color: #f97316; }
+  100% { transform: scale(1); color: inherit; }
+}
+
+.digit-pulse {
+  animation: digitPulse 300ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
 </style>
 
 <script>
@@ -40,6 +72,8 @@ if (countdown) {
   let interval: number | undefined;
 
   const pad = (value: number) => String(value).padStart(2, '0');
+  const secsEl = countdown.querySelector<HTMLElement>('[data-unit="seconds"]');
+
   const update = () => {
     const diff = Math.max(0, target - Date.now());
     const days = Math.floor(diff / 86400000);
@@ -48,7 +82,7 @@ if (countdown) {
     const seconds = Math.floor((diff % 60000) / 1000);
 
     if (diff === 0) {
-      countdown.innerHTML = '<p class="countdown-finished" role="status">Race Starts Now 🏁</p>';
+      countdown.innerHTML = '<p class="countdown-finished" role="status">Symposium Starts Now 🚀</p>';
       if (interval) window.clearInterval(interval);
       return;
     }
@@ -56,9 +90,17 @@ if (countdown) {
     countdown.querySelector('[data-unit="days"]')!.textContent = pad(days);
     countdown.querySelector('[data-unit="hours"]')!.textContent = pad(hours);
     countdown.querySelector('[data-unit="minutes"]')!.textContent = pad(minutes);
-    countdown.querySelector('[data-unit="seconds"]')!.textContent = pad(seconds);
+    if (secsEl) secsEl.textContent = pad(seconds);
     if (timer) timer.setAttribute('aria-label', `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`);
     if (blink) blink.style.opacity = blink.style.opacity === '0' ? '1' : '0';
+
+    // ISSUE 5D: Pulse the seconds digit on every tick
+    if (secsEl) {
+      secsEl.classList.remove('digit-pulse');
+      // Force reflow to restart animation
+      void secsEl.offsetWidth;
+      secsEl.classList.add('digit-pulse');
+    }
   };
 
   update();
