@@ -15,15 +15,7 @@ import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
     </div>
   </section>
 
-  <section class="content" id="dept-section">
-    <!-- Moving Rays Background -->
-    <div class="moving-rays-bg" aria-hidden="true">
-      <div class="ray-layer ray-layer-1"></div>
-      <div class="ray-layer ray-layer-2"></div>
-      <div class="ray-layer ray-layer-3"></div>
-      <div class="rays-ambient-glow"></div>
-    </div>
-
+  <section class="content">
     <div class="container">
       <div class="dept-header-box">
         <span class="section-label">Compete & Win</span>
@@ -35,53 +27,6 @@ import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
 
   <SymposiumGuidelines />
 </MainLayout>
-
-<script>
-  function initRaysScroll() {
-    const ray1 = document.querySelector('.ray-layer-1') as HTMLElement;
-    const ray2 = document.querySelector('.ray-layer-2') as HTMLElement;
-    const ray3 = document.querySelector('.ray-layer-3') as HTMLElement;
-    const section = document.getElementById('dept-section');
-
-    if (!section || !ray1 || !ray2 || !ray3) return;
-
-    let ticking = false;
-
-    function updateRays() {
-      if (!section) return;
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      // Calculate scroll progress relative to viewport (0 to 1)
-      const totalScrollable = rect.height + windowHeight;
-      const currentPos = windowHeight - rect.top;
-      const progress = Math.max(0, Math.min(1, currentPos / totalScrollable));
-
-      // Rotate ray layers based on scroll progress
-      const rot1 = progress * 45;
-      const rot2 = progress * -35;
-      const rot3 = progress * 60;
-
-      if (ray1) ray1.style.transform = `rotate(${rot1}deg) scale(1.2)`;
-      if (ray2) ray2.style.transform = `rotate(${rot2}deg) scale(1.25)`;
-      if (ray3) ray3.style.transform = `rotate(${rot3}deg) scale(1.15)`;
-
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateRays);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    updateRays();
-  }
-
-  document.addEventListener('DOMContentLoaded', initRaysScroll);
-  document.addEventListener('astro:page-load', initRaysScroll);
-</script>
 
 <style lang="scss">
 @use '../../styles/variables' as *;
@@ -129,73 +74,7 @@ import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
 
   .container {
     position: relative;
-    z-index: 2;
-  }
-}
-
-/* === MOVING RAYS BACKGROUND === */
-.moving-rays-bg {
-  position: absolute;
-  inset: -60% -30%;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.38; /* Low opacity as requested */
-  overflow: hidden;
-
-  .ray-layer {
-    position: absolute;
-    inset: -30%;
-    transform-origin: 50% 30%;
-    will-change: transform;
-    transition: transform 0.12s cubic-bezier(0.1, 0.9, 0.2, 1);
-  }
-
-  .ray-layer-1 {
-    background: repeating-conic-gradient(
-      from 0deg at 50% 30%,
-      rgba(255, 101, 0, 0.14) 0deg 8deg,
-      transparent 8deg 22deg,
-      rgba(255, 101, 0, 0.08) 22deg 32deg,
-      transparent 32deg 45deg
-    );
-    mask-image: radial-gradient(circle at 50% 30%, black 15%, transparent 75%);
-    -webkit-mask-image: radial-gradient(circle at 50% 30%, black 15%, transparent 75%);
-  }
-
-  .ray-layer-2 {
-    background: repeating-conic-gradient(
-      from 15deg at 50% 30%,
-      rgba(255, 140, 0, 0.09) 0deg 12deg,
-      transparent 12deg 28deg,
-      rgba(255, 80, 0, 0.06) 28deg 38deg,
-      transparent 38deg 55deg
-    );
-    mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
-  }
-
-  .ray-layer-3 {
-    background: repeating-conic-gradient(
-      from 30deg at 50% 30%,
-      rgba(255, 165, 0, 0.11) 0deg 6deg,
-      transparent 6deg 18deg,
-      rgba(255, 101, 0, 0.05) 18deg 30deg,
-      transparent 30deg 42deg
-    );
-    mask-image: radial-gradient(circle at 50% 30%, black 10%, transparent 70%);
-    -webkit-mask-image: radial-gradient(circle at 50% 30%, black 10%, transparent 70%);
-  }
-
-  .rays-ambient-glow {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 650px;
-    height: 650px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 101, 0, 0.16) 0%, rgba(255, 101, 0, 0.03) 50%, transparent 75%);
-    filter: blur(45px);
+    z-index: 1;
   }
 }
 
