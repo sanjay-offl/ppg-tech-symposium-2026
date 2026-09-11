@@ -72,17 +72,22 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
             <div class="coordinators-box">
               <strong>Student Coordinators</strong>
               <ul>
-                {department.coordinators.map((coord) => <li>{coord}</li>)}
+                {department.coordinators.map((coordStr) => {
+                  const parts = coordStr.split(' — ');
+                  const name = parts[0];
+                  const phone = parts[1] || '';
+                  const cleanPhone = phone.replace(/[^\d+]/g, '');
+                  const telHref = cleanPhone ? (cleanPhone.startsWith('+') ? cleanPhone : `+91${cleanPhone}`) : '';
+                  return (
+                    <li>
+                      <span>{name}</span>
+                      {phone && <a href={`tel:${telHref}`} class="dept-phone-link">📞 {phone}</a>}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
-            {department.staffCoordinators && department.staffCoordinators.length > 0 && (
-              <div class="coordinators-box">
-                <strong>Staff Coordinator</strong>
-                <ul>
-                  {department.staffCoordinators.map((coord) => <li>{coord}</li>)}
-                </ul>
-              </div>
-            )}
+
             <div class="contact-box">
               <strong>Contact Email</strong>
               <a href={`mailto:${department.email}`}>{department.email}</a>
@@ -406,25 +411,58 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
 
 @media (max-width: 768px) {
   .dept-hero {
-    padding: 120px 0 40px;
+    padding: 110px 0 32px;
   }
   .dept-header-wrap {
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
   }
   .dept-badge {
-    width: 80px;
-    height: 80px;
-    font-size: 1.8rem;
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
+    padding: 8px;
+    font-size: 1.5rem;
+  }
+  .dept-title {
+    margin: 0 0 12px;
+    font-size: 2rem;
   }
   .dept-meta {
-    gap: 20px;
+    gap: 16px;
+    padding-top: 12px;
+  }
+  .dept-events-section {
+    padding: 36px 0 50px;
+  }
+  .events-group-block {
+    margin-bottom: 36px;
+  }
+  .group-header {
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+  }
+  .group-title {
+    font-size: 1.4rem;
   }
   .event-cards-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
   .dept-register-box {
-    padding: 30px 20px;
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+  .cta-title {
+    font-size: 1.45rem;
+  }
+  .cta-desc {
+    font-size: 0.84rem;
+    margin-bottom: 16px;
+  }
+  .overall-register-btn {
+    padding: 11px 24px;
+    font-size: 0.82rem;
   }
 }
 </style>
