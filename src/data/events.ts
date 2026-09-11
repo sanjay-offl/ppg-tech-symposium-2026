@@ -1192,7 +1192,7 @@ export const events: EventItem[] = [
       'Total Maximum Score: 80 Points.',
       'The team with the highest combined score wins.'
     ],
-    coordinators: ['Rishikanth — 93440 55430']
+    coordinators: ['Rishikanth — +91 93440 55430']
   },
   {
     name: 'Output Hunt',
@@ -1246,7 +1246,7 @@ export const events: EventItem[] = [
       'The team with the highest score in Round 2 will be declared the winner.',
       'In case of a tie, a tie-breaker question will be conducted.'
     ],
-    coordinators: ['Nithish S — 96007 17165']
+    coordinators: ['Nithish S — +91 96007 17165']
   },
   {
     name: 'Prompt War',
@@ -1295,7 +1295,7 @@ export const events: EventItem[] = [
       'Per Image Score: 100 Points | Grand Total Evaluation Score: 200 Points.',
       'The participant with the highest grand total wins. If scores are tied, the participant with the higher Stage 2 score decides the winner.'
     ],
-    coordinators: ['Gowsik — 90034 27793']
+    coordinators: ['Gowsik — +91 90034 27793']
   },
   {
     name: 'Chess Arena',
@@ -1346,7 +1346,7 @@ export const events: EventItem[] = [
       'Material Value on Clock Expiry (Timeout Resolution): Queen (9 pts), Rook (5 pts), Bishop (3 pts), Knight (3 pts), Pawn (1 pt).',
       'The participant who wins the Final Match is declared Chess Arena Champion.'
     ],
-    coordinators: ['Dhavasi K — 76038 90043']
+    coordinators: ['Dhavasi K — +91 76038 90043']
   },
   {
     name: 'Movie Mania',
@@ -1395,7 +1395,7 @@ export const events: EventItem[] = [
       'Maximum Total: 19 Questions (190 Points max).',
       'The team with the highest total score across all three rounds wins. If scores are tied, a reserve tiebreaker question is given (5 reserve questions ready per round).'
     ],
-    coordinators: ['Dhanu Shree — 98428 15860']
+    coordinators: ['Dhanu Shree — +91 98428 15860']
   },
   {
     name: 'InnoVision',
@@ -1421,7 +1421,7 @@ export const events: EventItem[] = [
       'No external assistance or plagiarism; violations may lead to disqualification.',
       'Scoring based on technical content, innovation, presentation, Q&A, and applicability.'
     ],
-    coordinators: ['Pooja S — 9876543216', 'Vasantha Leela — 9876543217']
+    coordinators: ['Pooja S — +91 9876543216', 'Vasantha Leela — +91 9876543217']
   },
   {
     name: 'Idea Hub',
@@ -1448,7 +1448,7 @@ export const events: EventItem[] = [
       'Ideas must be original and relevant to the given problem. Plagiarism or copied solutions will lead to disqualification.',
       'Scoring based on Problem Understanding, Innovation, Technical Feasibility, Impact & Applicability, Presentation & Q&A.'
     ],
-    coordinators: ['Swetha — 9876543216', 'Ashwini — 9876543217']
+    coordinators: ['Swetha — +91 9876543216', 'Ashwini — +91 9876543217']
   },
   {
     name: 'Mind Rush',
@@ -1475,7 +1475,7 @@ export const events: EventItem[] = [
       'No external assistance or communication; violations may lead to disqualification.',
       'Scores from all rounds are combined.'
     ],
-    coordinators: ['Pooja — 9876543216', 'Nivethitha — 9876543217']
+    coordinators: ['Pooja — +91 9876543216', 'Nivethitha — +91 9876543217']
   },
   {
     name: 'CONNECT',
@@ -1505,7 +1505,7 @@ export const events: EventItem[] = [
       'In case of a tie, a tie-breaker may be conducted.',
       'The team with the highest total score will be declared the winner.'
     ],
-    coordinators: ['Vinotha — 9876543216', 'Kaneeshma — 9876543217']
+    coordinators: ['Vinotha — +91 9876543216', 'Kaneeshma — +91 9876543217']
   },
   {
     name: 'Guess the Organ',
@@ -1535,7 +1535,7 @@ export const events: EventItem[] = [
       'Teams must give one final answer for each question.',
       'The team with the highest cumulative score will be declared the winner.'
     ],
-    coordinators: ['Vinotha — 9876543216', 'Mala — 9876543217']
+    coordinators: ['Vinotha — +91 9876543216', 'Mala — +91 9876543217']
   },
   {
     name: 'IDEA2PROTOTYPE',
@@ -1575,8 +1575,8 @@ export const events: EventItem[] = [
       'Participants must bring their own laptop, charger, and required accessories.'
     ],
     coordinators: [
-      'KEERTHANA SRI R G — 9789706728',
-      'ADHITH S — 7397617357'
+      'KEERTHANA SRI R G — +91 9789706728',
+      'ADHITH S — +91 7397617357'
     ]
   },
   {
@@ -1615,8 +1615,8 @@ export const events: EventItem[] = [
       'Participants must bring their own laptop, charger, and required accessories.'
     ],
     coordinators: [
-      'ARVIND M — 8148954829',
-      'PONSEELAN P — 6381098458'
+      'ARVIND M — +91 8148954829',
+      'PONSEELAN P — +91 6381098458'
     ]
   },
   {
@@ -1656,8 +1656,8 @@ export const events: EventItem[] = [
       'Participants must bring their own laptop, charger, and required accessories.'
     ],
     coordinators: [
-      'SWETHA S — 9025597773',
-      'SREE GIRIJA S — 6379282382'
+      'SWETHA S — +91 9025597773',
+      'SREE GIRIJA S — +91 6379282382'
     ]
   },
   {
@@ -1690,8 +1690,8 @@ export const events: EventItem[] = [
       'Participants must bring their own laptop, charger, and required accessories.'
     ],
     coordinators: [
-      'SARAVANA S — 9843871061',
-      'SIKKANTHAR AJISH A — 7010790244'
+      'SARAVANA S — +91 9843871061',
+      'SIKKANTHAR AJISH A — +91 7010790244'
     ]
   },
   {
@@ -1730,8 +1730,8 @@ export const events: EventItem[] = [
       'Participants must bring their own laptop, charger, and required accessories.'
     ],
     coordinators: [
-      'AATHIL TAABIR A — 8610638901',
-      'GURU PRASATH S — 6369513251'
+      'AATHIL TAABIR A — +91 8610638901',
+      'GURU PRASATH S — +91 6369513251'
     ]
   }
 ];
