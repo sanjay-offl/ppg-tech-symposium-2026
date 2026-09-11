@@ -83,7 +83,7 @@ export const departments: Department[] = [
     abbr: 'AI/ML',
     image: '/images/departments/ai-ml-logo.png',
     email: 'aispartanz.ppg.it@gmail.com',
-    coordinators: ['Vyas — 9876543214', 'Akash — 9876543215'],
+    coordinators: ['Vyas — 78715 34011', 'Akash — 91594 04730'],
     technicalEvents: ['IDEA2PROTOTYPE', 'PROMPT2PIXEL', 'Web Redesign'],
     nonTechnicalEvents: ['AI Shortfilm', 'MemeRush']
   }
