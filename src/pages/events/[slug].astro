@@ -214,11 +214,23 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
                 )}
                 {detail.coordinators && detail.coordinators.length > 0 && (
                   <div class="summary-row coord-row">
-                    <span class="s-label">Coordinators</span>
+                    <span class="s-label">Coordinators (Tap to Call)</span>
                     <div class="s-coords-list">
-                      {detail.coordinators.map((coord) => (
-                        <div class="s-coord-item">{coord}</div>
-                      ))}
+                      {detail.coordinators.map((coordStr) => {
+                        const parts = coordStr.split(' — ');
+                        const name = parts[0];
+                        const phone = parts[1] || '';
+                        const cleanPhone = phone.replace(/[^\d+]/g, '');
+                        const telHref = cleanPhone ? (cleanPhone.startsWith('+') ? cleanPhone : `+91${cleanPhone}`) : '';
+                        return telHref ? (
+                          <a href={`tel:${telHref}`} class="s-coord-item s-coord-link" title={`Call ${name}`}>
+                            <span>{name}</span>
+                            <span class="s-coord-phone">📞 {phone}</span>
+                          </a>
+                        ) : (
+                          <div class="s-coord-item">{coordStr}</div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -699,9 +711,34 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   font-weight: 600;
   color: #111827;
   background: #f3f4f6;
-  padding: 4px 8px;
+  padding: 6px 10px;
   border-radius: 6px;
   border: 1px solid rgba(10, 10, 10, 0.08);
+}
+
+.s-coord-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 101, 0, 0.1);
+    border-color: $orange;
+    color: $orange;
+
+    .s-coord-phone {
+      text-decoration: underline;
+    }
+  }
+
+  .s-coord-phone {
+    color: $orange;
+    font-weight: 700;
+  }
 }
 
 

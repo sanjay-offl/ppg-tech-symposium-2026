@@ -52,12 +52,24 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
           <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
           <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
         </svg>
-        <span>Event Coordinators</span>
+        <span>Event Coordinators (Tap to Call)</span>
       </div>
       <div class="coord-list">
-        {event.coordinators.map((coord) => (
-          <span class="coord-tag">{coord}</span>
-        ))}
+        {event.coordinators.map((coordStr) => {
+          const parts = coordStr.split(' — ');
+          const name = parts[0];
+          const phone = parts[1] || '';
+          const cleanPhone = phone.replace(/[^\d+]/g, '');
+          const telHref = cleanPhone ? (cleanPhone.startsWith('+') ? cleanPhone : `+91${cleanPhone}`) : '';
+          return telHref ? (
+            <a href={`tel:${telHref}`} class="coord-tag coord-tag--link" title={`Call ${name}`}>
+              <span class="coord-name">{name}</span>
+              <span class="coord-phone">📞 {phone}</span>
+            </a>
+          ) : (
+            <span class="coord-tag">{coordStr}</span>
+          );
+        })}
       </div>
     </div>
   )}
@@ -231,6 +243,32 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
   line-height: 1.35;
 }
 
+.coord-tag--link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $orange;
+    background: rgba(255, 101, 0, 0.06);
+    color: $orange;
+
+    .coord-phone {
+      text-decoration: underline;
+    }
+  }
+
+  .coord-phone {
+    color: $orange;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+}
+
 .card-actions {
   display: flex;
   gap: 10px;
@@ -297,12 +335,77 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
 
 
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .event-card {
-    padding: 18px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border-top-width: 3px;
+  }
+  .card-header {
+    margin-bottom: 8px;
+    gap: 8px;
   }
   .event-title {
-    font-size: 1.35rem;
+    font-size: 1.18rem;
+  }
+  .dept-badge {
+    font-size: 0.65rem;
+    padding: 1px 6px;
+  }
+  .card-body {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    margin-bottom: 10px;
+    -webkit-line-clamp: 2;
+  }
+  .format-line {
+    padding: 6px 10px;
+    margin-bottom: 10px;
+    font-size: 0.72rem;
+    gap: 6px;
+    border-radius: 6px;
+
+    .format-icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  .card-coordinators {
+    padding: 6px 10px;
+    margin-bottom: 10px;
+    gap: 4px;
+    border-radius: 8px;
+  }
+  .coord-label {
+    font-size: 0.66rem;
+    gap: 4px;
+
+    svg {
+      width: 11px;
+      height: 11px;
+    }
+  }
+  .coord-tag {
+    font-size: 0.72rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .card-actions {
+    gap: 8px;
+  }
+  .btn-details, .btn-register {
+    padding: 7px 10px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 420px) {
+  .event-card {
+    padding: 12px 14px;
+  }
+  .event-title {
+    font-size: 1.1rem;
   }
 }
 </style>

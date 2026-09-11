@@ -26,5 +26,36 @@ const { title = 'VIYUGAM 2K26 | PPG Institute of Technology', description = 'Nat
     <Footer />
     <LenisScroll />
     <GSAPAnimations />
+    <script>
+      function setupGlobalPhoneHandler() {
+        const phoneRegex = /(?:\+?91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}|(?:\+?91[\s-]?)?[6-9]\d{9}/;
+
+        document.addEventListener('click', (e) => {
+          const target = e.target as HTMLElement;
+          if (!target) return;
+
+          // If clicked inside an existing link/button/input, let default handling work
+          if (target.closest('a') || target.closest('button') || target.closest('input')) return;
+
+          const text = (target.textContent || '').trim();
+          // If the element text is brief and contains a phone number
+          if (text.length > 0 && text.length < 60) {
+            const match = text.match(phoneRegex);
+            if (match) {
+              const rawDigits = match[0].replace(/[^\d+]/g, '');
+              const cleanPhone = rawDigits.startsWith('+') ? rawDigits : (rawDigits.length === 10 ? `+91${rawDigits}` : rawDigits);
+              window.location.href = `tel:${cleanPhone}`;
+            }
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupGlobalPhoneHandler);
+      } else {
+        setupGlobalPhoneHandler();
+      }
+      document.addEventListener('astro:page-load', setupGlobalPhoneHandler);
+    </script>
   </body>
 </html>
