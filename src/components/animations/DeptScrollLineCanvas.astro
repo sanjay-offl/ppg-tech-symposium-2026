@@ -27,15 +27,13 @@
 
 <script>
 function initDeptScrollLineCanvas() {
-  const canvases = document.querySelectorAll<HTMLCanvasElement>('.dept-scroll-line-canvas');
-  canvases.forEach((canvas) => {
-    if ((canvas as any)._initialized) return;
-    (canvas as any)._initialized = true;
-    const parent = canvas.parentElement;
-    if (!parent) return;
+  const canvas = document.getElementById('dept-scroll-line-canvas') as HTMLCanvasElement | null;
+  if (!canvas) return;
+  const parent = canvas.parentElement;
+  if (!parent) return;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
 
   let animFrameId: number | null = null;
   let scrollY = window.scrollY;
@@ -242,7 +240,6 @@ function initDeptScrollLineCanvas() {
     window.removeEventListener('resize', resize);
     window.removeEventListener('scroll', onScroll);
   }, { once: true });
-  });
 }
 
 if (document.readyState === 'loading') {
