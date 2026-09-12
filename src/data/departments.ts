@@ -19,8 +19,8 @@ export const departments: Department[] = [
     abbr: 'AI/DS',
     image: '/images/departments/ai-ds-logo.png',
     email: 'aidsppgit@gmail.com',
-    coordinators: ['Rahul Krishnith — +91 9876543212', 'Sudhakar — +91 9876543213'],
-    staffCoordinators: ['Santhana Boopathi A, AP/AI&DS — +91 80564 50237'],
+coordinators: ['Rahul Krishnith — +91 93448 96158', 'Sudhakar — +91 80150 22457'],
+    staffCoordinators: ['Mr. A. Santhana Boopathi, AP/AI&DS — +91 80564 50237'],
     technicalEvents: ['Technology Casino', 'Code Breakers', 'Idea Presentation'],
     nonTechnicalEvents: ['Memory Lens', 'Stumble Guys'],
     registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSetkwhIORgx3BNdvKKh5rGtx49deC9YWYmBKhxksm6ejIdhOA/viewform?usp=header'
@@ -106,8 +106,8 @@ export const departments: Department[] = [
     abbr: 'ECE',
     image: '/images/departments/ECE.png',
     email: 'electrosparks2024@gmail.com',
-    coordinators: ['Nakshatra — +91 9876543220', 'Subagaanthan — +91 9876543221'],
-    staffCoordinators: ['G. Karthiga, AP/ECE — +91 80567 18288'],
+coordinators: ['Nakshatra — +91 99404 48047', 'Subagaanthan — +91 90258 52595'],
+    staffCoordinators: ['Ms. G. Karthiga, AP/ECE — +91 80567 18288'],
     technicalEvents: ['Circuit Crime Scene', 'PPT and Paper Presentation', 'Reverse Engineering'],
     nonTechnicalEvents: ['ECE Escape Room', 'IPL Auction'],
     registrationUrl: 'https://forms.gle/VFmp1MkKmPMfKEeh8'
@@ -118,8 +118,8 @@ export const departments: Department[] = [
     abbr: 'AGRI',
     image: '/images/departments/agri-logo.png',
     email: 'agrowingz.ppgit@gmail.com',
-    coordinators: ['Rakshana — +91 9876543210', 'Saranya — +91 9876543211'],
-    staffCoordinators: ['G. Udhayakumar, AP/Agri — +91 95667 44930'],
+coordinators: ['Rakshana G — +91 97915 07259', 'Desikan — +91 63838 02312'],
+    staffCoordinators: ['Mr. G. Udhayakumar, AP/Agri — +91 95667 44930'],
     technicalEvents: ['Farm Tech (Paper Presentation)', 'Craft (CAD Design Challenge)', 'Agri Vista (Poster Presentation)'],
     nonTechnicalEvents: ['Clue Clash (Imposter)', 'Agri Canvas (Poster Making)'],
     registrationUrl: 'https://forms.gle/Yp4xDHDPK3z4AuYKA'
