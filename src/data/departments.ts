@@ -57,7 +57,7 @@ export const departments: Department[] = [
     email: 'cyberzen.org@gmail.com',
     coordinators: [
       'Dhanu Shree — +91 98428 15860',
-      'Nithish S — +91 96007 17165'
+      'Nitheesh S — +91 96007 17165'
     ],
     staffCoordinators: ['Ms. A. Jenefa, AP/CSE — +91 81975 38732'],
     technicalEvents: ['Vibe Coding', 'Prompt War', 'Output Hunt'],
