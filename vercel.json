@@ -76,7 +76,7 @@
       ]
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!.*\\.(?:jpg|jpeg|png|gif|svg|webp|ico)).*)",
       "headers": [
         {
           "key": "X-Content-Type-Options",
