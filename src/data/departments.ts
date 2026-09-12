@@ -6,7 +6,7 @@ export const departments: Department[] = [
     slug: 'agri',
     abbr: 'AGRI',
     image: '/images/departments/agri-logo.png',
-    email: 'agrowingz.ppgit@gmail.com',
+    email: 'agrowings2k26@rediffmail.com',
     coordinators: ['Rakshana G — +91 97915 07259', 'Desikan — +91 63838 02312'],
     staffCoordinators: ['Mr. G. Udhayakumar, AP/Agri — +91 95667 44930'],
     technicalEvents: ['Farm Tech (Paper Presentation)', 'Craft (CAD Design Challenge)', 'Agri Vista (Poster Presentation)'],
@@ -52,7 +52,7 @@ export const departments: Department[] = [
     slug: 'cse',
     abbr: 'CSE',
     image: '/images/departments/cse-logo.png',
-    email: 'cyberzen2k25@gmail.com',
+    email: 'cyberzen.org@gmail.com',
     coordinators: [
       'Dhanu Shree — +91 98428 15860',
       'Nithish S — +91 96007 17165'
