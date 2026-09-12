@@ -1542,7 +1542,7 @@ export const events: EventItem[] = [
   {
     name: 'IDEA2PROTOTYPE',
     slug: 'idea2prototype',
-    department: 'Artificial Intelligence & Machine Learning',
+    department: 'Computer Science and Engineering (AI&ML)',
     departmentSlug: 'ai-ml',
     category: 'Technical',
     format: 'Individual / Team (2 to 4 members)',
@@ -1584,7 +1584,7 @@ export const events: EventItem[] = [
   {
     name: 'WEB REDESIGN',
     slug: 'web-redesign',
-    department: 'Artificial Intelligence & Machine Learning',
+    department: 'Computer Science and Engineering (AI&ML)',
     departmentSlug: 'ai-ml',
     category: 'Technical',
     format: 'Individual / Team (2 to 4 members)',
@@ -1624,7 +1624,7 @@ export const events: EventItem[] = [
   {
     name: 'PROMPT2PIXEL',
     slug: 'prompt2pixel',
-    department: 'Artificial Intelligence & Machine Learning',
+    department: 'Computer Science and Engineering (AI&ML)',
     departmentSlug: 'ai-ml',
     category: 'Technical',
     format: 'Individual / Team (2 to 4 members)',
@@ -1665,7 +1665,7 @@ export const events: EventItem[] = [
   {
     name: 'AI Shortfilm',
     slug: 'ai-shortfilm',
-    department: 'Artificial Intelligence & Machine Learning',
+    department: 'Computer Science and Engineering (AI&ML)',
     departmentSlug: 'ai-ml',
     category: 'Non-Technical',
     format: 'Team (2 members)',
@@ -1699,7 +1699,7 @@ export const events: EventItem[] = [
   {
     name: 'MemeRush',
     slug: 'memerush',
-    department: 'Artificial Intelligence & Machine Learning',
+    department: 'Computer Science and Engineering (AI&ML)',
     departmentSlug: 'ai-ml',
     category: 'Non-Technical',
     format: 'Individual / Team (2 members)',
