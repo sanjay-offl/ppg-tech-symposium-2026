@@ -6,9 +6,9 @@ import LenisScroll from '@/components/animations/LenisScroll.astro';
 import GSAPAnimations from '@/components/animations/GSAPAnimations.astro';
 import IntroOverlay from '@/components/common/IntroOverlay.astro';
 
-// WhatsApp requires OG image < 300KB. METATAG.png = 940KB (fails).
-// METATAG-1200.jpg = 71KB at 1200×630 — works on all platforms.
-const OG_IMAGE = 'https://viyugam2k26.vercel.app/METATAG-1200.jpg';
+// WhatsApp requires OG image < 300KB.
+// og-image.jpg = 52KB at 1200×630 — works on all platforms including WhatsApp, Facebook, Twitter, LinkedIn.
+const OG_IMAGE = 'https://viyugam2k26.vercel.app/og-image.jpg';
 
 const {
   title = 'VIYUGAM 2K26 | National Level Technical Symposium | PPG Institute of Technology, Coimbatore',
@@ -126,7 +126,7 @@ const {
       "name": "VIYUGAM 2K26",
       "alternateName": "VIYUGAM 2026",
       "description": "National Level Technical Symposium at PPG Institute of Technology, Coimbatore. 40+ Events across 8 Engineering Departments with Cash Prizes and Workshops on 25 September 2026.",
-      "image": "https://viyugam2k26.vercel.app/METATAG-1200.jpg",
+      "image": "https://viyugam2k26.vercel.app/og-image.jpg",
       "startDate": "2026-09-25T09:00:00+05:30",
       "endDate": "2026-09-25T18:00:00+05:30",
       "eventStatus": "https://schema.org/EventScheduled",
