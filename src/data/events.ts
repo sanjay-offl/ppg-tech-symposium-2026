@@ -350,8 +350,8 @@ export const events: EventItem[] = [
     coordinators: ['S.Abishek — +91 85318 28481']
   },
   {
-    name: 'eFootball Mobile Tournament',
-    slug: 'efootball-mobile-tournament',
+    name: 'Pro Evolution Soccer',
+    slug: 'pro-evolution-soccer',
     department: 'Information Technology',
     departmentSlug: 'it',
     category: 'Non-Technical',
@@ -973,8 +973,8 @@ export const events: EventItem[] = [
     ]
   },
   {
-    name: 'Craft (CAD Design Challenge)',
-    slug: 'cad-craft',
+    name: 'CRAFT (CAD)',
+    slug: 'craft-cad',
     department: 'Agricultural Engineering',
     departmentSlug: 'agri',
     category: 'Technical',
@@ -1482,8 +1482,8 @@ export const events: EventItem[] = [
     ]
   },
   {
-    name: 'CONNECT',
-    slug: 'connect',
+    name: 'Bio Connect',
+    slug: 'bio-connect',
     department: 'Biomedical Engineering',
     departmentSlug: 'bme',
     category: 'Non-Technical',
@@ -1493,8 +1493,8 @@ export const events: EventItem[] = [
     time: '11:30 AM onwards',
     teamSize: '1 - 4 Members',
     registrationStatus: 'Open',
-    concept: 'CONNECT is a fun biomedical-themed team event that tests creativity, observation, knowledge, and quick thinking through three exciting challenges.',
-    description: 'CONNECT is a fun biomedical-themed team event that tests creativity, observation, knowledge, and quick thinking through three exciting challenges.',
+    concept: 'Bio Connect is a fun biomedical-themed team event that tests creativity, observation, knowledge, and quick thinking through three exciting challenges.',
+    description: 'Bio Connect is a fun biomedical-themed team event that tests creativity, observation, knowledge, and quick thinking through three exciting challenges.',
     stages: [
       { title: 'Stage 1 — Med Sketch', description: 'Identify biomedical terms, organs, instruments, or concepts from sketches.' },
       { title: 'Stage 2 — Bio Connect', description: 'Connect the given biological and biomedical clues to find the correct answer.' },
@@ -1511,8 +1511,8 @@ export const events: EventItem[] = [
     ]
   },
   {
-    name: 'Guess the Organ',
-    slug: 'guess-the-organ',
+    name: 'Organ Hunt',
+    slug: 'organ-hunt',
     department: 'Biomedical Engineering',
     departmentSlug: 'bme',
     category: 'Non-Technical',
@@ -1522,8 +1522,8 @@ export const events: EventItem[] = [
     time: '02:30 PM onwards',
     teamSize: '1 - 4 Members',
     registrationStatus: 'Open',
-    concept: 'Guess the Organ is a fun medical-themed team event that tests participants\' observation, memory, and quick-thinking skills through three exciting rounds.',
-    description: 'Guess the Organ is a fun medical-themed team event that tests participants\' observation, memory, and quick-thinking skills through three exciting rounds.',
+    concept: 'Organ Hunt is a fun medical-themed team event that tests participants\' observation, memory, and quick-thinking skills through three exciting rounds.',
+    description: 'Organ Hunt is a fun medical-themed team event that tests participants\' observation, memory, and quick-thinking skills through three exciting rounds.',
     stages: [
       { title: 'Stage 1 — Mystery Detective (20 mins)', description: 'Identify the organ using visual clues and mystery images within the given time.' },
       { title: 'Stage 2 — Memory Challenge (20 mins)', description: 'Observe organ images for a limited time and identify them from memory after they disappear.' },
