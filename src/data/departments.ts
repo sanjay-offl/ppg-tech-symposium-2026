@@ -82,7 +82,7 @@ export const departments: Department[] = [
     abbr: 'BME',
     image: '/images/departments/bme.png',
     email: 'hodbiomedppgit@gmail.com',
-    coordinators: ['Krishna Kumar — +91 9876543216', 'Ashwini — +91 9876543217'],
+    coordinators: ['Ashwini M — +91 97906 04694', 'Monisha K — +91 78068 68490'],
     staffCoordinators: ['Ms. V. Hema, AP/BME — +91 95006 77540'],
     technicalEvents: ['InnoVision', 'Idea Hub', 'Mind Rush'],
     nonTechnicalEvents: ['CONNECT', 'Guess the Organ']
