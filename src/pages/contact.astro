@@ -188,7 +188,17 @@ const mapQuery = encodeURIComponent(`${siteConfig.institution}, ${siteConfig.add
   font: 700 0.95rem/1 $technical;
   letter-spacing: 0.08em;
 }
-.department-card h2 { margin: 0 0 10px; font: 700 1.25rem $technical; letter-spacing: 0.02em; }
+.department-card h2 {
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(255, 101, 0, 0.25);
+  font: 700 1.25rem $technical;
+  letter-spacing: 0.02em;
+  transition: border-color 0.25s ease;
+}
+.department-card:hover h2 {
+  border-color: $orange;
+}
 .coord-subheading {
   font-family: $technical;
   font-size: 0.72rem;
