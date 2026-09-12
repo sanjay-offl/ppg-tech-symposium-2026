@@ -1427,8 +1427,7 @@ export const events: EventItem[] = [
       'Present an original technical paper within the given time.',
       'No external assistance or plagiarism; violations may lead to disqualification.',
       'Scoring based on technical content, innovation, presentation, Q&A, and applicability.'
-    ],
-    coordinators: ['Pooja S — +91 9876543216', 'Vasantha Leela — +91 9876543217']
+    ]
   },
   {
     name: 'Idea Hub',
@@ -1454,8 +1453,7 @@ export const events: EventItem[] = [
       'The problem statement/theme will be given on the spot; teams must develop their solution within the allotted time.',
       'Ideas must be original and relevant to the given problem. Plagiarism or copied solutions will lead to disqualification.',
       'Scoring based on Problem Understanding, Innovation, Technical Feasibility, Impact & Applicability, Presentation & Q&A.'
-    ],
-    coordinators: ['Swetha — +91 9876543216', 'Ashwini — +91 9876543217']
+    ]
   },
   {
     name: 'Mind Rush',
@@ -1481,8 +1479,7 @@ export const events: EventItem[] = [
       'Three rounds with increasing difficulty.',
       'No external assistance or communication; violations may lead to disqualification.',
       'Scores from all rounds are combined.'
-    ],
-    coordinators: ['Pooja — +91 9876543216', 'Nivethitha — +91 9876543217']
+    ]
   },
   {
     name: 'CONNECT',
@@ -1511,8 +1508,7 @@ export const events: EventItem[] = [
       'Points are awarded for correct answers in each stage.',
       'In case of a tie, a tie-breaker may be conducted.',
       'The team with the highest total score will be declared the winner.'
-    ],
-    coordinators: ['Vinotha — +91 9876543216', 'Kaneeshma — +91 9876543217']
+    ]
   },
   {
     name: 'Guess the Organ',
@@ -1541,8 +1537,7 @@ export const events: EventItem[] = [
       'Mobile phones, internet access, and external assistance are not allowed.',
       'Teams must give one final answer for each question.',
       'The team with the highest cumulative score will be declared the winner.'
-    ],
-    coordinators: ['Vinotha — +91 9876543216', 'Mala — +91 9876543217']
+    ]
   },
   {
     name: 'IDEA2PROTOTYPE',
