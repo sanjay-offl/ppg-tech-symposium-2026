@@ -262,7 +262,8 @@ export const events: EventItem[] = [
     ],
     scoring: [
       'Total 100 Points based on technical execution, functionality, presentation, and defense.'
-    ]
+    ],
+    coordinators: ['Sathana — +91 88835 25201']
   },
   {
     name: 'TechQuest: The Blind Tech Labyrinth',
@@ -303,7 +304,8 @@ export const events: EventItem[] = [
     scoring: [
       'Survive the labyrinth with remaining lives.',
       'First team to reach the final page wins.'
-    ]
+    ],
+    coordinators: ['S.Rohith — +91 63813 72410']
   },
   {
     name: 'Blind Build',
@@ -344,7 +346,8 @@ export const events: EventItem[] = [
     scoring: [
       'Accuracy of implemented solution against original hidden problem statement.',
       'Effective communication and teamwork score.'
-    ]
+    ],
+    coordinators: ['S.Abishek — +91 85318 28481']
   },
   {
     name: 'eFootball Mobile Tournament',
@@ -391,7 +394,8 @@ export const events: EventItem[] = [
     scoring: [
       'Standard knockout bracket progression.',
       'Goals scored and match victory determine advancement.'
-    ]
+    ],
+    coordinators: ['P.Deeksha — +91 75500 47887']
   },
   {
     name: 'AdRush',
@@ -435,7 +439,8 @@ export const events: EventItem[] = [
     ],
     scoring: [
       'Total 100% based on Creativity, Persuasiveness, and Stage Confidence.'
-    ]
+    ],
+    coordinators: ['Saranya — +91 80150 22457']
   },
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
