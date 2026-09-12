@@ -8,12 +8,14 @@ import FAQAccordion from '@/components/faq/FAQAccordion.astro';
 import SymposiumGuidelines from '@/components/common/SymposiumGuidelines.astro';
 import CTA from '@/components/home/CTA.astro';
 import DeptSelectModal from '@/components/home/DeptSelectModal.astro';
+import DeptScrollLineCanvas from '@/components/animations/DeptScrollLineCanvas.astro';
 ---
 <MainLayout>
   <Hero />
   <Stats />
   <About />
   <section class="departments-preview reveal" id="departments">
+    <DeptScrollLineCanvas />
     <div class="container">
       <div class="dept-header-box">
         <span class="section-label">Compete & Win</span>
