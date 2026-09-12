@@ -26,7 +26,7 @@ export const departments: Department[] = [
     registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSetkwhIORgx3BNdvKKh5rGtx49deC9YWYmBKhxksm6ejIdhOA/viewform?usp=header'
   },
   {
-    name: 'Artificial Intelligence & Machine Learning',
+    name: 'Computer Science and Engineering (AI&ML)',
     slug: 'ai-ml',
     abbr: 'AI/ML',
     image: '/images/departments/ai-ml-logo.png',
@@ -34,7 +34,8 @@ export const departments: Department[] = [
     coordinators: ['Vyas — +91 78715 34011', 'Akash — +91 91594 04730'],
     staffCoordinators: ['Ms. B. Sivadharshini, AP/AI&ML — +91 99424 23983'],
     technicalEvents: ['IDEA2PROTOTYPE', 'PROMPT2PIXEL', 'Web Redesign'],
-    nonTechnicalEvents: ['AI Shortfilm', 'MemeRush']
+    nonTechnicalEvents: ['AI Shortfilm', 'MemeRush'],
+    registrationUrl: 'https://forms.gle/ih9Pv1E8c2eovQpm7'
   },
   {
     name: 'Biomedical Engineering',
@@ -45,7 +46,8 @@ export const departments: Department[] = [
     coordinators: ['Ashwini M — +91 97906 04694', 'Monisha K — +91 78068 68490'],
     staffCoordinators: ['Ms. V. Hema, AP/BME — +91 95006 77540'],
     technicalEvents: ['InnoVision', 'Idea Hub', 'Mind Rush'],
-    nonTechnicalEvents: ['CONNECT', 'Guess the Organ']
+    nonTechnicalEvents: ['CONNECT', 'Guess the Organ'],
+    registrationUrl: 'https://docs.google.com/forms/d/1Zegj7mj7tXjstXbclPOnrxTPlcFE_kugqe9AdE9GSvM/viewform'
   },
   {
     name: 'Computer Science & Engineering',
