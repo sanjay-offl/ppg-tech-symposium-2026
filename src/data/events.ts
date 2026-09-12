@@ -1253,7 +1253,7 @@ export const events: EventItem[] = [
       'The team with the highest score in Round 2 will be declared the winner.',
       'In case of a tie, a tie-breaker question will be conducted.'
     ],
-    coordinators: ['Nithish S — +91 96007 17165']
+    coordinators: ['Nitheesh S — +91 96007 17165']
   },
   {
     name: 'Prompt War',
