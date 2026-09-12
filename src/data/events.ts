@@ -489,7 +489,8 @@ export const events: EventItem[] = [
       'Assembly mates and constraint precision: 30%',
       'Completion time: 20%',
       'Modeling technique and feature tree: 10%'
-    ]
+    ],
+    coordinators: ['Joy Kiruban — +91 99523 47433']
   },
   {
     name: 'Mr. Mechanic',
@@ -531,7 +532,8 @@ export const events: EventItem[] = [
     scoring: [
       'Points awarded for correct name and functional description.',
       'Speed and accuracy in the rapid-fire round.'
-    ]
+    ],
+    coordinators: ['Manish — +91 82482 99640']
   },
   {
     name: 'Reverse Engineering Sketch',
@@ -577,7 +579,8 @@ export const events: EventItem[] = [
     ],
     scoring: [
       'Scoring out of 100 based on dimensional precision, orthographic correctness, and drafting neatness.'
-    ]
+    ],
+    coordinators: ['Anbu Mathan — +91 63803 92123']
   },
   {
     name: 'Paper Presentation',
@@ -622,7 +625,8 @@ export const events: EventItem[] = [
     ],
     scoring: [
       'Scored out of 100 based on innovation, technical clarity, presentation delivery, and defense.'
-    ]
+    ],
+    coordinators: ['Harikrishnan — +91 86376 22861']
   },
   {
     name: 'Creative Ad',
@@ -664,7 +668,8 @@ export const events: EventItem[] = [
       'Creativity and Product Promotion',
       'Entertainment value and Stage Presence',
       'Slogan / Tagline catchiness and Overall Impact'
-    ]
+    ],
+    coordinators: ['Dharsan — +91 93447 21779']
   },
   {
     name: 'Emoji Decode',
@@ -705,7 +710,8 @@ export const events: EventItem[] = [
     scoring: [
       'Points for correct answers within the 20-second window.',
       'Fastest response time breaks ties in the final round.'
-    ]
+    ],
+    coordinators: ['Darsanaa — +91 93639 10437']
   },
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1155,47 +1161,43 @@ export const events: EventItem[] = [
     department: 'Computer Science & Engineering',
     departmentSlug: 'cse',
     category: 'Technical',
-    format: 'Team (Maximum 4 members)',
+    format: 'Team participation (maximum 4 members)',
     teamSize: 'Max 4 Members',
-    duration: '2 Hours (90 mins build + 30 mins demo)',
-    venue: 'CP LAB II',
+    duration: '1 Hour',
+    venue: 'To Be Announced',
     time: '10:00 AM onwards',
     prerequisites: 'No prior coding experience required',
     registrationStatus: 'Open',
-    concept: 'Vibe Coding is a rapid website-building competition where teams leverage modern AI tools to transform concepts into functional, live websites within 90 minutes. The central theme is unveiled on the spot, requiring every team to build from scratch. At the conclusion, each team presents their live application to the room. Anyone with ideas can win this, not just programmers.',
-    description: 'Rapid website-building competition where teams leverage modern AI tools to transform concepts into functional, live websites within 90 minutes.',
+    concept: 'A creative and beginner-friendly coding challenge where participants use AI-powered vibe coding tools to build a functional and visually appealing website based on a theme provided on the spot. The event is designed to be simple and accessible, so participants do not need advanced coding skills or prior experience with AI-powered development tools. Participants will be judged on creativity, functionality, design, and how effectively they use AI tools to transform their ideas into a working website.',
+    description: 'A creative and beginner-friendly coding challenge where participants use AI-powered vibe coding tools to build a functional and visually appealing website based on a theme provided on the spot.',
     stages: [
       {
         title: 'Stage 1 — Ideate',
-        description: 'The event theme is announced with a countdown on the projector. Teams spend the first few minutes deciding what they want to build and how they want to approach it before opening any tool.'
+        description: 'The on-spot theme will be revealed, and teams will plan their website concept and approach.'
       },
       {
         title: 'Stage 2 — Vibe Code',
-        description: 'Teams use AI website builders like Bolt.new, Lovable, or v0.dev to build their site within 90 minutes. At the 45-minute mark, the organizers announce a surprise Vibe Drop requirement that every team must add to their site before the build ends, giving the event a second wave of energy right when things settle down.'
-      },
-      {
-        title: 'Stage 3 — Demo Round',
-        description: 'Each team gets exactly 90 seconds to present their live site on the projector to everyone in the room.'
+        description: 'Teams use AI-powered coding tools and prompts to develop and complete their website within the allotted 1-hour time limit.'
       }
     ],
     rules: [
       'Each team can have a maximum of 4 members.',
-      'The event theme is revealed only at the start. No preparation based on the theme is allowed beforehand.',
-      'Only AI tools from the organizers\' permitted list may be used. Recommended platforms are Bolt.new, Lovable, and v0.dev.',
-      'No coding knowledge is required. The AI handles the code; participants bring the ideas.',
-      'The Vibe Drop is announced at the 45-minute mark. All teams must include it in their final site before building stops.',
-      'Building ends at 90 minutes. Teams then demo their live site on the projector for exactly 90 seconds.',
-      'Importing ready-made templates without any modification is not allowed. The site must be built during the event.'
+      'The theme/topic will be disclosed only at the start of the event; no prior preparation is allowed.',
+      'Participants can use AI-powered coding tools and website development platforms permitted by the organizers.',
+      'No advanced coding knowledge is required; participants can use AI tools to assist them throughout the development process.',
+      'The website must be developed and completed within the 1-hour time limit.',
+      'Internet access and permitted AI tools may be used as instructed by the organizers.'
     ],
     scoringBreakdown: [
-      { label: 'Functionality', points: '25 Points' },
-      { label: 'UI Design and Creativity', points: '25 Points' },
-      { label: 'Effective AI Tool Usage', points: '20 Points' },
-      { label: 'Theme Execution', points: '10 Points' }
+      { label: 'Functionality', points: 'Judging Criteria' },
+      { label: 'Creativity', points: 'Judging Criteria' },
+      { label: 'UI/UX Design', points: 'Judging Criteria' },
+      { label: 'Effective AI Usage', points: 'Judging Criteria' },
+      { label: 'Overall Execution', points: 'Judging Criteria' }
     ],
     scoring: [
-      'Total Maximum Score: 80 Points.',
-      'The team with the highest combined score wins.'
+      'Judging will be based on Functionality, Creativity, UI/UX, Effective AI Usage, and Overall Execution.',
+      'The team with the highest overall score will be declared the winner.'
     ],
     coordinators: ['Rishikanth — +91 93440 55430']
   },
