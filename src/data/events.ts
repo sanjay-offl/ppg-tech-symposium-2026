@@ -1435,24 +1435,94 @@ export const events: EventItem[] = [
     department: 'Biomedical Engineering',
     departmentSlug: 'bme',
     category: 'Technical',
-    format: 'Team of 2 to 4',
-    duration: '7 minutes (5 minutes discussion & 2 minutes Q&A)',
+    format: 'Team Size: 2–4 Members',
+    duration: '7 Minutes (Presentation – 5 Mins | Q&A – 2 Mins)',
     venue: 'Department of Biomedical Engineering',
     time: '11:00 AM onwards',
     teamSize: '2 - 4 Members',
     registrationStatus: 'Open',
-    concept: 'An innovation-driven competition where teams present technology-based solutions to real-world healthcare and engineering challenges.',
-    description: 'An innovation-driven competition where teams present technology-based solutions to real-world healthcare and engineering challenges.',
+    concept: 'An innovation-driven competition where teams select one problem statement from the given topics and present a technology-based solution to a real-world healthcare or engineering challenge.',
+    description: 'An innovation-driven competition where teams select one problem statement from the given topics and present a technology-based solution to a real-world healthcare or engineering challenge.',
     stages: [
-      { title: 'Stage 1 — Spot Theme', description: 'Teams receive a problem statement/topic on the spot and get a limited time to understand the problem, brainstorm, and develop an innovative solution.' },
-      { title: 'Stage 2 — Innovation Pitch', description: 'Teams present their solution through a short pitch, highlighting innovation, concept, feasibility, system design, and real-world applications.' },
-      { title: 'Stage 3 — Judge’s Q&A', description: 'Teams answer questions from the judges to demonstrate their technical knowledge, problem-solving approach, feasibility, and practical impact.' }
+      {
+        title: 'Stage 1 — Problem Selection & Ideation',
+        description: 'Problem statements will be provided to all teams in advance. Each team must select any ONE problem statement and prepare an innovative solution based on the selected topic.'
+      },
+      {
+        title: 'Stage 2 — Innovation Pitch',
+        description: 'Teams will present their proposed solution using a prepared PPT within 5 minutes. The presentation should highlight the problem, proposed solution, innovation, technical concept, feasibility, and real-world applications.'
+      },
+      {
+        title: 'Stage 3 — Judge’s Q&A',
+        description: 'Teams will answer questions from the judges for 2 minutes to demonstrate their technical knowledge, problem-solving approach, feasibility, and practical impact.'
+      }
     ],
     rules: [
-      'Teams must have 2–4 members with valid student IDs.',
-      'The problem statement/theme will be given on the spot; teams must develop their solution within the allotted time.',
-      'Ideas must be original and relevant to the given problem. Plagiarism or copied solutions will lead to disqualification.',
-      'Scoring based on Problem Understanding, Innovation, Technical Feasibility, Impact & Applicability, Presentation & Q&A.'
+      'Teams must consist of 2–4 members with valid student IDs.',
+      'Problem statements will be provided to the teams in advance. Each team must choose any ONE problem statement.',
+      'Teams must prepare a PPT presentation based on their selected problem statement and proposed solution.',
+      'The proposed solution must be original, innovative, and relevant to the selected problem. Plagiarism or copied solutions will result in disqualification.',
+      'Each team must complete the presentation within 5 minutes, followed by 2 minutes of Q&A.',
+      'Evaluation will be based on: Problem Understanding, Innovation, Technical Feasibility, Impact & Applicability, Presentation & Q&A.'
+    ],
+    scoring: [
+      'Problem Understanding',
+      'Innovation',
+      'Technical Feasibility',
+      'Impact & Applicability',
+      'Presentation & Q&A'
+    ],
+    problemStatements: [
+      {
+        id: 1,
+        title: 'Smart Contact Lens for Glucose Monitoring',
+        question: 'How can we develop a non-invasive wearable system that monitors glucose levels through tear fluid and provides real-time health information without painful finger-prick testing?'
+      },
+      {
+        id: 2,
+        title: 'AI-Powered Stethoscope for Rural Screening',
+        question: 'How can we use AI and portable technology to help identify respiratory conditions such as pneumonia, asthma, and TB from lung sounds in areas with limited access to doctors?'
+      },
+      {
+        id: 3,
+        title: 'Self-Stabilizing Spoon for Parkinson’s Patients',
+        question: 'How can we design a smart spoon that reduces hand tremors while eating and simultaneously tracks tremor patterns to support better patient monitoring?'
+      },
+      {
+        id: 4,
+        title: 'Menstrual Blood Diagnostic Pad',
+        question: 'How can we transform a sanitary pad into a smart diagnostic platform capable of detecting useful health biomarkers from menstrual fluid at home?'
+      },
+      {
+        id: 5,
+        title: 'Smart Posture Corrector with Muscle Stimulation',
+        question: 'How can we develop a wearable device that detects prolonged poor posture and actively assists users in correcting it using feedback and controlled muscle stimulation?'
+      },
+      {
+        id: 6,
+        title: 'Air-Quality Aware Smart Inhaler',
+        question: 'How can we create a smart inhaler that combines real-time air-quality and allergen information with inhaler usage to warn asthma patients about potential environmental triggers?'
+      },
+      {
+        id: 7,
+        title: 'pH-Sensing Wound Healing Bandage',
+        question: 'How can we develop a smart wound dressing that monitors changes in wound pH and alerts the user or caregiver when the wound shows signs of abnormal healing?'
+      },
+      {
+        id: 8,
+        title: 'Silent Heart Attack Detector During Sleep',
+        question: 'How can wearable technology monitor physiological signals during sleep and identify abnormal cardiac patterns early enough to trigger an emergency alert?'
+      },
+      {
+        id: 9,
+        title: 'Self-Screening Bra for Breast Abnormalities',
+        question: 'How can we develop a wearable system that monitors changes in breast-region temperature patterns and provides an early warning for abnormalities requiring medical evaluation?'
+      },
+      {
+        id: 10,
+        title: 'Swallow-Confirmation Smart Pill Box',
+        question: 'How can we develop a smart medication system that goes beyond detecting whether a pill box was opened and verifies whether the patient actually swallowed the medication?'
+      }
     ]
   },
   {

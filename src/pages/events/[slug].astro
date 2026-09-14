@@ -121,6 +121,33 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
                 </div>
               )}
 
+              <!-- Problem Statements / Challenge Topics -->
+              {detail.problemStatements && detail.problemStatements.length > 0 && (
+                <div class="content-block problem-statements-block">
+                  <h2 class="block-title">CHALLENGE PROBLEM STATEMENTS</h2>
+                  <p class="block-subtitle">Select any ONE problem statement from the topics below to prepare your innovative technology solution:</p>
+                  <div class="problem-statements-list">
+                    {detail.problemStatements.map((item, idx) => {
+                      const isObj = typeof item !== 'string';
+                      const title = isObj ? item.title : item;
+                      const question = isObj ? item.question : '';
+                      const idNum = isObj && item.id ? item.id : idx + 1;
+                      return (
+                        <div class="problem-statement-card">
+                          <div class="problem-card-header">
+                            <span class="problem-badge">PROBLEM {idNum}</span>
+                            <h3 class="problem-title">{title}</h3>
+                          </div>
+                          {question && (
+                            <p class="problem-question">{question}</p>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
               <!-- Rules & Regulations -->
               {detail.rules && detail.rules.length > 0 && (
                 <div class="content-block">
@@ -328,7 +355,7 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
-  align-items: center;
+  align-items: flex-start;
   padding: 20px 24px;
   background: #141414;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -496,6 +523,76 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   padding: 4px 0;
 }
 
+/* Problem Statements */
+.block-subtitle {
+  font-family: $body;
+  font-size: 0.94rem;
+  color: #555555;
+  margin: -16px 0 20px;
+  line-height: 1.5;
+}
+
+.problem-statements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.problem-statement-card {
+  padding: 20px 22px;
+  background: #f8f9fa;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+  border-left: 4px solid $orange;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    border-color: rgba(255, 101, 0, 0.3);
+    border-left-color: #ff7a00;
+    transform: translateY(-2px);
+  }
+}
+
+.problem-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.problem-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(255, 101, 0, 0.12);
+  color: $orange;
+  font-family: $technical;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.problem-title {
+  font-family: $technical;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.problem-question {
+  font-family: $body;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #2c2c2c;
+  margin: 0;
+}
+
 /* Rules */
 .rules-list {
   margin: 0;
@@ -563,7 +660,8 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 .breakdown-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 12px;
   padding: 8px 0;
   border-bottom: 1px dashed rgba(10, 10, 10, 0.1);
 }
@@ -573,6 +671,7 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   font-size: 0.88rem;
   font-weight: 600;
   color: #1a1a1a;
+  flex: 1;
 }
 
 .breakdown-pts {
@@ -580,6 +679,8 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
   font-size: 0.88rem;
   font-weight: 700;
   color: $orange;
+  flex-shrink: 0;
+  text-align: right;
 }
 
 .register-side-card {
@@ -667,7 +768,8 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 .summary-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 12px;
   padding: 9px 0;
   border-bottom: 1px solid rgba(10, 10, 10, 0.08);
 
@@ -677,18 +779,26 @@ const detail = event ?? getEvent(Astro.params.slug ?? '');
 
   .s-label {
     font-family: $technical;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 700;
-    color: #374151;
+    color: #4b5563;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    flex-shrink: 0;
+    max-width: 45%;
+    padding-top: 2px;
   }
 
   .s-val {
     font-family: $technical;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: #0a0a0a;
+    text-align: right;
+    word-break: break-word;
+    flex: 1;
+    min-width: 0;
+    line-height: 1.4;
   }
 }
 
