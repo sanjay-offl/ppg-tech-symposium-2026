@@ -40,6 +40,7 @@ export interface EventItem {
   scoring?: string[];
   scoringBreakdown?: ScoringItem[];
   themes?: string[];
+  problemStatements?: Array<{ id?: number; title: string; question: string } | string>;
   coordinators?: string[];
   prerequisites?: string;
   coverage?: string;
