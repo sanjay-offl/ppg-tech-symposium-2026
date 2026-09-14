@@ -173,7 +173,7 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
 
 .format-line {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   padding: 10px 12px;
   background: #f8f8fa;
@@ -190,12 +190,14 @@ const isExternalReg = Boolean(deptObj?.registrationUrl);
 .format-icon {
   flex-shrink: 0;
   color: $orange;
+  margin-top: 2px;
 }
 
 .format-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.45;
+  word-break: break-word;
 }
 
 .card-coordinators {
