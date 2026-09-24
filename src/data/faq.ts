@@ -45,7 +45,7 @@ export const faqs: FAQItem[] = [
     id: 'on-spot-registration',
     category: 'Registration & Fee',
     question: 'Is on-spot registration available on the event day?',
-    answer: 'Yes, on-spot registration desks will be active starting at 8:30 AM on September 25, 2026. However, online pre-registration is strongly encouraged to guarantee event slots, lunch tokens, and faster check-in.'
+    answer: 'Yes, on-spot registration desks will be active starting at 8:30 AM on October 15, 2026. However, online pre-registration is strongly encouraged to guarantee event slots, lunch tokens, and faster check-in.'
   },
   {
     id: 'what-to-bring',

@@ -470,6 +470,8 @@ function playBrandIntroAnimation() {
         document.body.classList.remove('intro-active');
         stopIntroCanvasStreaks();
         
+        window.dispatchEvent(new CustomEvent('intro-complete'));
+
         setTimeout(() => {
           overlay?.remove();
           lockupWrap?.remove();
@@ -541,6 +543,7 @@ function initIntro() {
         overlay?.remove();
         lockupWrap?.remove();
         document.body.classList.remove('intro-active');
+        window.dispatchEvent(new CustomEvent('intro-complete'));
         return;
     }
 
