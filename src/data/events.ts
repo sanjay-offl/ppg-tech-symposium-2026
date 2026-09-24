@@ -266,8 +266,8 @@ export const events: EventItem[] = [
     coordinators: ['Sathana — +91 88835 25201']
   },
   {
-    name: 'TechQuest: The Blind Tech Labyrinth',
-    slug: 'techquest-the-blind-tech-labyrinth',
+    name: 'Cryptica',
+    slug: 'cryptica',
     department: 'Information Technology',
     departmentSlug: 'it',
     category: 'Technical',
@@ -758,8 +758,8 @@ export const events: EventItem[] = [
     ]
   },
   {
-    name: 'PPT and Paper Presentation',
-    slug: 'ece-paper-presentation',
+    name: 'Tech Talk',
+    slug: 'tech-talk',
     department: 'Electronics and Communication Engineering',
     departmentSlug: 'ece',
     category: 'Technical',
