@@ -72,7 +72,7 @@ export const departments: Department[] = [
     email: 'electrosparksppg@gmail.com',
     coordinators: ['Nakshatra — +91 99404 48047', 'Subagaanthan — +91 90258 52595'],
     staffCoordinators: ['Ms. G. Karthiga, AP/ECE — +91 80567 18288'],
-    technicalEvents: ['Circuit Crime Scene', 'PPT and Paper Presentation', 'Reverse Engineering'],
+    technicalEvents: ['Circuit Crime Scene', 'Tech Talk', 'Reverse Engineering'],
     nonTechnicalEvents: ['ECE Escape Room', 'IPL Auction'],
     registrationUrl: 'https://forms.gle/VFmp1MkKmPMfKEeh8'
   },
@@ -84,7 +84,7 @@ export const departments: Department[] = [
     email: 'techtitansppg@gmail.com',
     coordinators: ['Deeksha — +91 75500 47887', 'Abhishek — +91 85318 28481'],
     staffCoordinators: ['Mr. A. Muthukumar, AP/IT — +91 63696 31525'],
-    technicalEvents: ['AI: Spin and Solve', 'TechQuest: The Blind Tech Labyrinth', 'Blind Build'],
+    technicalEvents: ['AI: Spin and Solve', 'Cryptica', 'Blind Build'],
     nonTechnicalEvents: ['AdRush', 'Pro Evolution Soccer'],
     registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSc7_-3VZCzi3lsqOCBi8-TDE1a5iiY89Flo_TziXkYFtVCaQw/viewform?usp=publish-editor'
   },
