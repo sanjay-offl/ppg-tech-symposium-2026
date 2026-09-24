@@ -15,13 +15,13 @@ export const faqs: FAQItem[] = [
     id: 'fee-coverage',
     category: 'Registration & Fee',
     question: 'What does the registration fee cover?',
-    answer: 'The registration fee is an all-inclusive single pass. It grants you full access to participate in events across any of the 8 departments, provides an official participation certificate, and includes complimentary lunch and refreshments for the day.'
+    answer: 'The registration fee for an individual participant is only ₹250. It is an all-inclusive single pass that covers your participation in events, lunch and refreshments, and an official participation certificate.'
   },
   {
     id: 'multiple-events',
     category: 'Events & Rules',
-    question: 'Can I participate in multiple events across different departments?',
-    answer: 'Yes! Your single registration allows you to enter both technical and non-technical events across different departments, provided their schedules and time slots do not overlap.'
+    question: 'How many events can a team participate in?',
+    answer: 'A single team can participate in only one department. Within that department, a team can take part in exactly 2 technical events and 1 non-technical event. The team cannot participate in events from other departments.'
   },
   {
     id: 'eligibility',
@@ -33,13 +33,13 @@ export const faqs: FAQItem[] = [
     id: 'team-intercollege',
     category: 'Events & Rules',
     question: 'Are inter-college and inter-department teams allowed?',
-    answer: 'Yes, absolutely. For team events, members can belong to different departments or even different colleges. You can indicate your team name during registration or at the check-in desk.'
+    answer: 'Yes, team members can belong to different colleges. However, each team must participate in only one department, and can enter up to 2 technical events and 1 non-technical event within that department. You can indicate your team name during registration or at the check-in desk.'
   },
   {
     id: 'payment-process',
     category: 'Registration & Fee',
     question: 'How do I pay and verify my registration?',
-    answer: 'Submit your details on the Register page, then proceed to the Payment page. Complete your payment via the official UPI QR code and enter your UTR / transaction reference number. Your registration status will be confirmed once verified.'
+    answer: 'The registration fee per individual participant is ₹250. Submit your details on the Register page, then proceed to the Payment page. Complete your payment via the official UPI QR code and enter your UTR / transaction reference number. Your registration status will be confirmed once verified.'
   },
   {
     id: 'on-spot-registration',
@@ -63,7 +63,7 @@ export const faqs: FAQItem[] = [
     id: 'food-refreshments',
     category: 'Venue & Logistics',
     question: 'Will food and refreshments be provided?',
-    answer: 'Yes. Every registered participant will receive tokens for morning refreshments and a delicious hot lunch prepared on campus.'
+    answer: 'Yes. Every registered participant will be provided with morning refreshments and a delicious hot lunch prepared on campus. Lunch and refreshments are included with your ₹250 registration fee.'
   },
   {
     id: 'venue-transport',
