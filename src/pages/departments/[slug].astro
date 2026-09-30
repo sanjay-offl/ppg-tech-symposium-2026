@@ -133,9 +133,9 @@ const nonTechEvents = deptEvents.filter((e) => e.category === 'Non-Technical');
       <!-- Single Overall Registration CTA -->
       <div class="dept-register-wrap">
         <div class="dept-register-box">
-          <span class="cta-label">Single Pass · All Events Included</span>
+          <span class="cta-label">Department Pass · 2 Tech + 1 Non-Tech Included</span>
           <h3 class="cta-title">Ready to Compete in {department.name}?</h3>
-          <p class="cta-desc">Registration gives you full access to all technical & non-technical events, certificate, and complimentary lunch.</p>
+          <p class="cta-desc">Each registration permits participation in up to <strong>2 Technical Events & 1 Non-Technical Event</strong> in {department.name}, including certificate and complimentary lunch.</p>
           <a
             href={department.registrationUrl || `/register?dept=${department.slug}`}
             target={department.registrationUrl ? "_blank" : undefined}

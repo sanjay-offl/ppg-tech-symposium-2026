@@ -15,13 +15,13 @@ export const faqs: FAQItem[] = [
     id: 'fee-coverage',
     category: 'Registration & Fee',
     question: 'What does the registration fee cover?',
-    answer: 'The registration fee is an all-inclusive single pass. It grants you full access to participate in events across any of the 8 departments, provides an official participation certificate, and includes complimentary lunch and refreshments for the day.'
+    answer: 'The registration fee covers entry for up to 2 Technical Events and 1 Non-Technical Event within your registered department. It also includes an official participation certificate, complimentary lunch, and morning/afternoon refreshments for the day.'
   },
   {
     id: 'multiple-events',
     category: 'Events & Rules',
-    question: 'Can I participate in multiple events across different departments?',
-    answer: 'Yes! Your single registration allows you to enter both technical and non-technical events across different departments, provided their schedules and time slots do not overlap.'
+    question: 'Can I participate in all events or across different departments with one registration?',
+    answer: 'No, one registration is not for all events. Each registration is department-specific and allows participation in up to 2 Technical Events and 1 Non-Technical Event within your registered department. If you wish to compete in another department, a separate registration is required.'
   },
   {
     id: 'eligibility',
